@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfólio profissional de Ricardo Lacerda Pereira, desenvolvedor com projetos em React, Vite, JavaScript, automação e dashboards."
+    />
+    <title>Ricardo Lacerda Pereira | Desenvolvedor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-grid" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="Ir para o início">
+        <span>RL</span>
+        <strong>Ricardo Lacerda Pereira</strong>
+      </a>
+      <nav aria-label="Navegação principal">
+        <a href="#projetos">Projetos</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </header>
+
+    <main id="inicio">
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">Desenvolvedor web | projetos em produção</span>
+          <h1>Interfaces, sistemas e protótipos com foco em entrega real.</h1>
+          <p>
+            Portfólio de Ricardo Lacerda Pereira com projetos publicados,
+            repositórios abertos e experiências navegáveis para avaliação
+            técnica rápida.
+          </p>
+          <div
+            class="signal-row"
+            aria-label="Resumo de disponibilidade dos projetos"
+          >
+            <span><i></i> Demos online</span>
+            <span><i></i> Código público</span>
+            <span><i></i> Deploy Vercel</span>
+          </div>
+          <div class="hero-actions">
+            <a class="primary-action" href="#projetos">Ver projetos</a>
+            <a
+              class="secondary-action"
+              href="https://www.linkedin.com/in/ricardo-lacerda-pereira/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              LinkedIn
+            </a>
+          </div>
+        </div>
+        <aside class="hero-console" aria-label="Resumo técnico profissional">
+          <div class="console-header">
+            <span></span>
+            <span></span>
+            <span></span>
+            <strong>portfolio.status</strong>
+          </div>
+          <div class="console-body">
+            <div class="console-line">
+              <span>stack</span>
+              <strong>React · JavaScript · Vite · Node.js</strong>
+            </div>
+            <div class="console-line">
+              <span>perfil</span>
+              <strong>Front-end · Dashboards · Sistemas web</strong>
+            </div>
+            <div class="console-line">
+              <span>entrega</span>
+              <strong>Protótipos navegáveis e publicados</strong>
+            </div>
+            <div class="terminal-card">
+              <code>$ npm run demonstracao</code>
+              <small
+                >6 projetos catalogados · 3 demos online · GitHub público</small
+              >
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="metric-strip" aria-label="Indicadores do portfólio">
+        <article>
+          <span>Projetos</span>
+          <strong>6</strong>
+        </article>
+        <article>
+          <span>Demos online</span>
+          <strong>3</strong>
+        </article>
+        <article>
+          <span>Stack</span>
+          <strong>React + JS</strong>
+        </article>
+        <article>
+          <span>Contato</span>
+          <strong>LinkedIn</strong>
+        </article>
+      </section>
+
+      <section class="section section-muted">
+        <div class="section-heading">
+          <span class="eyebrow">Destaques</span>
+          <h2>Portfólio organizado para avaliação rápida</h2>
+        </div>
+        <div class="value-grid">
+          <article>
+            <span>01</span>
+            <h3>Demos online</h3>
+            <p>Projetos que podem ser testados sem instalar nada.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Código público</h3>
+            <p>Repositórios abertos no GitHub para consulta técnica.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Entrega objetiva</h3>
+            <p>
+              Interfaces limpas, foco no fluxo principal e documentação simples.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="projetos">
+        <div class="section-heading split">
+          <div>
+            <span class="eyebrow">Projetos</span>
+            <h2>Projetos selecionados</h2>
+          </div>
+          <div class="filter-group" aria-label="Filtrar projetos">
+            <button class="filter-button active" data-filter="todos">
+              Todos
+            </button>
+            <button class="filter-button" data-filter="demo">Com demo</button>
+            <button class="filter-button" data-filter="sistema">
+              Sistemas
+            </button>
+            <button class="filter-button" data-filter="site">Sites</button>
+          </div>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card featured" data-tags="demo sistema">
+            <div class="project-topline">
+              <span>React + Vite</span>
+              <strong>MVP publicado</strong>
+            </div>
+            <h3>AutoWash Smart</h3>
+            <p>
+              MVP demonstrativo de uma plataforma para lava a jato inteligente
+              com landing, cadastro, totem, lavagem, self-service, mini shop e
+              dashboard administrativo.
+            </p>
+            <ul>
+              <li>
+                Fluxos simulados de pagamento, QR Code e reconhecimento facial.
+              </li>
+              <li>Dashboard com indicadores operacionais e dados locais.</li>
+              <li>Projeto público com deploy na Vercel.</li>
+            </ul>
+            <div class="project-actions">
+              <a
+                href="https://auto-wash-smart.vercel.app"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Demo online
+              </a>
+              <a
+                href="https://github.com/Riclacper/AutoWashSmart"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card" data-tags="demo site">
+            <div class="project-topline">
+              <span>Catálogo web</span>
+              <strong>Demo online</strong>
+            </div>
+            <h3>Cinescope Catalog</h3>
+            <p>
+              Catálogo de filmes com interface de consulta, ideal para
+              demonstrar organização visual e consumo de dados.
+            </p>
+            <div class="project-actions">
+              <a
+                href="https://cinescope-ashy.vercel.app"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Demo online
+              </a>
+              <a
+                href="https://github.com/Riclacper/cinescope-catalog"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card" data-tags="demo site">
+            <div class="project-topline">
+              <span>Landing page</span>
+              <strong>Demo online</strong>
+            </div>
+            <h3>Aurora Stay Iceland</h3>
+            <p>
+              Site visual para hospedagem/turismo, com foco em apresentação,
+              responsividade e experiência de navegação.
+            </p>
+            <div class="project-actions">
+              <a
+                href="https://aurora-stay-iceland.vercel.app"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Demo online
+              </a>
+              <a
+                href="https://github.com/Riclacper/aurora-stay-iceland"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card" data-tags="sistema">
+            <div class="project-topline">
+              <span>React + Node</span>
+              <strong>Repositório público</strong>
+            </div>
+            <h3>Emprega Safe</h3>
+            <p>
+              Projeto web com estrutura React e Node voltado para fluxos de
+              cadastro, segurança e organização de dados.
+            </p>
+            <div class="project-actions">
+              <a
+                href="https://github.com/Riclacper/emprega-safe-react-node"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card" data-tags="site">
+            <div class="project-topline">
+              <span>Site institucional</span>
+              <strong>GitHub</strong>
+            </div>
+            <h3>iCanada Reparos</h3>
+            <p>
+              Site para divulgação de serviços, com foco em presença digital,
+              apresentação comercial e contato rápido.
+            </p>
+            <div class="project-actions">
+              <a
+                href="https://github.com/Riclacper/site-icanada-reparos"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card" data-tags="sistema">
+            <div class="project-topline">
+              <span>Dashboard</span>
+              <strong>GitHub</strong>
+            </div>
+            <h3>Gerenciamento Forense</h3>
+            <p>
+              Projeto para organização de informações e fluxos administrativos,
+              com estrutura voltada para controle e consulta.
+            </p>
+            <div class="project-actions">
+              <a
+                href="https://github.com/Riclacper/gerenciamento-forense"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-muted" id="sobre">
+        <div class="about-layout">
+          <div>
+            <span class="eyebrow">Sobre</span>
+            <h2>
+              Desenvolvedor em evolução contínua, com foco em produto funcional.
+            </h2>
+          </div>
+          <div class="about-copy">
+            <p>
+              Gosto de transformar ideias em protótipos navegáveis, sistemas
+              simples e experiências claras para o usuário. Meu trabalho
+              prioriza organização, responsividade, documentação e apresentação
+              prática do resultado.
+            </p>
+            <div class="skill-list">
+              <span>React</span>
+              <span>JavaScript</span>
+              <span>Vite</span>
+              <span>Node.js</span>
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>GitHub</span>
+              <span>Vercel</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contato">
+        <div>
+          <span class="eyebrow">Contato</span>
+          <h2>Vamos conversar sobre projetos, oportunidades ou melhorias.</h2>
+          <p>
+            Você pode acessar meu GitHub, LinkedIn ou testar diretamente os
+            projetos publicados.
+          </p>
+        </div>
+        <div class="contact-actions">
+          <a
+            href="https://github.com/Riclacper"
+            target="_blank"
+            rel="noreferrer"
+            >GitHub</a
+          >
+          <a
+            href="https://www.linkedin.com/in/ricardo-lacerda-pereira/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="https://auto-wash-smart.vercel.app"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Projeto em destaque
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Ricardo Lacerda Pereira</span>
+      <span>Portfólio profissional</span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
