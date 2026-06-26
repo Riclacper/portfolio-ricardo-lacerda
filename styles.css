@@ -573,11 +573,15 @@ footer {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+#projetos {
+  padding-bottom: 44px;
+}
+
 .project-card {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 364px;
+  min-height: 310px;
   padding: 24px;
   overflow: hidden;
 }
@@ -595,7 +599,7 @@ footer {
 
 .project-card.featured {
   grid-column: span 2;
-  min-height: 430px;
+  min-height: 390px;
   background:
     radial-gradient(
       circle at 88% 12%,
@@ -660,6 +664,10 @@ footer {
 
 .project-card.hidden {
   display: none;
+}
+
+#sobre.section-muted {
+  margin-top: 28px;
 }
 
 .about-layout,
