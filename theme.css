@@ -1,17 +1,16 @@
 .theme-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 36px;
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
   min-height: 36px;
-  padding: 8px 11px;
+  padding: 0;
   border: 1px solid var(--line);
   border-radius: 8px;
   color: var(--muted);
   background: rgba(255, 255, 255, 0.035);
-  font-size: 13px;
-  font-weight: 800;
-  white-space: nowrap;
 }
 
 .theme-toggle:hover,
@@ -25,12 +24,17 @@
   outline-offset: 2px;
 }
 
+.theme-toggle__text {
+  display: none;
+}
+
 .theme-toggle__icon {
   display: grid;
   place-items: center;
   width: 18px;
   height: 18px;
-  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
   line-height: 1;
 }
 
@@ -39,7 +43,7 @@
 }
 
 :root[data-theme-mode="light"] .theme-toggle__icon::before {
-  content: "☀";
+  content: "☼";
 }
 
 :root[data-theme-mode="dark"] .theme-toggle__icon::before {
@@ -79,13 +83,7 @@
 
 :root[data-theme="light"] .page-grid::after {
   background:
-    linear-gradient(
-      90deg,
-      rgba(0, 135, 95, 0.07),
-      transparent 16%,
-      transparent 84%,
-      rgba(0, 127, 158, 0.07)
-    ),
+    linear-gradient(90deg, rgba(0, 135, 95, 0.07), transparent 16%, transparent 84%, rgba(0, 127, 158, 0.07)),
     radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.9), transparent 36%);
 }
 
@@ -101,8 +99,13 @@
 }
 
 :root[data-theme="light"] .site-header nav,
-:root[data-theme="light"] .theme-toggle {
-  background: rgba(255, 255, 255, 0.68);
+:root[data-theme="light"] .theme-toggle,
+:root[data-theme="light"] .secondary-action,
+:root[data-theme="light"] .project-actions a,
+:root[data-theme="light"] .contact-actions a,
+:root[data-theme="light"] .filter-button,
+:root[data-theme="light"] .about-copy {
+  background: rgba(255, 255, 255, 0.74);
 }
 
 :root[data-theme="light"] .site-header nav a:hover,
@@ -121,14 +124,6 @@
 
 :root[data-theme="light"] .signal-row span {
   color: #284554;
-  background: rgba(255, 255, 255, 0.74);
-}
-
-:root[data-theme="light"] .secondary-action,
-:root[data-theme="light"] .project-actions a,
-:root[data-theme="light"] .contact-actions a,
-:root[data-theme="light"] .filter-button,
-:root[data-theme="light"] .about-copy {
   background: rgba(255, 255, 255, 0.74);
 }
 
@@ -202,51 +197,26 @@
     rgba(255, 255, 255, 0.9);
 }
 
-html.theme-ready body,
-html.theme-ready .site-header::before,
-html.theme-ready .site-header nav,
-html.theme-ready .theme-toggle,
-html.theme-ready .hero-console,
-html.theme-ready .metric-strip article,
-html.theme-ready .section-muted,
-html.theme-ready .value-grid article,
-html.theme-ready .project-card,
-html.theme-ready .about-copy,
-html.theme-ready .contact-card,
-html.theme-ready .secondary-action,
-html.theme-ready .project-actions a,
-html.theme-ready .contact-actions a,
-html.theme-ready .filter-button {
-  transition:
-    color 180ms ease,
-    background 180ms ease,
-    background-color 180ms ease,
-    border-color 180ms ease,
-    box-shadow 180ms ease;
-}
-
 @media (max-width: 640px) {
-  .theme-toggle {
-    flex: 0 0 auto;
+  html .site-header nav {
+    display: flex !important;
+    grid-template-columns: none !important;
+    gap: 4px !important;
+    overflow-x: visible !important;
+    padding: 6px !important;
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  html.theme-ready body,
-  html.theme-ready .site-header::before,
-  html.theme-ready .site-header nav,
-  html.theme-ready .theme-toggle,
-  html.theme-ready .hero-console,
-  html.theme-ready .metric-strip article,
-  html.theme-ready .section-muted,
-  html.theme-ready .value-grid article,
-  html.theme-ready .project-card,
-  html.theme-ready .about-copy,
-  html.theme-ready .contact-card,
-  html.theme-ready .secondary-action,
-  html.theme-ready .project-actions a,
-  html.theme-ready .contact-actions a,
-  html.theme-ready .filter-button {
-    transition: none;
+  html .site-header nav a {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    padding-right: 6px !important;
+    padding-left: 6px !important;
+    text-align: center !important;
+  }
+
+  html .site-header nav .theme-toggle {
+    grid-column: auto !important;
+    flex: 0 0 36px !important;
+    width: 36px !important;
   }
 }
