@@ -1,5 +1,6 @@
 #projetos,
 #sobre,
+#experiencia,
 #contato {
   scroll-margin-top: 94px;
 }
@@ -14,14 +15,17 @@ button:focus-visible {
 .hero-copy,
 .hero-console,
 .console-line,
-.project-card {
+.project-card,
+.experience-card {
   min-width: 0;
 }
 
 .console-line strong,
 .project-card p,
 .project-card li,
-.contact-actions small {
+.contact-actions small,
+.experience-card p,
+.experience-card li {
   overflow-wrap: anywhere;
 }
 
@@ -31,23 +35,13 @@ button:focus-visible {
 .contact-actions a,
 .filter-button,
 .site-header nav a,
-.brand {
+.brand,
+.experience-link {
   transition:
     color 160ms ease,
     background-color 160ms ease,
     border-color 160ms ease,
     transform 160ms ease;
-}
-
-.footer-brand small {
-  font-size: 0;
-}
-
-.footer-brand small::after {
-  content: "Desenvolvedor Web Full Stack";
-  color: var(--muted-2);
-  font-size: 12px;
-  font-weight: 800;
 }
 
 footer nav {
@@ -56,27 +50,9 @@ footer nav {
 }
 
 .footer-separator {
-  display: none;
-}
-
-footer nav a[href="#sobre"]::before,
-footer nav a[href*="github.com"]::before,
-footer nav a[href*="linkedin.com"]::before {
-  margin-right: 8px;
   color: var(--muted-2);
   font-weight: 700;
-}
-
-footer nav a[href="#sobre"]::before {
-  content: "·";
-}
-
-footer nav a[href*="github.com"]::before {
-  content: "|";
-}
-
-footer nav a[href*="linkedin.com"]::before {
-  content: "·";
+  user-select: none;
 }
 
 .projects-toggle-wrap {
@@ -128,6 +104,145 @@ footer nav a[href*="linkedin.com"]::before {
 
 .projects-toggle:active {
   transform: translateY(0) scale(0.98);
+}
+
+.experience-section {
+  padding-top: 72px;
+  padding-bottom: 34px;
+}
+
+.experience-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.experience-heading h2 {
+  max-width: 520px;
+  margin: 14px 0 0;
+  color: var(--ink-strong);
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.experience-card {
+  position: relative;
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background:
+    radial-gradient(
+      circle at 92% 8%,
+      rgba(56, 217, 255, 0.12),
+      transparent 32%
+    ),
+    linear-gradient(135deg, var(--surface-2), var(--surface));
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+.experience-card::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--green), var(--cyan));
+  content: "";
+}
+
+.experience-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.experience-meta span,
+.experience-meta strong {
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.experience-meta span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 11px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  color: var(--green);
+  background: rgba(25, 209, 140, 0.08);
+}
+
+.experience-meta strong {
+  color: var(--muted-2);
+}
+
+.experience-card h3 {
+  margin: 0 0 14px;
+  color: var(--ink-strong);
+  font-size: clamp(23px, 3vw, 31px);
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+}
+
+.experience-card p {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.72;
+}
+
+.experience-list {
+  display: grid;
+  gap: 10px;
+  margin: 22px 0 26px;
+  padding: 0;
+  list-style: none;
+}
+
+.experience-list li {
+  position: relative;
+  padding-left: 22px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.experience-list li::before {
+  position: absolute;
+  top: 0.62em;
+  left: 2px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 4px rgba(25, 209, 140, 0.1);
+  content: "";
+}
+
+.experience-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  color: var(--ink-strong);
+  background: rgba(25, 209, 140, 0.08);
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.experience-link:hover {
+  border-color: var(--green);
+  color: var(--green);
+  transform: translateY(-2px);
 }
 
 .back-to-top {
@@ -210,9 +325,17 @@ footer nav a[href*="linkedin.com"]::before {
   }
 }
 
+@media (max-width: 960px) {
+  .experience-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
 @media (max-width: 640px) {
   #projetos,
   #sobre,
+  #experiencia,
   #contato {
     scroll-margin-top: 16px;
   }
@@ -220,6 +343,23 @@ footer nav a[href*="linkedin.com"]::before {
   .projects-toggle {
     width: 100%;
     max-width: 320px;
+  }
+
+  .experience-section {
+    padding-top: 54px;
+  }
+
+  .experience-card {
+    padding: 24px 20px 24px 23px;
+  }
+
+  .experience-meta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .experience-link {
+    width: 100%;
   }
 
   .back-to-top {
