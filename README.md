@@ -11,6 +11,17 @@ Site estático para divulgação dos projetos de Ricardo Lacerda Pereira como de
 - Filtros por tipo de projeto.
 - Seção de stack técnica.
 - Links para GitHub e LinkedIn.
+- Tema automático, claro e escuro com preferência persistida no navegador.
+
+## Tema visual
+
+O seletor no menu permite alternar entre:
+
+- **Automático:** acompanha o tema claro ou escuro configurado no sistema operacional.
+- **Claro:** mantém a interface clara.
+- **Escuro:** mantém a interface escura.
+
+A opção escolhida é armazenada localmente no navegador.
 
 ## Como executar localmente
 
