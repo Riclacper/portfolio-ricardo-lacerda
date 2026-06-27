@@ -79,6 +79,57 @@ footer nav a[href*="linkedin.com"]::before {
   content: "·";
 }
 
+.projects-toggle-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 26px;
+}
+
+.projects-toggle-wrap[hidden] {
+  display: none;
+}
+
+.projects-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 0 20px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  color: var(--ink-strong);
+  background: linear-gradient(135deg, var(--surface-2), var(--surface));
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 900;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    background-color 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.projects-toggle i {
+  color: var(--green);
+  font-size: 18px;
+  font-style: normal;
+  line-height: 1;
+}
+
+.projects-toggle:hover {
+  border-color: var(--green);
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.projects-toggle:active {
+  transform: translateY(0) scale(0.98);
+}
+
 .back-to-top {
   position: fixed;
   right: calc(22px + env(safe-area-inset-right));
@@ -164,6 +215,11 @@ footer nav a[href*="linkedin.com"]::before {
   #sobre,
   #contato {
     scroll-margin-top: 16px;
+  }
+
+  .projects-toggle {
+    width: 100%;
+    max-width: 320px;
   }
 
   .back-to-top {
