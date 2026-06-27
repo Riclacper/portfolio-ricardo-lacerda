@@ -88,40 +88,6 @@ const ensureThemeStylesheet = () => {
   document.head.append(stylesheet);
 };
 
-const ensureMobileMenuStyles = () => {
-  if (document.querySelector("style[data-mobile-menu-styles]")) {
-    return;
-  }
-
-  const styles = document.createElement("style");
-  styles.dataset.mobileMenuStyles = "true";
-  styles.textContent = `
-    @media (max-width: 640px) {
-      .site-header nav {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 6px;
-        overflow-x: visible;
-        padding: 6px;
-      }
-
-      .site-header nav a {
-        min-width: 0;
-        padding-right: 6px;
-        padding-left: 6px;
-        text-align: center;
-      }
-
-      .site-header nav .theme-toggle {
-        grid-column: 1 / -1;
-        width: 100%;
-      }
-    }
-  `;
-
-  document.head.append(styles);
-};
-
 const ensureThemeColorMeta = () => {
   let themeColor = document.querySelector('meta[name="theme-color"]');
 
@@ -188,9 +154,8 @@ const createThemeToggle = () => {
   updateThemeToggle();
 };
 
-ensureThemeStylesheet();
-ensureMobileMenuStyles();
 applyTheme();
+ensureThemeStylesheet();
 createThemeToggle();
 
 const handleSystemThemeChange = () => {
@@ -209,20 +174,42 @@ window.requestAnimationFrame(() => {
   document.documentElement.classList.add("theme-ready");
 });
 
-const filterButtons = document.querySelectorAll(".filter-button");
-const projectCards = document.querySelectorAll(".project-card");
+const filterButtons = Array.from(document.querySelectorAll(".filter-button"));
+const projectCards = Array.from(document.querySelectorAll(".project-card"));
+
+projectCards.forEach((card) => {
+  const hasDemoLink = Array.from(
+    card.querySelectorAll(".project-actions a"),
+  ).some((link) => link.textContent.trim().toLowerCase() === "demo online");
+
+  if (hasDemoLink) {
+    const tags = new Set((card.dataset.tags || "").split(/\s+/).filter(Boolean));
+    tags.add("demo");
+    card.dataset.tags = Array.from(tags).join(" ");
+  }
+});
+
+const applyProjectFilter = (selectedButton) => {
+  const filter = selectedButton.dataset.filter || "todos";
+
+  filterButtons.forEach((button) => {
+    const isActive = button === selectedButton;
+    button.classList.toggle("active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+
+  projectCards.forEach((card) => {
+    const tags = new Set((card.dataset.tags || "").split(/\s+/).filter(Boolean));
+    const shouldShow = filter === "todos" || tags.has(filter);
+    card.classList.toggle("hidden", !shouldShow);
+  });
+};
 
 filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const filter = button.dataset.filter;
-
-    filterButtons.forEach((item) => item.classList.remove("active"));
-    button.classList.add("active");
-
-    projectCards.forEach((card) => {
-      const tags = card.dataset.tags || "";
-      const shouldShow = filter === "todos" || tags.includes(filter);
-      card.classList.toggle("hidden", !shouldShow);
-    });
-  });
+  button.type = "button";
+  button.setAttribute(
+    "aria-pressed",
+    String(button.classList.contains("active")),
+  );
+  button.addEventListener("click", () => applyProjectFilter(button));
 });
