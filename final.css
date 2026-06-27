@@ -1,0 +1,63 @@
+#projetos,
+#sobre,
+#contato {
+  scroll-margin-top: 94px;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.hero,
+.hero-copy,
+.hero-console,
+.console-line,
+.project-card {
+  min-width: 0;
+}
+
+.console-line strong,
+.project-card p,
+.project-card li,
+.contact-actions small {
+  overflow-wrap: anywhere;
+}
+
+.primary-action,
+.secondary-action,
+.project-actions a,
+.contact-actions a,
+.filter-button,
+.site-header nav a,
+.brand {
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+@media (max-width: 640px) {
+  #projetos,
+  #sobre,
+  #contato {
+    scroll-margin-top: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
