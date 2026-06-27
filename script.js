@@ -1,6 +1,18 @@
+const FAVICON_HREF = "favicon.svg?v=2";
 const THEME_STORAGE_KEY = "portfolio-theme";
 const themeModes = ["auto", "light", "dark"];
 const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+const ensureFavicon = () => {
+  document.querySelectorAll('link[rel~="icon"]').forEach((icon) => icon.remove());
+
+  const favicon = document.createElement("link");
+  favicon.rel = "icon";
+  favicon.type = "image/svg+xml";
+  favicon.sizes = "any";
+  favicon.href = FAVICON_HREF;
+  document.head.append(favicon);
+};
 
 const readStoredTheme = () => {
   try {
@@ -94,6 +106,8 @@ const ensureThemeColorMeta = () => {
 
   return themeColor;
 };
+
+ensureFavicon();
 
 const themeColorMeta = ensureThemeColorMeta();
 let themeMode = readStoredTheme();
