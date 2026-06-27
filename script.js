@@ -116,11 +116,17 @@ ensureThemeStylesheet();
 applyTheme();
 createThemeToggle();
 
-systemTheme.addEventListener("change", () => {
+const handleSystemThemeChange = () => {
   if (themeMode === "auto") {
     applyTheme();
   }
-});
+};
+
+if (typeof systemTheme.addEventListener === "function") {
+  systemTheme.addEventListener("change", handleSystemThemeChange);
+} else {
+  systemTheme.addListener(handleSystemThemeChange);
+}
 
 window.requestAnimationFrame(() => {
   document.documentElement.classList.add("theme-ready");
