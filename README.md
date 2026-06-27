@@ -2,33 +2,38 @@
 
 [Ver portfólio online](https://portfolio-ricardo-lacerda.vercel.app/)
 
-Site estático para divulgação dos projetos de Ricardo Lacerda Pereira como desenvolvedor.
+Portfólio profissional estático para apresentação de projetos, demos publicadas, repositórios e competências técnicas.
 
-## Conteúdo
+## Status
 
-- Apresentação profissional.
-- Projetos com links para demo online e GitHub.
-- Filtros por tipo de projeto.
-- Seção de stack técnica.
-- Links para GitHub e LinkedIn.
-- Tema automático, claro e escuro com preferência persistida no navegador.
+**Concluído e publicado.** O deploy de produção é realizado automaticamente pela Vercel a partir da branch `main`.
 
-## Tema visual
+## Recursos
 
-O seletor no menu permite alternar entre:
+- Apresentação profissional e resumo técnico.
+- Oito projetos catalogados e cinco demos online.
+- Filtros por projetos com demo, sistemas e sites.
+- Links para GitHub, LinkedIn e projetos publicados.
+- Tema automático, claro e escuro com preferência persistida.
+- Layout responsivo para desktop, tablet e smartphone.
+- Navegação por âncoras com compensação do cabeçalho.
+- Estados de foco, redução de movimento e filtros acessíveis.
+- Favicon vetorial com monograma RL.
 
-- **Automático:** acompanha o tema claro ou escuro configurado no sistema operacional.
-- **Claro:** mantém a interface clara.
-- **Escuro:** mantém a interface escura.
+## Estrutura
 
-A opção escolhida é armazenada localmente no navegador.
+- `index.html`: conteúdo e estrutura semântica.
+- `styles.css`: layout e identidade visual principal.
+- `theme.css`: temas claro, escuro e seletor de tema.
+- `final.css`: ajustes finais de navegação e acessibilidade.
+- `script.js`: tema, filtros, favicon e retorno ao topo.
 
-## Como executar localmente
+## Executar localmente
 
-Abra o arquivo `index.html` no navegador.
+Na raiz do projeto, execute:
 
-## Evolução sugerida
+```bash
+python3 -m http.server 8080
+```
 
-- Adicionar link para currículo em PDF.
-- Inserir novos projetos conforme forem publicados.
-- Incluir formulário de contato futuramente, se necessário.
+Depois, acesse `http://localhost:8080` no navegador.
