@@ -115,6 +115,34 @@ const setupProjectOrder = () => {
 
 const simplifyFooter = () => {
   document.querySelector(".footer-note")?.remove();
+
+  const navigation = document.querySelector("footer nav");
+
+  if (!navigation) {
+    return;
+  }
+
+  const projectLink = navigation.querySelector('a[href="#projetos"]');
+
+  if (projectLink && !navigation.querySelector('a[href="#sobre"]')) {
+    const aboutLink = document.createElement("a");
+    aboutLink.href = "#sobre";
+    aboutLink.textContent = "Sobre";
+    projectLink.after(aboutLink);
+  }
+
+  const links = Array.from(navigation.querySelectorAll("a"));
+  const githubLink = links.find((link) => link.href.includes("github.com"));
+  const linkedinLink = links.find((link) => link.href.includes("linkedin.com"));
+
+  if (githubLink && linkedinLink && !navigation.querySelector(".footer-separator")) {
+    const separator = document.createElement("span");
+    separator.className = "footer-separator";
+    separator.textContent = "|";
+    separator.setAttribute("aria-hidden", "true");
+    separator.style.color = "var(--muted-2)";
+    linkedinLink.before(separator);
+  }
 };
 
 const readStoredTheme = () => {
