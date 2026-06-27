@@ -154,6 +154,10 @@
   background: #10232e;
 }
 
+:root[data-theme="light"] .terminal-card code {
+  color: #59ddff;
+}
+
 :root[data-theme="light"] .terminal-card small {
   color: #bfd0da;
 }
