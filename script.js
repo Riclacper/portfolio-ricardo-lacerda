@@ -4,6 +4,9 @@ const INITIAL_VISIBLE_PROJECTS = 4;
 const themeModes = ["auto", "light", "dark"];
 const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
 
+const prefersReducedMotion = () =>
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 const ensureFavicon = () => {
   document.querySelectorAll('link[rel~="icon"]').forEach((icon) => icon.remove());
 
@@ -15,6 +18,13 @@ const ensureFavicon = () => {
   document.head.append(favicon);
 };
 
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: prefersReducedMotion() ? "auto" : "smooth",
+  });
+};
+
 const setupHomeNavigation = () => {
   const homeLink = document.querySelector(".brand");
 
@@ -24,15 +34,7 @@ const setupHomeNavigation = () => {
 
   homeLink.addEventListener("click", (event) => {
     event.preventDefault();
-
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    window.scrollTo({
-      top: 0,
-      behavior: prefersReducedMotion ? "auto" : "smooth",
-    });
+    scrollToTop();
 
     window.history.replaceState(
       null,
@@ -76,14 +78,7 @@ const setupBackToTop = () => {
   );
 
   button.addEventListener("click", () => {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    window.scrollTo({
-      top: 0,
-      behavior: prefersReducedMotion ? "auto" : "smooth",
-    });
+    scrollToTop();
     button.blur();
   });
 
@@ -114,8 +109,21 @@ const setupProjectOrder = () => {
   grid.replaceChild(iCanadaCard, cinescopePosition);
 };
 
+const createFooterSeparator = (text) => {
+  const separator = document.createElement("span");
+  separator.className = "footer-separator";
+  separator.textContent = text;
+  separator.setAttribute("aria-hidden", "true");
+  return separator;
+};
+
 const simplifyFooter = () => {
   document.querySelector(".footer-note")?.remove();
+
+  const footerRole = document.querySelector(".footer-brand small");
+  if (footerRole) {
+    footerRole.textContent = "Desenvolvedor Web Full Stack";
+  }
 
   const navigation = document.querySelector("footer nav");
 
@@ -124,26 +132,93 @@ const simplifyFooter = () => {
   }
 
   const projectLink = navigation.querySelector('a[href="#projetos"]');
+  let aboutLink = navigation.querySelector('a[href="#sobre"]');
 
-  if (projectLink && !navigation.querySelector('a[href="#sobre"]')) {
-    const aboutLink = document.createElement("a");
+  if (projectLink && !aboutLink) {
+    aboutLink = document.createElement("a");
     aboutLink.href = "#sobre";
     aboutLink.textContent = "Sobre";
-    projectLink.after(aboutLink);
   }
 
   const links = Array.from(navigation.querySelectorAll("a"));
   const githubLink = links.find((link) => link.href.includes("github.com"));
   const linkedinLink = links.find((link) => link.href.includes("linkedin.com"));
 
-  if (githubLink && linkedinLink && !navigation.querySelector(".footer-separator")) {
-    const separator = document.createElement("span");
-    separator.className = "footer-separator";
-    separator.textContent = "|";
-    separator.setAttribute("aria-hidden", "true");
-    separator.style.color = "var(--muted-2)";
-    linkedinLink.before(separator);
+  if (!projectLink || !aboutLink || !githubLink || !linkedinLink) {
+    return;
   }
+
+  navigation.replaceChildren(
+    projectLink,
+    createFooterSeparator("·"),
+    aboutLink,
+    createFooterSeparator("|"),
+    githubLink,
+    createFooterSeparator("·"),
+    linkedinLink,
+  );
+};
+
+const setupProfessionalExperience = () => {
+  if (document.querySelector("#experiencia")) {
+    return;
+  }
+
+  const aboutSection = document.querySelector("#sobre");
+  const contactSection = document.querySelector("#contato");
+
+  if (!aboutSection || !contactSection) {
+    return;
+  }
+
+  const experienceSection = document.createElement("section");
+  experienceSection.id = "experiencia";
+  experienceSection.className = "section experience-section";
+  experienceSection.setAttribute("aria-labelledby", "experiencia-titulo");
+  experienceSection.innerHTML = `
+    <div class="experience-layout">
+      <div class="experience-heading">
+        <span class="eyebrow">Experiência profissional</span>
+        <h2 id="experiencia-titulo">Tecnologia, gestão e atendimento aplicados a um negócio real.</h2>
+      </div>
+
+      <article class="experience-card">
+        <div class="experience-meta">
+          <span>Desde janeiro de 2019</span>
+          <strong>Recife · PE</strong>
+        </div>
+
+        <h3>Fundador e gestor — iCanada Reparos</h3>
+        <p>
+          Fundador da iCanada Reparos, assistência técnica independente
+          especializada em diagnóstico e reparo de equipamentos Apple.
+        </p>
+        <p>
+          Além da atuação técnica e do atendimento aos clientes, sou responsável
+          pela gestão da empresa, organização de processos e presença digital.
+          Essa experiência também orienta o desenvolvimento do site institucional
+          e de um sistema próprio para a operação da assistência.
+        </p>
+
+        <ul class="experience-list">
+          <li>Diagnóstico e reparo de MacBook, iMac, iPhone e iPad.</li>
+          <li>Gestão de atendimento, processos e relacionamento com clientes.</li>
+          <li>Transformação de necessidades operacionais em soluções digitais.</li>
+        </ul>
+
+        <a
+          class="experience-link"
+          href="https://www.icanadareparos.com.br"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Conhecer a iCanada Reparos
+        </a>
+      </article>
+    </div>
+  `;
+
+  contactSection.before(experienceSection);
 };
 
 const readStoredTheme = () => {
@@ -270,6 +345,7 @@ createThemeToggle();
 setupBackToTop();
 setupProjectOrder();
 simplifyFooter();
+setupProfessionalExperience();
 
 const handleSystemThemeChange = () => {
   if (themeMode === "auto") {
