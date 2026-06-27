@@ -41,6 +41,54 @@ const setupHomeNavigation = () => {
   });
 };
 
+const setupBackToTop = () => {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "back-to-top";
+  button.setAttribute("aria-label", "Voltar ao topo");
+  button.title = "Voltar ao topo";
+  document.body.append(button);
+
+  const updateVisibility = () => {
+    const isVisible = window.scrollY > 480;
+    button.classList.toggle("is-visible", isVisible);
+    button.tabIndex = isVisible ? 0 : -1;
+    button.setAttribute("aria-hidden", String(!isVisible));
+  };
+
+  let ticking = false;
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (ticking) {
+        return;
+      }
+
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        updateVisibility();
+        ticking = false;
+      });
+    },
+    { passive: true },
+  );
+
+  button.addEventListener("click", () => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
+    button.blur();
+  });
+
+  updateVisibility();
+};
+
 const readStoredTheme = () => {
   try {
     const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
@@ -162,6 +210,7 @@ const createThemeToggle = () => {
 applyTheme();
 ensurePortfolioStylesheets();
 createThemeToggle();
+setupBackToTop();
 
 const handleSystemThemeChange = () => {
   if (themeMode === "auto") {
