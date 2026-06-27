@@ -880,8 +880,16 @@ footer nav a:hover {
 
 @media (max-width: 640px) {
   .site-header {
+    position: static;
     align-items: flex-start;
     flex-direction: column;
+    padding-top: 18px;
+    padding-bottom: 12px;
+    backdrop-filter: none;
+  }
+
+  .site-header::before {
+    display: none;
   }
 
   .site-header nav {
