@@ -76,16 +76,21 @@ const getThemeDescription = (mode) => {
   return descriptions[mode];
 };
 
-const ensureThemeStylesheet = () => {
-  if (document.querySelector('link[data-theme-stylesheet]')) {
+const ensureStylesheet = (href, marker) => {
+  if (document.querySelector(`link[${marker}]`)) {
     return;
   }
 
   const stylesheet = document.createElement("link");
   stylesheet.rel = "stylesheet";
-  stylesheet.href = "theme.css";
-  stylesheet.dataset.themeStylesheet = "true";
+  stylesheet.href = href;
+  stylesheet.setAttribute(marker, "true");
   document.head.append(stylesheet);
+};
+
+const ensurePortfolioStylesheets = () => {
+  ensureStylesheet("theme.css", "data-theme-stylesheet");
+  ensureStylesheet("final.css", "data-final-stylesheet");
 };
 
 const ensureThemeColorMeta = () => {
@@ -155,7 +160,7 @@ const createThemeToggle = () => {
 };
 
 applyTheme();
-ensureThemeStylesheet();
+ensurePortfolioStylesheets();
 createThemeToggle();
 
 const handleSystemThemeChange = () => {
