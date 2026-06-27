@@ -49,6 +49,40 @@ const ensureThemeStylesheet = () => {
   document.head.append(stylesheet);
 };
 
+const ensureMobileMenuStyles = () => {
+  if (document.querySelector("style[data-mobile-menu-styles]")) {
+    return;
+  }
+
+  const styles = document.createElement("style");
+  styles.dataset.mobileMenuStyles = "true";
+  styles.textContent = `
+    @media (max-width: 640px) {
+      .site-header nav {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+        overflow-x: visible;
+        padding: 6px;
+      }
+
+      .site-header nav a {
+        min-width: 0;
+        padding-right: 6px;
+        padding-left: 6px;
+        text-align: center;
+      }
+
+      .site-header nav .theme-toggle {
+        grid-column: 1 / -1;
+        width: 100%;
+      }
+    }
+  `;
+
+  document.head.append(styles);
+};
+
 const ensureThemeColorMeta = () => {
   let themeColor = document.querySelector('meta[name="theme-color"]');
 
@@ -113,6 +147,7 @@ const createThemeToggle = () => {
 };
 
 ensureThemeStylesheet();
+ensureMobileMenuStyles();
 applyTheme();
 createThemeToggle();
 
