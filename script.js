@@ -14,6 +14,33 @@ const ensureFavicon = () => {
   document.head.append(favicon);
 };
 
+const setupHomeNavigation = () => {
+  const homeLink = document.querySelector(".brand");
+
+  if (!homeLink) {
+    return;
+  }
+
+  homeLink.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
+
+    window.history.replaceState(
+      null,
+      "",
+      `${window.location.pathname}${window.location.search}`,
+    );
+  });
+};
+
 const readStoredTheme = () => {
   try {
     const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
@@ -108,6 +135,7 @@ const ensureThemeColorMeta = () => {
 };
 
 ensureFavicon();
+setupHomeNavigation();
 
 const themeColorMeta = ensureThemeColorMeta();
 let themeMode = readStoredTheme();
