@@ -108,6 +108,12 @@
   background: rgba(255, 255, 255, 0.74);
 }
 
+:root[data-theme="light"] .filter-button.active {
+  border-color: transparent;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--green), var(--cyan));
+}
+
 :root[data-theme="light"] .site-header nav a:hover,
 :root[data-theme="light"] .theme-toggle:hover,
 :root[data-theme="light"] .theme-toggle:focus-visible {
