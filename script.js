@@ -1,5 +1,6 @@
 const FAVICON_HREF = "favicon.svg?v=2";
 const THEME_STORAGE_KEY = "portfolio-theme";
+const INITIAL_VISIBLE_PROJECTS = 4;
 const themeModes = ["auto", "light", "dark"];
 const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
 
@@ -288,6 +289,11 @@ window.requestAnimationFrame(() => {
 
 const filterButtons = Array.from(document.querySelectorAll(".filter-button"));
 const projectCards = Array.from(document.querySelectorAll(".project-card"));
+const projectGrid = document.querySelector(".project-grid");
+let activeProjectFilter = "todos";
+let areAllProjectsVisible = false;
+let projectsToggle;
+let projectsToggleWrapper;
 
 projectCards.forEach((card) => {
   const hasDemoLink = Array.from(
@@ -301,8 +307,69 @@ projectCards.forEach((card) => {
   }
 });
 
+const getMatchingProjects = () =>
+  projectCards.filter((card) => {
+    const tags = new Set((card.dataset.tags || "").split(/\s+/).filter(Boolean));
+    return activeProjectFilter === "todos" || tags.has(activeProjectFilter);
+  });
+
+const updateProjectsDisplay = () => {
+  const matchingProjects = getMatchingProjects();
+
+  projectCards.forEach((card) => {
+    const matchingIndex = matchingProjects.indexOf(card);
+    const matchesFilter = matchingIndex !== -1;
+    const isWithinInitialLimit = matchingIndex < INITIAL_VISIBLE_PROJECTS;
+    const shouldShow =
+      matchesFilter && (areAllProjectsVisible || isWithinInitialLimit);
+
+    card.classList.toggle("hidden", !shouldShow);
+  });
+
+  if (!projectsToggle || !projectsToggleWrapper) {
+    return;
+  }
+
+  const hasMoreProjects = matchingProjects.length > INITIAL_VISIBLE_PROJECTS;
+  projectsToggleWrapper.hidden = !hasMoreProjects;
+  projectsToggle.setAttribute("aria-expanded", String(areAllProjectsVisible));
+  projectsToggle.querySelector("span").textContent = areAllProjectsVisible
+    ? "Ver menos projetos"
+    : "Ver mais projetos";
+  projectsToggle.querySelector("i").textContent = areAllProjectsVisible ? "↑" : "↓";
+};
+
+const createProjectsToggle = () => {
+  if (!projectGrid || projectCards.length <= INITIAL_VISIBLE_PROJECTS) {
+    return;
+  }
+
+  projectGrid.id ||= "project-grid";
+  projectsToggleWrapper = document.createElement("div");
+  projectsToggleWrapper.className = "projects-toggle-wrap";
+
+  projectsToggle = document.createElement("button");
+  projectsToggle.type = "button";
+  projectsToggle.className = "projects-toggle";
+  projectsToggle.setAttribute("aria-controls", projectGrid.id);
+  projectsToggle.setAttribute("aria-expanded", "false");
+  projectsToggle.innerHTML = `
+    <span>Ver mais projetos</span>
+    <i aria-hidden="true">↓</i>
+  `;
+
+  projectsToggle.addEventListener("click", () => {
+    areAllProjectsVisible = !areAllProjectsVisible;
+    updateProjectsDisplay();
+  });
+
+  projectsToggleWrapper.append(projectsToggle);
+  projectGrid.after(projectsToggleWrapper);
+};
+
 const applyProjectFilter = (selectedButton) => {
-  const filter = selectedButton.dataset.filter || "todos";
+  activeProjectFilter = selectedButton.dataset.filter || "todos";
+  areAllProjectsVisible = false;
 
   filterButtons.forEach((button) => {
     const isActive = button === selectedButton;
@@ -310,11 +377,7 @@ const applyProjectFilter = (selectedButton) => {
     button.setAttribute("aria-pressed", String(isActive));
   });
 
-  projectCards.forEach((card) => {
-    const tags = new Set((card.dataset.tags || "").split(/\s+/).filter(Boolean));
-    const shouldShow = filter === "todos" || tags.has(filter);
-    card.classList.toggle("hidden", !shouldShow);
-  });
+  updateProjectsDisplay();
 };
 
 filterButtons.forEach((button) => {
@@ -325,3 +388,6 @@ filterButtons.forEach((button) => {
   );
   button.addEventListener("click", () => applyProjectFilter(button));
 });
+
+createProjectsToggle();
+updateProjectsDisplay();
