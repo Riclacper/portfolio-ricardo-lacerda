@@ -1,0 +1,248 @@
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 36px;
+  padding: 8px 11px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.035);
+  font-size: 13px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  color: var(--ink-strong);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+.theme-toggle__icon {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  font-size: 16px;
+  line-height: 1;
+}
+
+:root[data-theme-mode="auto"] .theme-toggle__icon::before {
+  content: "◐";
+}
+
+:root[data-theme-mode="light"] .theme-toggle__icon::before {
+  content: "☀";
+}
+
+:root[data-theme-mode="dark"] .theme-toggle__icon::before {
+  content: "☾";
+}
+
+:root[data-theme="light"] {
+  --ink: #243746;
+  --ink-strong: #071722;
+  --muted: #526a7a;
+  --muted-2: #718695;
+  --line: rgba(32, 76, 99, 0.17);
+  --line-strong: rgba(0, 137, 96, 0.34);
+  --page: #f4f8fa;
+  --surface: rgba(255, 255, 255, 0.9);
+  --surface-2: rgba(247, 251, 252, 0.94);
+  --surface-soft: rgba(8, 45, 61, 0.045);
+  --green: #00875f;
+  --cyan: #007f9e;
+  --blue: #146bc6;
+  --shadow: 0 26px 80px rgba(31, 61, 76, 0.14);
+  --shadow-soft: 0 18px 46px rgba(31, 61, 76, 0.1);
+}
+
+:root[data-theme="light"] body {
+  background:
+    radial-gradient(circle at 78% 8%, rgba(0, 127, 158, 0.12), transparent 30%),
+    radial-gradient(circle at 18% 18%, rgba(0, 135, 95, 0.12), transparent 26%),
+    linear-gradient(180deg, #f8fbfc 0%, #eef5f7 48%, #f4f8fa 100%);
+}
+
+:root[data-theme="light"] .page-grid {
+  background-image:
+    linear-gradient(rgba(32, 76, 99, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(32, 76, 99, 0.08) 1px, transparent 1px);
+}
+
+:root[data-theme="light"] .page-grid::after {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 135, 95, 0.07),
+      transparent 16%,
+      transparent 84%,
+      rgba(0, 127, 158, 0.07)
+    ),
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.9), transparent 36%);
+}
+
+:root[data-theme="light"] .site-header::before {
+  border-bottom-color: rgba(32, 76, 99, 0.11);
+  background: rgba(244, 248, 250, 0.86);
+}
+
+:root[data-theme="light"] .brand span,
+:root[data-theme="light"] .primary-action,
+:root[data-theme="light"] .filter-button.active {
+  color: #ffffff;
+}
+
+:root[data-theme="light"] .site-header nav,
+:root[data-theme="light"] .theme-toggle {
+  background: rgba(255, 255, 255, 0.68);
+}
+
+:root[data-theme="light"] .site-header nav a:hover,
+:root[data-theme="light"] .theme-toggle:hover,
+:root[data-theme="light"] .theme-toggle:focus-visible {
+  background: rgba(8, 45, 61, 0.07);
+}
+
+:root[data-theme="light"] .hero-copy p,
+:root[data-theme="light"] .project-card.featured p,
+:root[data-theme="light"] .project-card.featured li,
+:root[data-theme="light"] .about-copy p,
+:root[data-theme="light"] .contact-section p {
+  color: #405a6b;
+}
+
+:root[data-theme="light"] .signal-row span {
+  color: #284554;
+  background: rgba(255, 255, 255, 0.74);
+}
+
+:root[data-theme="light"] .secondary-action,
+:root[data-theme="light"] .project-actions a,
+:root[data-theme="light"] .contact-actions a,
+:root[data-theme="light"] .filter-button,
+:root[data-theme="light"] .about-copy {
+  background: rgba(255, 255, 255, 0.74);
+}
+
+:root[data-theme="light"] .hero-console {
+  border-color: rgba(32, 76, 99, 0.18);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(245, 250, 251, 0.84)),
+    rgba(255, 255, 255, 0.88);
+}
+
+:root[data-theme="light"] .hero-console::before {
+  background:
+    linear-gradient(rgba(0, 127, 158, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 127, 158, 0.07) 1px, transparent 1px);
+}
+
+:root[data-theme="light"] .console-header,
+:root[data-theme="light"] .console-line {
+  background: rgba(8, 45, 61, 0.04);
+}
+
+:root[data-theme="light"] .terminal-card {
+  background: #10232e;
+}
+
+:root[data-theme="light"] .terminal-card small {
+  color: #bfd0da;
+}
+
+:root[data-theme="light"] .metric-strip article {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+:root[data-theme="light"] .section-muted {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(235, 244, 247, 0.7)),
+    rgba(255, 255, 255, 0.58);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(32, 76, 99, 0.08);
+}
+
+:root[data-theme="light"] .value-grid article,
+:root[data-theme="light"] .project-card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 250, 251, 0.92)),
+    var(--surface);
+}
+
+:root[data-theme="light"] .project-card.featured {
+  background:
+    radial-gradient(circle at 88% 12%, rgba(0, 127, 158, 0.12), transparent 34%),
+    radial-gradient(circle at 14% 78%, rgba(0, 135, 95, 0.1), transparent 28%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(238, 246, 248, 0.96));
+}
+
+:root[data-theme="light"] .skill-list span {
+  border-color: rgba(0, 135, 95, 0.24);
+  color: #006b4b;
+  background: rgba(0, 135, 95, 0.08);
+}
+
+:root[data-theme="light"] .contact-card {
+  background:
+    radial-gradient(circle at 92% 12%, rgba(0, 127, 158, 0.11), transparent 34%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(241, 248, 249, 0.92)),
+    rgba(255, 255, 255, 0.9);
+}
+
+html.theme-ready body,
+html.theme-ready .site-header::before,
+html.theme-ready .site-header nav,
+html.theme-ready .theme-toggle,
+html.theme-ready .hero-console,
+html.theme-ready .metric-strip article,
+html.theme-ready .section-muted,
+html.theme-ready .value-grid article,
+html.theme-ready .project-card,
+html.theme-ready .about-copy,
+html.theme-ready .contact-card,
+html.theme-ready .secondary-action,
+html.theme-ready .project-actions a,
+html.theme-ready .contact-actions a,
+html.theme-ready .filter-button {
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+@media (max-width: 640px) {
+  .theme-toggle {
+    flex: 0 0 auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.theme-ready body,
+  html.theme-ready .site-header::before,
+  html.theme-ready .site-header nav,
+  html.theme-ready .theme-toggle,
+  html.theme-ready .hero-console,
+  html.theme-ready .metric-strip article,
+  html.theme-ready .section-muted,
+  html.theme-ready .value-grid article,
+  html.theme-ready .project-card,
+  html.theme-ready .about-copy,
+  html.theme-ready .contact-card,
+  html.theme-ready .secondary-action,
+  html.theme-ready .project-actions a,
+  html.theme-ready .contact-actions a,
+  html.theme-ready .filter-button {
+    transition: none;
+  }
+}
