@@ -39,6 +39,46 @@ button:focus-visible {
     transform 160ms ease;
 }
 
+.footer-brand small {
+  font-size: 0;
+}
+
+.footer-brand small::after {
+  content: "Desenvolvedor Web Full Stack";
+  color: var(--muted-2);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+footer nav {
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-separator {
+  display: none;
+}
+
+footer nav a[href="#sobre"]::before,
+footer nav a[href*="github.com"]::before,
+footer nav a[href*="linkedin.com"]::before {
+  margin-right: 8px;
+  color: var(--muted-2);
+  font-weight: 700;
+}
+
+footer nav a[href="#sobre"]::before {
+  content: "·";
+}
+
+footer nav a[href*="github.com"]::before {
+  content: "|";
+}
+
+footer nav a[href*="linkedin.com"]::before {
+  content: "·";
+}
+
 .back-to-top {
   position: fixed;
   right: calc(22px + env(safe-area-inset-right));
