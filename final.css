@@ -250,6 +250,22 @@ footer nav {
   transform: translateY(-2px);
 }
 
+.project-actions a[aria-disabled="true"] {
+  border-color: rgba(148, 163, 184, 0.32);
+  color: #94a3b8;
+  background: rgba(226, 232, 240, 0.16);
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.project-actions a[aria-disabled="true"]:hover {
+  color: #94a3b8;
+  background: rgba(226, 232, 240, 0.16);
+  transform: none;
+}
+
 .back-to-top {
   position: fixed;
   right: calc(22px + env(safe-area-inset-right));
