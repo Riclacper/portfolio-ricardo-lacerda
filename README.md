@@ -11,7 +11,8 @@ Portfólio profissional estático para apresentação de projetos, demos publica
 ## Recursos
 
 - Apresentação profissional e resumo técnico.
-- Oito projetos catalogados e cinco demos online.
+- Nove projetos catalogados e seis demos/ambientes online.
+- Destaque para o sistema **iCanada Gestão**, com React/Vite, Node.js/Express, Supabase PostgreSQL/Auth, Cloudflare Pages, Render e Resend API.
 - Filtros por projetos com demo, sistemas e sites.
 - Links para GitHub, LinkedIn e projetos publicados.
 - Tema automático, claro e escuro com preferência persistida.
