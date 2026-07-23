@@ -1,0 +1,113 @@
+name: Corrigir destaque dos cards
+
+on:
+  push:
+    branches:
+      - agent/corrige-destaque-cards
+    paths:
+      - .github/workflows/fix-featured-card-grid.yml
+
+permissions:
+  contents: write
+
+jobs:
+  fix-grid:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Corrigir hierarquia visual dos cards
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('final.css')
+          css = path.read_text(encoding='utf-8')
+
+          old_desktop = '''.project-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+
+          .project-card.featured {
+            grid-column: span 1;
+          }'''.replace('          ', '')
+
+          new_desktop = '''.project-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+          }
+
+          .project-card.featured {
+            grid-column: span 2;
+          }'''.replace('          ', '')
+
+          if old_desktop not in css:
+              raise RuntimeError('Regras desktop esperadas não foram encontradas')
+          css = css.replace(old_desktop, new_desktop, 1)
+
+          old_tablet = '''@media (max-width: 960px) {
+            .experience-layout {
+              grid-template-columns: 1fr;
+              gap: 28px;
+            }
+
+            .project-card.featured {
+              grid-column: span 1;
+            }
+          }'''.replace('          ', '')
+
+          new_tablet = '''@media (max-width: 960px) {
+            .experience-layout {
+              grid-template-columns: 1fr;
+              gap: 28px;
+            }
+
+            .project-grid {
+              grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .project-card.featured {
+              grid-column: span 2;
+            }
+          }'''.replace('          ', '')
+
+          if old_tablet not in css:
+              raise RuntimeError('Regras tablet esperadas não foram encontradas')
+          css = css.replace(old_tablet, new_tablet, 1)
+
+          old_mobile = '''  .project-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .projects-toggle {'''.replace('          ', '')
+
+          new_mobile = '''  .project-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .project-card.featured {
+            grid-column: span 1;
+          }
+
+          .projects-toggle {'''.replace('          ', '')
+
+          if old_mobile not in css:
+              raise RuntimeError('Regras mobile esperadas não foram encontradas')
+          css = css.replace(old_mobile, new_mobile, 1)
+
+          path.write_text(css, encoding='utf-8')
+          PY
+
+      - name: Validar CSS
+        run: |
+          git diff --check
+          grep -q "grid-template-columns: repeat(3, minmax(0, 1fr));" final.css
+          grep -q "grid-column: span 2;" final.css
+
+      - name: Commitar correção
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "4189826+github-actions[bot]@users.noreply.github.com"
+          git add final.css
+          git commit -m "Corrige hierarquia visual dos cards prioritários"
+          git push
