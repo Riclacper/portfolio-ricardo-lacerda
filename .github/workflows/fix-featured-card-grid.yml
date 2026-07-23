@@ -22,80 +22,30 @@ jobs:
           python - <<'PY'
           from pathlib import Path
 
-          path = Path('final.css')
-          css = path.read_text(encoding='utf-8')
+          path = Path("final.css")
+          css = path.read_text(encoding="utf-8")
 
-          old_desktop = '''.project-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-          }
+          replacements = [
+              (
+                  ".project-grid {\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n}\n\n.project-card.featured {\n  grid-column: span 1;\n}",
+                  ".project-grid {\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n}\n\n.project-card.featured {\n  grid-column: span 2;\n}",
+              ),
+              (
+                  "@media (max-width: 960px) {\n  .experience-layout {\n    grid-template-columns: 1fr;\n    gap: 28px;\n  }\n\n  .project-card.featured {\n    grid-column: span 1;\n  }\n}",
+                  "@media (max-width: 960px) {\n  .experience-layout {\n    grid-template-columns: 1fr;\n    gap: 28px;\n  }\n\n  .project-grid {\n    grid-template-columns: repeat(2, minmax(0, 1fr));\n  }\n\n  .project-card.featured {\n    grid-column: span 2;\n  }\n}",
+              ),
+              (
+                  "  .project-grid {\n    grid-template-columns: 1fr;\n  }\n\n  .projects-toggle {",
+                  "  .project-grid {\n    grid-template-columns: 1fr;\n  }\n\n  .project-card.featured {\n    grid-column: span 1;\n  }\n\n  .projects-toggle {",
+              ),
+          ]
 
-          .project-card.featured {
-            grid-column: span 1;
-          }'''.replace('          ', '')
+          for old, new in replacements:
+              if old not in css:
+                  raise RuntimeError(f"Trecho CSS esperado não encontrado: {old[:60]}")
+              css = css.replace(old, new, 1)
 
-          new_desktop = '''.project-grid {
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-          }
-
-          .project-card.featured {
-            grid-column: span 2;
-          }'''.replace('          ', '')
-
-          if old_desktop not in css:
-              raise RuntimeError('Regras desktop esperadas não foram encontradas')
-          css = css.replace(old_desktop, new_desktop, 1)
-
-          old_tablet = '''@media (max-width: 960px) {
-            .experience-layout {
-              grid-template-columns: 1fr;
-              gap: 28px;
-            }
-
-            .project-card.featured {
-              grid-column: span 1;
-            }
-          }'''.replace('          ', '')
-
-          new_tablet = '''@media (max-width: 960px) {
-            .experience-layout {
-              grid-template-columns: 1fr;
-              gap: 28px;
-            }
-
-            .project-grid {
-              grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .project-card.featured {
-              grid-column: span 2;
-            }
-          }'''.replace('          ', '')
-
-          if old_tablet not in css:
-              raise RuntimeError('Regras tablet esperadas não foram encontradas')
-          css = css.replace(old_tablet, new_tablet, 1)
-
-          old_mobile = '''  .project-grid {
-            grid-template-columns: 1fr;
-          }
-
-          .projects-toggle {'''.replace('          ', '')
-
-          new_mobile = '''  .project-grid {
-            grid-template-columns: 1fr;
-          }
-
-          .project-card.featured {
-            grid-column: span 1;
-          }
-
-          .projects-toggle {'''.replace('          ', '')
-
-          if old_mobile not in css:
-              raise RuntimeError('Regras mobile esperadas não foram encontradas')
-          css = css.replace(old_mobile, new_mobile, 1)
-
-          path.write_text(css, encoding='utf-8')
+          path.write_text(css, encoding="utf-8")
           PY
 
       - name: Validar CSS
@@ -107,7 +57,7 @@ jobs:
       - name: Commitar correção
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "4189826+github-actions[bot]@users.noreply.github.com"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add final.css
           git commit -m "Corrige hierarquia visual dos cards prioritários"
           git push
