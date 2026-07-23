@@ -85,29 +85,6 @@ const setupBackToTop = () => {
   updateVisibility();
 };
 
-const setupProjectOrder = () => {
-  const grid = document.querySelector(".project-grid");
-
-  if (!grid) {
-    return;
-  }
-
-  const cards = Array.from(grid.querySelectorAll(".project-card"));
-  const findCard = (title) =>
-    cards.find((card) => card.querySelector("h3")?.textContent.trim() === title);
-
-  const iCanadaCard = findCard("iCanada Reparos");
-  const cinescopeCard = findCard("Cinescope Catalog");
-
-  if (!iCanadaCard || !cinescopeCard) {
-    return;
-  }
-
-  const cinescopePosition = document.createComment("cinescope-position");
-  grid.replaceChild(cinescopePosition, cinescopeCard);
-  grid.replaceChild(cinescopeCard, iCanadaCard);
-  grid.replaceChild(iCanadaCard, cinescopePosition);
-};
 
 const createFooterSeparator = (text) => {
   const separator = document.createElement("span");
@@ -343,7 +320,6 @@ applyTheme();
 ensurePortfolioStylesheets();
 createThemeToggle();
 setupBackToTop();
-setupProjectOrder();
 simplifyFooter();
 setupProfessionalExperience();
 
