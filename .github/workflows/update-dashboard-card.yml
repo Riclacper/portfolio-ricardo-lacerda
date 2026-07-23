@@ -1,0 +1,118 @@
+name: Atualizar card do Data Science Dashboard
+
+on:
+  push:
+    branches:
+      - agent/atualiza-data-science-dashboard
+    paths:
+      - .github/workflows/update-dashboard-card.yml
+
+permissions:
+  contents: write
+
+jobs:
+  update-portfolio:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Atualizar card e indicadores
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          index_path = Path("index.html")
+          index = index_path.read_text(encoding="utf-8")
+
+          index = index.replace(
+              "React · Vite · Node.js · Supabase",
+              "React · Vite · Node.js · Flask · Supabase",
+          )
+          index = index.replace(
+              "9 projetos catalogados · 6 projetos online · GitHub público",
+              "9 projetos catalogados · 7 projetos online · GitHub público",
+          )
+          index = index.replace(
+              "<span>Projetos online</span>\n          <strong>6</strong>",
+              "<span>Projetos online</span>\n          <strong>7</strong>",
+          )
+          index = index.replace(
+              "<span>Stack</span>\n          <strong>React + Node</strong>",
+              "<span>Stack</span>\n          <strong>React + Node + Flask</strong>",
+          )
+
+          card_pattern = re.compile(
+              r'          <article class="project-card" data-tags="sistema">\s*'
+              r'<div class="project-topline">\s*<span>Python</span>.*?'
+              r'<h3>Data Science Dashboard</h3>.*?          </article>',
+              re.DOTALL,
+          )
+
+          card = '''          <article class="project-card featured" data-tags="online sistema">
+            <div class="project-topline">
+              <span>Flask + PostgreSQL + Machine Learning</span>
+              <strong>Demo online</strong>
+            </div>
+            <h3>Data Science Dashboard</h3>
+            <p>
+              Dashboard full stack para análise exploratória e classificação de
+              ocorrências sintéticas, com API Flask, PostgreSQL/Supabase e pipeline
+              de machine learning publicado em produção.
+            </p>
+            <ul>
+              <li>Filtros combináveis, indicadores, gráficos, tabela paginada e exportação CSV.</li>
+              <li>Modelo scikit-learn com métricas, importância das variáveis e matriz de confusão.</li>
+              <li>Frontend responsivo, API no Render, CI automatizado e documentação técnica.</li>
+            </ul>
+            <div class="project-actions">
+              <a
+                href="https://data-science-dashboard-vafr.onrender.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Acessar dashboard
+              </a>
+              <a
+                href="https://github.com/Riclacper/data-Science-Dashboard"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub
+              </a>
+            </div>
+          </article>'''
+
+          index, replacements = card_pattern.subn(card, index, count=1)
+          if replacements != 1:
+              raise RuntimeError("Card do Data Science Dashboard não localizado de forma única")
+
+          index_path.write_text(index, encoding="utf-8")
+
+          readme_path = Path("README.md")
+          readme = readme_path.read_text(encoding="utf-8")
+          readme = readme.replace(
+              "Nove projetos catalogados e seis demos/ambientes online.",
+              "Nove projetos catalogados e sete demos/ambientes online.",
+          )
+          marker = "- Destaque para o sistema **iCanada Gestão**, com React/Vite, Node.js/Express, Supabase PostgreSQL/Auth, Cloudflare Pages, Render e Resend API.\n"
+          dashboard_line = "- **Data Science Dashboard** publicado com Flask, PostgreSQL/Supabase, scikit-learn, frontend responsivo e CI automatizado.\n"
+          if dashboard_line not in readme:
+              readme = readme.replace(marker, marker + dashboard_line)
+          readme_path.write_text(readme, encoding="utf-8")
+          PY
+
+      - name: Validar alterações
+        run: |
+          git diff --check
+          grep -q "https://data-science-dashboard-vafr.onrender.com/" index.html
+          grep -q "7 projetos online" index.html
+
+      - name: Commitar atualização
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html README.md
+          git commit -m "Atualiza card do Data Science Dashboard"
+          git push
