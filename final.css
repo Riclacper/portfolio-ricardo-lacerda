@@ -57,6 +57,22 @@ button:focus-visible {
   grid-column: span 2;
 }
 
+@media (min-width: 961px) {
+  .project-card .project-actions {
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+
+  .project-card .project-actions a {
+    flex: 1 1 0;
+    min-width: 0;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+}
+
 footer nav {
   align-items: center;
   gap: 8px;
