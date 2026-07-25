@@ -15,6 +15,7 @@ Portfólio profissional estático para apresentação de projetos, demos publica
 - Destaque para o sistema **iCanada Gestão**, com React/Vite, Node.js/Express, Supabase PostgreSQL/Auth, Cloudflare Pages, Render e Resend API.
 - **Cadastro de Obras** com frontend Expo/TypeScript publicado na Vercel, API Node.js no Render e demo pública navegável.
 - **Data Science Dashboard** publicado com Flask, PostgreSQL/Supabase, scikit-learn, frontend responsivo e CI automatizado.
+- Stack demonstrada: React, React Native, Expo, TypeScript, Node.js, Express, MongoDB/Mongoose, JWT, Python, Flask, scikit-learn, PostgreSQL, Supabase, Jest e Resend.
 - Filtros por projetos com demo, sistemas e sites.
 - Links para GitHub, LinkedIn e projetos publicados.
 - Tema automático, claro e escuro com preferência persistida.
