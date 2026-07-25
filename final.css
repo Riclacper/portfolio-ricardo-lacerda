@@ -63,9 +63,17 @@ button:focus-visible {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .project-actions a:hover {
-    box-shadow: 0 7px 16px rgba(0, 0, 0, 0.2);
-    transform: translateY(-2px);
+  .project-actions a:not([aria-disabled="true"]):hover {
+    border-color: rgba(25, 209, 140, 0.72);
+    background: linear-gradient(
+      135deg,
+      rgba(25, 209, 140, 0.18),
+      rgba(41, 211, 232, 0.14)
+    );
+    box-shadow:
+      0 10px 24px rgba(0, 0, 0, 0.24),
+      0 0 18px rgba(25, 209, 140, 0.16);
+    transform: translateY(-3px);
   }
 }
 
