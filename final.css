@@ -50,11 +50,11 @@ button:focus-visible {
 }
 
 .project-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .project-card.featured {
-  grid-column: span 1;
+  grid-column: span 2;
 }
 
 footer nav {
@@ -365,7 +365,7 @@ footer nav {
   }
 
   .project-card.featured {
-    grid-column: span 1;
+    grid-column: span 2;
   }
 }
 

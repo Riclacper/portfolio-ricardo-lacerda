@@ -860,7 +860,7 @@ footer nav a:hover {
   }
 
   .project-card.featured {
-    grid-column: span 1;
+    grid-column: span 2;
   }
 
   .section-heading.split {
