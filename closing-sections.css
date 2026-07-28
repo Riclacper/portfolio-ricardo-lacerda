@@ -1,0 +1,251 @@
+/* Refinamentos das seções Sobre, Experiência, Contato e rodapé. */
+
+#sobre.section-muted {
+  padding-top: 76px;
+  padding-bottom: 76px;
+}
+
+.about-layout {
+  grid-template-columns: minmax(0, 0.82fr) minmax(380px, 1.18fr);
+  gap: 64px;
+  align-items: center;
+}
+
+.about-layout > div:first-child {
+  max-width: 500px;
+}
+
+.about-layout > div:first-child h2 {
+  margin-bottom: 0;
+  font-size: clamp(34px, 4.2vw, 52px);
+  line-height: 1.06;
+  letter-spacing: -0.045em;
+}
+
+.about-copy {
+  position: relative;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+.about-copy::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--green), var(--cyan), transparent 86%);
+  content: "";
+}
+
+.about-copy p {
+  margin-bottom: 0;
+  font-size: 17px;
+  line-height: 1.72;
+}
+
+.skill-list {
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.skill-list span {
+  min-height: 31px;
+  padding: 0 10px;
+  font-size: 12px;
+  letter-spacing: -0.01em;
+}
+
+.experience-section {
+  padding-top: 84px;
+  padding-bottom: 54px;
+}
+
+.experience-layout {
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: 64px;
+  align-items: center;
+}
+
+.experience-heading {
+  max-width: 500px;
+}
+
+.experience-heading h2 {
+  max-width: 470px;
+  font-size: clamp(34px, 4.2vw, 52px);
+  line-height: 1.06;
+}
+
+.experience-card {
+  padding: 34px;
+  border-radius: 12px;
+  background:
+    linear-gradient(rgba(56, 217, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 217, 255, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at 92% 8%, rgba(56, 217, 255, 0.1), transparent 32%),
+    linear-gradient(135deg, var(--surface-2), var(--surface));
+  background-size: 28px 28px, 28px 28px, auto, auto;
+}
+
+.experience-card p {
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.experience-list {
+  margin-top: 24px;
+  margin-bottom: 28px;
+}
+
+.experience-link::after {
+  margin-left: 9px;
+  content: "↗";
+  font-size: 15px;
+}
+
+.contact-section {
+  padding-top: 72px;
+  padding-bottom: 42px;
+}
+
+.contact-card {
+  grid-template-columns: minmax(0, 0.86fr) minmax(420px, 1.14fr);
+  gap: 56px;
+  padding: 36px;
+  border-radius: 12px;
+}
+
+.contact-copy h2 {
+  max-width: 510px;
+  margin-bottom: 14px;
+  font-size: clamp(34px, 4.2vw, 52px);
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+}
+
+.contact-section p {
+  margin-bottom: 0;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.contact-actions {
+  gap: 12px;
+}
+
+.contact-actions a {
+  position: relative;
+  min-height: 102px;
+  padding: 20px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.055);
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.contact-actions a::after {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: var(--green);
+  content: "↗";
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.contact-actions a:hover {
+  border-color: var(--line-strong);
+  background: rgba(25, 209, 140, 0.08);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+  transform: translateY(-3px);
+}
+
+.contact-actions span {
+  padding-right: 22px;
+  font-size: 15px;
+}
+
+.contact-actions small {
+  max-width: 120px;
+  line-height: 1.4;
+}
+
+footer {
+  padding-top: 24px;
+  padding-bottom: 40px;
+}
+
+:root[data-theme="light"] .about-copy,
+:root[data-theme="light"] .contact-actions a {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+:root[data-theme="light"] .contact-actions a:hover {
+  background: rgba(0, 135, 95, 0.07);
+}
+
+@media (max-width: 960px) {
+  .about-layout,
+  .experience-layout,
+  .contact-card {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .about-layout > div:first-child,
+  .experience-heading,
+  .experience-heading h2,
+  .contact-copy h2 {
+    max-width: 680px;
+  }
+
+  .contact-actions {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  #sobre.section-muted {
+    padding-top: 58px;
+    padding-bottom: 58px;
+  }
+
+  .about-copy,
+  .experience-card,
+  .contact-card {
+    padding: 24px;
+  }
+
+  .about-layout > div:first-child h2,
+  .experience-heading h2,
+  .contact-copy h2 {
+    font-size: clamp(31px, 10vw, 42px);
+  }
+
+  .experience-section {
+    padding-top: 62px;
+    padding-bottom: 42px;
+  }
+
+  .contact-section {
+    padding-top: 58px;
+  }
+
+  .contact-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-actions a {
+    min-height: 84px;
+  }
+
+  footer {
+    padding-bottom: 32px;
+  }
+}
