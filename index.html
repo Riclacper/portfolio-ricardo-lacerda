@@ -14,7 +14,17 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=20260728-3" />
+    <link
+      rel="stylesheet"
+      href="theme.css?v=20260728-3"
+      data-theme-stylesheet
+    />
+    <link
+      rel="stylesheet"
+      href="final.css?v=20260728-3"
+      data-final-stylesheet
+    />
   </head>
   <body>
     <div class="page-grid" aria-hidden="true"></div>
@@ -174,31 +184,35 @@
         </div>
 
         <div class="project-grid">
-          <article class="project-card featured" data-tags="sistema">
+          <article class="project-card featured case-study" data-tags="sistema">
             <div class="project-topline">
               <span>React + Vite + Node + Supabase</span>
               <strong>Sistema em homologação</strong>
             </div>
             <h3>iCanada Gestão</h3>
-            <p>
-              Sistema full stack de gestão operacional da iCanada Reparos para
-              clientes, serviços, produtos, estoque, ordens de serviço, vendas,
-              orçamentos, PDFs, envio por e-mail e relatórios.
-            </p>
-            <ul>
-              <li>
-                Frontend React/Vite publicado no Cloudflare Pages e backend
-                Node.js/Express MVC publicado no Render.
-              </li>
-              <li>
-                Banco Supabase PostgreSQL, autenticação com Supabase Auth e
-                sessões protegidas com cookies HttpOnly.
-              </li>
-              <li>
-                Integração com Resend API para envio transacional de vendas,
-                ordens de serviço e orçamentos por e-mail.
-              </li>
-            </ul>
+            <div class="project-case" aria-label="Problema, solução e resultado do projeto">
+              <div class="project-case__item">
+                <span>Problema</span>
+                <p>
+                  A operação da assistência exigia centralizar clientes, equipamentos,
+                  estoque, ordens de serviço, vendas e garantias em um único fluxo.
+                </p>
+              </div>
+              <div class="project-case__item">
+                <span>Solução</span>
+                <p>
+                  Sistema full stack com React, Node.js e Supabase, autenticação,
+                  PDFs operacionais e envio transacional de documentos por e-mail.
+                </p>
+              </div>
+              <div class="project-case__item">
+                <span>Resultado</span>
+                <p>
+                  Plataforma em homologação com frontend, API e banco publicados,
+                  preparada para apoiar a rotina real da iCanada Reparos.
+                </p>
+              </div>
+            </div>
             <div class="project-actions">
               <a role="button" aria-disabled="true" tabindex="-1">
                 Demo online
@@ -209,31 +223,35 @@
             </div>
           </article>
 
-          <article class="project-card featured" data-tags="online sistema">
+          <article class="project-card featured case-study" data-tags="online sistema">
             <div class="project-topline">
               <span>React + Vite + Node.js + Express + SQLite</span>
               <strong>MVP em desenvolvimento</strong>
             </div>
             <h3>RJ Prime Gestão</h3>
-            <p>
-              CRM comercial responsivo para academias, desenvolvido a partir do
-              levantamento de requisitos e da modelagem do processo de vendas,
-              com foco na rotina dos consultores e na visão gerencial de conversão.
-            </p>
-            <ul>
-              <li>
-                Gestão de leads, agenda de tarefas, visitas, faltosos, BV 24h,
-                histórico cronológico e próximas ações.
-              </li>
-              <li>
-                Dashboard com indicadores de conversão por origem e consultor,
-                além do acompanhamento de tarefas pendentes e atrasadas.
-              </li>
-              <li>
-                API Node.js/Express, autenticação por sessão, persistência SQLite
-                e isolamento dos dados por academia.
-              </li>
-            </ul>
+            <div class="project-case" aria-label="Problema, solução e resultado do projeto">
+              <div class="project-case__item">
+                <span>Problema</span>
+                <p>
+                  Academias precisam acompanhar leads, visitas, faltosos, objeções
+                  e próximas ações para entender onde a conversão é perdida.
+                </p>
+              </div>
+              <div class="project-case__item">
+                <span>Solução</span>
+                <p>
+                  CRM responsivo com agenda comercial, histórico dos contatos,
+                  indicadores por origem e consultor e isolamento por academia.
+                </p>
+              </div>
+              <div class="project-case__item">
+                <span>Resultado</span>
+                <p>
+                  MVP publicado para avaliação, reunindo operação dos consultores
+                  e visão gerencial de conversão em uma única aplicação.
+                </p>
+              </div>
+            </div>
             <div class="project-actions">
               <a
                 href="https://rj-prime-gestao.onrender.com/"
@@ -245,22 +263,35 @@
             </div>
           </article>
 
-          <article class="project-card" data-tags="online sistema">
+          <article class="project-card case-study" data-tags="online sistema">
             <div class="project-topline">
               <span>React Native + Expo + TypeScript + Node.js</span>
               <strong>Demo online</strong>
             </div>
             <h3>Cadastro de Obras</h3>
-            <p>
-              Sistema completo para acompanhamento de obras e fiscalizações,
-              com autenticação por perfil, localização GPS, relatórios e
-              dashboard operacional.
-            </p>
-            <ul>
-              <li>Frontend publicado no Vercel e API Node.js publicada no Render.</li>
-              <li>Cadastro de obras, fiscalizações, fotos e localização no mapa.</li>
-              <li>Relatórios profissionais enviados por e-mail.</li>
-            </ul>
+            <div class="project-case" aria-label="Problema, solução e resultado do projeto">
+              <div class="project-case__item">
+                <span>Problema</span>
+                <p>
+                  O acompanhamento de obras e fiscalizações exige registros confiáveis,
+                  fotos, localização e relatórios organizados por perfil de acesso.
+                </p>
+              </div>
+              <div class="project-case__item">
+                <span>Solução</span>
+                <p>
+                  Aplicação com autenticação, GPS, cadastro de obras e fiscalizações,
+                  dashboard operacional e geração de relatórios enviados por e-mail.
+                </p>
+              </div>
+              <div class="project-case__item">
+                <span>Resultado</span>
+                <p>
+                  Demo navegável com frontend na Vercel e API Node.js no Render,
+                  disponível para validação do fluxo completo.
+                </p>
+              </div>
+            </div>
             <div class="project-actions">
               <a
                 href="https://cadastro-obras-andamento.vercel.app"
@@ -286,29 +317,35 @@
             </div>
           </article>
 
-          <article class="project-card" data-tags="online sistema">
+          <article class="project-card case-study" data-tags="online sistema">
             <div class="project-topline">
               <span>React + Node</span>
               <strong>MVP funcional</strong>
             </div>
             <h3>Emprega Safe</h3>
-            <p>
-              Aplicação full stack para analisar a confiabilidade de vagas,
-              classificar riscos e centralizar histórico, denúncias e indicadores
-              em um ambiente autenticado.
-            </p>
-            <ul>
-              <li>
-                Classificação de vagas como confiável, suspeita, fraudulenta ou
-                risco crítico.
-              </li>
-              <li>
-                Cadastro, login, verificação por código e recuperação de senha.
-              </li>
-              <li>
-                Histórico, denúncias e dashboard com API Node, Express, MongoDB e JWT.
-              </li>
-            </ul>
+            <div class="project-case" aria-label="Problema, solução e resultado do projeto">
+              <div class="project-case__item">
+                <span>Problema</span>
+                <p>
+                  Candidatos encontram vagas suspeitas e nem sempre dispõem de um
+                  processo estruturado para avaliar sinais de fraude e registrar ocorrências.
+                </p>
+              </div>
+              <div class="project-case__item">
+                <span>Solução</span>
+                <p>
+                  Aplicação autenticada que classifica o risco das vagas e centraliza
+                  análises, histórico, denúncias e indicadores em um dashboard.
+                </p>
+              </div>
+              <div class="project-case__item">
+                <span>Resultado</span>
+                <p>
+                  MVP funcional publicado com API Node.js, MongoDB, JWT, verificação
+                  de conta e recuperação de senha.
+                </p>
+              </div>
+            </div>
             <div class="project-actions">
               <a
                 href="https://empregasafe.netlify.app/"
@@ -647,6 +684,6 @@
       <span class="footer-note">Portfólio profissional</span>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=20260728-3"></script>
   </body>
 </html>
