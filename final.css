@@ -3,6 +3,7 @@
 @import url("./portfolio-refinements.css");
 @import url("./loading-stability.css");
 @import url("./closing-sections.css");
+@import url("./delivery-flow-animation.css");
 
 @media (min-width: 961px) {
   .project-grid > .project-card {
