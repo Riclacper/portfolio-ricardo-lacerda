@@ -1,4 +1,5 @@
 @import url("./final-base.css");
+@import url("./hero-map.css");
 
 @media (min-width: 961px) {
   .project-grid > .project-card {
