@@ -1,0 +1,27 @@
+/* Evita mudanças visuais entre o primeiro paint e a montagem progressiva da página. */
+
+html:not(.theme-ready) body {
+  opacity: 0;
+  pointer-events: none;
+  animation: portfolio-fallback-reveal 0s linear 1.2s forwards;
+}
+
+html.theme-ready body {
+  opacity: 1;
+  pointer-events: auto;
+  animation: none;
+  transition: opacity 100ms ease-out;
+}
+
+@keyframes portfolio-fallback-reveal {
+  to {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.theme-ready body {
+    transition: none;
+  }
+}
