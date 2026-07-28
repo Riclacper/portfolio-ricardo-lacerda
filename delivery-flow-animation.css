@@ -1,0 +1,106 @@
+/* Percurso visual contínuo entre as etapas 01 e 04 do fluxo de entrega. */
+
+.delivery-flow::before {
+  z-index: 0;
+}
+
+.delivery-flow::after {
+  position: absolute;
+  top: 41px;
+  left: 10%;
+  z-index: 0;
+  width: clamp(54px, 7vw, 88px);
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(25, 209, 140, 0.2) 18%,
+    var(--green) 38%,
+    #ffffff 50%,
+    var(--cyan) 62%,
+    rgba(56, 217, 255, 0.2) 82%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 10px rgba(25, 209, 140, 0.34),
+    0 0 18px rgba(56, 217, 255, 0.26);
+  content: "";
+  pointer-events: none;
+  transform: translateX(-50%);
+  animation: delivery-flow-travel-horizontal 8s ease-in-out infinite;
+}
+
+.delivery-stage {
+  z-index: 1;
+}
+
+@keyframes delivery-flow-travel-horizontal {
+  0%,
+  6%,
+  100% {
+    left: 10%;
+  }
+
+  44%,
+  56% {
+    left: 90%;
+  }
+
+  94% {
+    left: 10%;
+  }
+}
+
+@media (max-width: 960px) and (min-width: 641px) {
+  /* No layout 2 × 2 não há uma linha única contínua entre as quatro etapas. */
+  .delivery-flow::after {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .delivery-flow::after {
+    top: 20px;
+    bottom: auto;
+    left: 16px;
+    width: 4px;
+    height: 58px;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(25, 209, 140, 0.2) 18%,
+      var(--green) 38%,
+      #ffffff 50%,
+      var(--cyan) 62%,
+      rgba(56, 217, 255, 0.2) 82%,
+      transparent 100%
+    );
+    transform: translateX(0) translateY(-50%);
+    animation-name: delivery-flow-travel-vertical;
+  }
+
+  @keyframes delivery-flow-travel-vertical {
+    0%,
+    6%,
+    100% {
+      top: 20px;
+    }
+
+    44%,
+    56% {
+      top: calc(100% - 24px);
+    }
+
+    94% {
+      top: 20px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .delivery-flow::after {
+    display: none;
+    animation: none;
+  }
+}
