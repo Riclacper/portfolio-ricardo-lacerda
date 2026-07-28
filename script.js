@@ -1,4 +1,6 @@
 (() => {
+  const CURRICULUM_URL = "https://curriculo-ricardo-five.vercel.app/";
+
   const projectCases = {
     "Data Science Dashboard": {
       problem:
@@ -50,6 +52,14 @@
     },
   };
 
+  const normalizeCurriculumLinks = () => {
+    document
+      .querySelectorAll('a[href*="curriculo-ricardo-five.vercel.app"]')
+      .forEach((link) => {
+        link.href = CURRICULUM_URL;
+      });
+  };
+
   const removeRedundantProfileLinks = () => {
     document
       .querySelector('.site-header nav a[href*="curriculo-ricardo"]')
@@ -89,6 +99,7 @@
     return item;
   };
 
+  normalizeCurriculumLinks();
   removeRedundantProfileLinks();
 
   document.querySelectorAll(".project-card").forEach((card) => {
