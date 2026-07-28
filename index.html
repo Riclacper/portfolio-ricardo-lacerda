@@ -42,10 +42,10 @@
     </header>
 
     <main id="inicio">
-      <section class="hero">
+      <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
           <span class="eyebrow">Desenvolvedor Full Stack | projetos em produção</span>
-          <h1>Do problema ao deploy.</h1>
+          <h1 id="hero-title">Do problema ao deploy.</h1>
           <p>
             Transformo necessidades reais em interfaces, APIs e sistemas completos,
             do levantamento de requisitos à aplicação publicada.
@@ -81,32 +81,58 @@
           </div>
         </div>
 
-        <aside class="hero-console" aria-label="Resumo técnico profissional">
-          <div class="console-header">
-            <span></span>
-            <span></span>
-            <span></span>
-            <strong>portfolio.status</strong>
-          </div>
-          <div class="console-body">
-            <div class="console-line">
-              <span>stack</span>
-              <strong>React · React Native · Expo · TypeScript · Node.js · Python</strong>
+        <section class="delivery-map" aria-labelledby="delivery-map-title">
+          <header class="delivery-map__header">
+            <div class="delivery-map__label">
+              <span class="delivery-map__lights" aria-hidden="true">
+                <i></i><i></i><i></i>
+              </span>
+              <span>delivery.map</span>
             </div>
-            <div class="console-line">
-              <span>perfil</span>
-              <strong>Full Stack · APIs · Dashboards · Sistemas web</strong>
-            </div>
-            <div class="console-line">
-              <span>entrega</span>
-              <strong>Aplicações, MVPs e sites publicados</strong>
-            </div>
-            <div class="terminal-card">
-              <code>$ npm run portfolio</code>
-              <small>10 projetos catalogados · 8 projetos online · GitHub público</small>
-            </div>
-          </div>
-        </aside>
+            <h2 id="delivery-map-title">Fluxo de entrega</h2>
+          </header>
+
+          <ol class="delivery-flow">
+            <li class="delivery-stage">
+              <span class="delivery-stage__number" aria-hidden="true">01</span>
+              <div class="delivery-stage__content">
+                <small>Entendimento</small>
+                <h3>Requisitos</h3>
+                <p>Necessidades, regras de negócio e prioridades do produto.</p>
+              </div>
+            </li>
+
+            <li class="delivery-stage">
+              <span class="delivery-stage__number" aria-hidden="true">02</span>
+              <div class="delivery-stage__content">
+                <small>Experiência</small>
+                <h3>Interface</h3>
+                <p>Fluxos, protótipos navegáveis e responsividade.</p>
+              </div>
+            </li>
+
+            <li class="delivery-stage">
+              <span class="delivery-stage__number" aria-hidden="true">03</span>
+              <div class="delivery-stage__content">
+                <small>Construção</small>
+                <h3>Sistema</h3>
+                <p>APIs, autenticação, persistência de dados e integrações.</p>
+              </div>
+            </li>
+
+            <li class="delivery-stage delivery-stage--online">
+              <span class="delivery-stage__number" aria-hidden="true">04</span>
+              <div class="delivery-stage__content">
+                <small>Produção</small>
+                <h3>Aplicação publicada</h3>
+                <p>Deploy, documentação e experiência disponível para validação.</p>
+                <span class="delivery-stage__status">
+                  <i aria-hidden="true"></i> Online
+                </span>
+              </div>
+            </li>
+          </ol>
+        </section>
       </section>
 
       <section class="metric-strip" aria-label="Indicadores do portfólio">

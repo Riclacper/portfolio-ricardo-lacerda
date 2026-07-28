@@ -101,59 +101,76 @@
   background: transparent;
 }
 
-.hero-console {
+.delivery-map {
   position: relative;
   margin-top: 58px;
-  border: 0;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-  overflow: visible;
 }
 
-.hero-console::before {
-  display: none;
-}
-
-.console-header {
+.delivery-map__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
   min-height: 54px;
-  padding: 0;
-  border-bottom: 0;
-  background: transparent;
 }
 
-.console-header span {
+.delivery-map__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.delivery-map__lights {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.delivery-map__lights i {
   width: 8px;
   height: 8px;
+  border-radius: 50%;
+  background: var(--muted-2);
 }
 
-.console-header strong {
-  font-size: 0;
+.delivery-map__lights i:first-child {
+  background: var(--green);
 }
 
-.console-header strong::after {
+.delivery-map__lights i:nth-child(2) {
+  background: var(--cyan);
+}
+
+.delivery-map__header h2 {
+  margin: 0;
   color: var(--muted);
-  content: "delivery.map / fluxo de entrega";
   font-size: 11px;
+  font-weight: 900;
   letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
-.console-body {
+.delivery-flow {
   position: relative;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
-  padding: 26px 0 32px;
+  margin: 0;
+  padding: 60px 0 32px;
+  list-style: none;
 }
 
-.console-body::before {
+.delivery-flow::before {
   position: absolute;
   top: 43px;
   right: 10%;
   left: 10%;
-  z-index: 0;
   height: 1px;
   background: linear-gradient(
     90deg,
@@ -165,22 +182,19 @@
   content: "";
 }
 
-.console-body > * {
+.delivery-stage {
   position: relative;
-  z-index: 1;
   min-width: 0;
-  min-height: 176px;
-  margin-top: 34px;
+  min-height: 190px;
   padding: 42px 20px 20px;
   border: 1px solid var(--line);
   border-radius: 12px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.025)),
     var(--surface);
-  box-shadow: none;
 }
 
-.console-body > *::before {
+.delivery-stage__number {
   position: absolute;
   top: -52px;
   left: 18px;
@@ -198,41 +212,9 @@
   letter-spacing: 0.08em;
 }
 
-.console-body > :nth-child(1)::before {
-  content: "01";
-}
-
-.console-body > :nth-child(2)::before {
-  content: "02";
-}
-
-.console-body > :nth-child(3)::before {
-  content: "03";
-}
-
-.console-body > :nth-child(4)::before {
-  border-color: var(--green);
-  color: #061710;
-  background: linear-gradient(135deg, var(--green), var(--cyan));
-  content: "04";
-  box-shadow:
-    0 0 0 8px var(--page),
-    0 0 24px rgba(25, 209, 140, 0.34);
-  animation: delivery-node-pulse 2.8s ease-in-out infinite;
-}
-
-.console-line {
-  display: block;
-}
-
-.console-line span {
+.delivery-stage__content small {
   display: block;
   margin-bottom: 12px;
-  font-size: 0;
-}
-
-.console-line span::after,
-.terminal-card code::after {
   color: var(--green);
   font-size: 11px;
   font-weight: 900;
@@ -240,60 +222,53 @@
   text-transform: uppercase;
 }
 
-.console-body > :nth-child(1) span::after {
-  content: "Base técnica";
+.delivery-stage__content h3 {
+  margin-bottom: 10px;
+  font-size: 19px;
+  line-height: 1.25;
 }
 
-.console-body > :nth-child(2) span::after {
-  content: "Construção";
+.delivery-stage__content p {
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
-.console-body > :nth-child(3) span::after {
-  content: "Entrega";
-}
-
-.console-line strong {
-  display: block;
-  color: var(--ink-strong);
-  font-size: 16px;
-  line-height: 1.45;
-}
-
-.terminal-card {
-  display: block;
+.delivery-stage--online {
   background:
     radial-gradient(circle at 90% 10%, rgba(56, 217, 255, 0.12), transparent 42%),
     linear-gradient(180deg, rgba(25, 209, 140, 0.09), rgba(255, 255, 255, 0.025)),
     var(--surface);
 }
 
-.terminal-card code {
-  display: block;
-  margin-bottom: 12px;
-  font-size: 0;
+.delivery-stage--online .delivery-stage__number {
+  border-color: var(--green);
+  color: #061710;
+  background: linear-gradient(135deg, var(--green), var(--cyan));
+  box-shadow:
+    0 0 0 8px var(--page),
+    0 0 24px rgba(25, 209, 140, 0.34);
+  animation: delivery-node-pulse 2.8s ease-in-out infinite;
 }
 
-.terminal-card code::after {
-  content: "Produção";
-}
-
-.terminal-card small {
-  display: block;
+.delivery-stage__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
   color: var(--ink-strong);
-  font-size: 14px;
-  line-height: 1.55;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.terminal-card small::before {
-  display: inline-block;
+.delivery-stage__status i {
   width: 7px;
   height: 7px;
-  margin-right: 8px;
   border-radius: 50%;
   background: var(--green);
   box-shadow: 0 0 12px rgba(25, 209, 140, 0.72);
-  content: "";
-  vertical-align: 1px;
 }
 
 .metric-strip {
@@ -347,48 +322,41 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .console-body > :nth-child(4)::before {
+  .delivery-stage--online .delivery-stage__number {
     animation: none;
   }
 }
 
 :root[data-theme="light"] .signal-row span,
-:root[data-theme="light"] .hero-console,
-:root[data-theme="light"] .console-header,
-:root[data-theme="light"] .console-line,
-:root[data-theme="light"] .terminal-card,
+:root[data-theme="light"] .delivery-map,
 :root[data-theme="light"] .metric-strip article {
   background: transparent;
 }
 
-:root[data-theme="light"] .console-body > * {
+:root[data-theme="light"] .delivery-stage {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(244, 249, 250, 0.88)),
     var(--surface);
 }
 
-:root[data-theme="light"] .console-body > *::before {
+:root[data-theme="light"] .delivery-stage__number {
   background: var(--page);
   box-shadow: 0 0 0 8px var(--page);
 }
 
-:root[data-theme="light"] .console-body > :nth-child(4)::before {
-  color: #ffffff;
-  background: linear-gradient(135deg, var(--green), var(--cyan));
-  box-shadow:
-    0 0 0 8px var(--page),
-    0 0 22px rgba(0, 135, 95, 0.24);
-}
-
-:root[data-theme="light"] .terminal-card {
+:root[data-theme="light"] .delivery-stage--online {
   background:
     radial-gradient(circle at 90% 10%, rgba(0, 127, 158, 0.09), transparent 42%),
     linear-gradient(180deg, rgba(0, 135, 95, 0.07), rgba(255, 255, 255, 0.84)),
     var(--surface);
 }
 
-:root[data-theme="light"] .terminal-card small {
-  color: var(--ink-strong);
+:root[data-theme="light"] .delivery-stage--online .delivery-stage__number {
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--green), var(--cyan));
+  box-shadow:
+    0 0 0 8px var(--page),
+    0 0 22px rgba(0, 135, 95, 0.24);
 }
 
 @media (max-width: 960px) {
@@ -415,17 +383,13 @@
     max-width: 680px;
   }
 
-  .console-body {
+  .delivery-flow {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 56px 18px;
   }
 
-  .console-body::before {
+  .delivery-flow::before {
     display: none;
-  }
-
-  .console-body > * {
-    margin-top: 22px;
   }
 }
 
@@ -471,21 +435,25 @@
     background: var(--surface-soft);
   }
 
-  .hero-console {
+  .delivery-map {
     margin-top: 42px;
   }
 
-  .console-header strong::after {
-    content: "delivery.map";
+  .delivery-map__header {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    padding: 12px 0;
   }
 
-  .console-body {
+  .delivery-flow {
     grid-template-columns: 1fr;
     gap: 16px;
     padding: 26px 0 30px 46px;
   }
 
-  .console-body::before {
+  .delivery-flow::before {
     top: 20px;
     bottom: 24px;
     left: 18px;
@@ -495,13 +463,12 @@
     background: linear-gradient(180deg, var(--green), var(--cyan));
   }
 
-  .console-body > * {
+  .delivery-stage {
     min-height: auto;
-    margin-top: 0;
     padding: 22px 18px;
   }
 
-  .console-body > *::before {
+  .delivery-stage__number {
     top: 20px;
     left: -46px;
     width: 34px;
@@ -509,8 +476,8 @@
     box-shadow: 0 0 0 6px var(--page);
   }
 
-  .console-body > :nth-child(4)::before,
-  :root[data-theme="light"] .console-body > :nth-child(4)::before {
+  .delivery-stage--online .delivery-stage__number,
+  :root[data-theme="light"] .delivery-stage--online .delivery-stage__number {
     box-shadow:
       0 0 0 6px var(--page),
       0 0 20px rgba(25, 209, 140, 0.3);
