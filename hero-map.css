@@ -1,0 +1,543 @@
+.hero {
+  display: block;
+  min-height: auto;
+  padding: 92px 0 42px;
+}
+
+.hero-copy {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr);
+  grid-template-rows: auto auto auto;
+  column-gap: 64px;
+  row-gap: 22px;
+  align-items: end;
+}
+
+.hero-copy > .eyebrow {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  margin-bottom: 0;
+}
+
+.hero-copy > h1 {
+  grid-column: 1;
+  grid-row: 2;
+  max-width: 760px;
+  margin-bottom: 0;
+  font-size: clamp(52px, 7.2vw, 88px);
+  line-height: 0.94;
+  letter-spacing: -0.055em;
+}
+
+.hero-copy > p {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: end;
+  max-width: 470px;
+  margin-bottom: 4px;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.signal-row {
+  grid-column: 1;
+  grid-row: 3;
+  align-items: center;
+  gap: 0;
+  margin-top: 2px;
+}
+
+.signal-row span {
+  min-height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+
+.signal-row span:not(:last-child)::after {
+  margin: 0 14px;
+  color: var(--muted-2);
+  content: "/";
+}
+
+.signal-row i {
+  width: 7px;
+  height: 7px;
+}
+
+.hero-actions {
+  grid-column: 2;
+  grid-row: 3;
+  align-items: center;
+  margin-top: 0;
+}
+
+.hero-actions .primary-action {
+  min-height: 50px;
+  padding-right: 22px;
+  padding-left: 22px;
+}
+
+.hero-actions .primary-action::after {
+  margin-left: 12px;
+  content: "→";
+  font-size: 18px;
+  line-height: 1;
+}
+
+.hero-actions .secondary-action {
+  min-height: 42px;
+  padding-right: 4px;
+  padding-left: 4px;
+  border-color: transparent;
+  background: transparent;
+}
+
+.hero-actions .secondary-action:hover {
+  color: var(--green);
+  background: transparent;
+}
+
+.hero-console {
+  position: relative;
+  margin-top: 58px;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.hero-console::before {
+  display: none;
+}
+
+.console-header {
+  min-height: 54px;
+  padding: 0;
+  border-bottom: 0;
+  background: transparent;
+}
+
+.console-header span {
+  width: 8px;
+  height: 8px;
+}
+
+.console-header strong {
+  font-size: 0;
+}
+
+.console-header strong::after {
+  color: var(--muted);
+  content: "delivery.map / fluxo de entrega";
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+
+.console-body {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  padding: 26px 0 32px;
+}
+
+.console-body::before {
+  position: absolute;
+  top: 43px;
+  right: 10%;
+  left: 10%;
+  z-index: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(25, 209, 140, 0.18),
+    var(--green),
+    var(--cyan),
+    rgba(56, 217, 255, 0.18)
+  );
+  content: "";
+}
+
+.console-body > * {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  min-height: 176px;
+  margin-top: 34px;
+  padding: 42px 20px 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.025)),
+    var(--surface);
+  box-shadow: none;
+}
+
+.console-body > *::before {
+  position: absolute;
+  top: -52px;
+  left: 18px;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--ink-strong);
+  background: var(--page);
+  box-shadow: 0 0 0 8px var(--page);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.console-body > :nth-child(1)::before {
+  content: "01";
+}
+
+.console-body > :nth-child(2)::before {
+  content: "02";
+}
+
+.console-body > :nth-child(3)::before {
+  content: "03";
+}
+
+.console-body > :nth-child(4)::before {
+  border-color: var(--green);
+  color: #061710;
+  background: linear-gradient(135deg, var(--green), var(--cyan));
+  content: "04";
+  box-shadow:
+    0 0 0 8px var(--page),
+    0 0 24px rgba(25, 209, 140, 0.34);
+  animation: delivery-node-pulse 2.8s ease-in-out infinite;
+}
+
+.console-line {
+  display: block;
+}
+
+.console-line span {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 0;
+}
+
+.console-line span::after,
+.terminal-card code::after {
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.console-body > :nth-child(1) span::after {
+  content: "Base técnica";
+}
+
+.console-body > :nth-child(2) span::after {
+  content: "Construção";
+}
+
+.console-body > :nth-child(3) span::after {
+  content: "Entrega";
+}
+
+.console-line strong {
+  display: block;
+  color: var(--ink-strong);
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.terminal-card {
+  display: block;
+  background:
+    radial-gradient(circle at 90% 10%, rgba(56, 217, 255, 0.12), transparent 42%),
+    linear-gradient(180deg, rgba(25, 209, 140, 0.09), rgba(255, 255, 255, 0.025)),
+    var(--surface);
+}
+
+.terminal-card code {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 0;
+}
+
+.terminal-card code::after {
+  content: "Produção";
+}
+
+.terminal-card small {
+  display: block;
+  color: var(--ink-strong);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.terminal-card small::before {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 12px rgba(25, 209, 140, 0.72);
+  content: "";
+  vertical-align: 1px;
+}
+
+.metric-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.metric-strip article {
+  min-height: 82px;
+  padding: 18px 22px;
+  border-right: 1px solid var(--line);
+  background: transparent;
+}
+
+.metric-strip article:first-child {
+  padding-left: 0;
+}
+
+.metric-strip article:last-child {
+  padding-right: 0;
+  border-right: 0;
+}
+
+.metric-strip span {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.metric-strip strong {
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+@keyframes delivery-node-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .console-body > :nth-child(4)::before {
+    animation: none;
+  }
+}
+
+:root[data-theme="light"] .signal-row span,
+:root[data-theme="light"] .hero-console,
+:root[data-theme="light"] .console-header,
+:root[data-theme="light"] .console-line,
+:root[data-theme="light"] .terminal-card,
+:root[data-theme="light"] .metric-strip article {
+  background: transparent;
+}
+
+:root[data-theme="light"] .console-body > * {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(244, 249, 250, 0.88)),
+    var(--surface);
+}
+
+:root[data-theme="light"] .console-body > *::before {
+  background: var(--page);
+  box-shadow: 0 0 0 8px var(--page);
+}
+
+:root[data-theme="light"] .console-body > :nth-child(4)::before {
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--green), var(--cyan));
+  box-shadow:
+    0 0 0 8px var(--page),
+    0 0 22px rgba(0, 135, 95, 0.24);
+}
+
+:root[data-theme="light"] .terminal-card {
+  background:
+    radial-gradient(circle at 90% 10%, rgba(0, 127, 158, 0.09), transparent 42%),
+    linear-gradient(180deg, rgba(0, 135, 95, 0.07), rgba(255, 255, 255, 0.84)),
+    var(--surface);
+}
+
+:root[data-theme="light"] .terminal-card small {
+  color: var(--ink-strong);
+}
+
+@media (max-width: 960px) {
+  .hero {
+    padding-top: 64px;
+  }
+
+  .hero-copy {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 20px;
+  }
+
+  .hero-copy > .eyebrow,
+  .hero-copy > h1,
+  .hero-copy > p,
+  .signal-row,
+  .hero-actions {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .hero-copy > p {
+    max-width: 680px;
+  }
+
+  .console-body {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 56px 18px;
+  }
+
+  .console-body::before {
+    display: none;
+  }
+
+  .console-body > * {
+    margin-top: 22px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-top: 42px;
+    padding-bottom: 30px;
+  }
+
+  .hero-copy > h1 {
+    font-size: clamp(42px, 13vw, 60px);
+    line-height: 0.98;
+  }
+
+  .hero-copy > p {
+    line-height: 1.6;
+  }
+
+  .signal-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .signal-row span:not(:last-child)::after {
+    display: none;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+
+  .hero-actions .primary-action {
+    grid-column: 1 / -1;
+  }
+
+  .hero-actions .secondary-action {
+    width: auto;
+    min-height: 40px;
+    border: 1px solid var(--line);
+    background: var(--surface-soft);
+  }
+
+  .hero-console {
+    margin-top: 42px;
+  }
+
+  .console-header strong::after {
+    content: "delivery.map";
+  }
+
+  .console-body {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 26px 0 30px 46px;
+  }
+
+  .console-body::before {
+    top: 20px;
+    bottom: 24px;
+    left: 18px;
+    display: block;
+    width: 1px;
+    height: auto;
+    background: linear-gradient(180deg, var(--green), var(--cyan));
+  }
+
+  .console-body > * {
+    min-height: auto;
+    margin-top: 0;
+    padding: 22px 18px;
+  }
+
+  .console-body > *::before {
+    top: 20px;
+    left: -46px;
+    width: 34px;
+    height: 34px;
+    box-shadow: 0 0 0 6px var(--page);
+  }
+
+  .console-body > :nth-child(4)::before,
+  :root[data-theme="light"] .console-body > :nth-child(4)::before {
+    box-shadow:
+      0 0 0 6px var(--page),
+      0 0 20px rgba(25, 209, 140, 0.3);
+  }
+
+  .metric-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .metric-strip article,
+  .metric-strip article:first-child,
+  .metric-strip article:last-child {
+    min-height: 74px;
+    padding: 14px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .metric-strip article:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .metric-strip article:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+
+  .metric-strip strong {
+    font-size: 17px;
+  }
+}
