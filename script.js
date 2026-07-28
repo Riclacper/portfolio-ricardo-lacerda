@@ -50,6 +50,31 @@
     },
   };
 
+  const removeRedundantProfileLinks = () => {
+    document
+      .querySelector('.site-header nav a[href*="curriculo-ricardo"]')
+      ?.remove();
+    document
+      .querySelector('.hero-actions a[href*="linkedin.com"]')
+      ?.remove();
+  };
+
+  const simplifyFooterNavigation = () => {
+    const navigation = document.querySelector("footer nav");
+
+    if (!navigation) {
+      return;
+    }
+
+    navigation.innerHTML = `
+      <a href="#projetos">Projetos</a>
+      <span class="footer-separator" aria-hidden="true">·</span>
+      <a href="#sobre">Sobre</a>
+      <span class="footer-separator" aria-hidden="true">·</span>
+      <a href="#contato">Contato</a>
+    `;
+  };
+
   const createCaseItem = (label, text) => {
     const item = document.createElement("div");
     item.className = "project-case__item";
@@ -63,6 +88,8 @@
     item.append(heading, paragraph);
     return item;
   };
+
+  removeRedundantProfileLinks();
 
   document.querySelectorAll(".project-card").forEach((card) => {
     const title = card.querySelector("h3")?.textContent.trim();
@@ -102,7 +129,9 @@
   const coreScript = document.createElement("script");
   coreScript.src = "script-core.js?v=20260728-1";
   coreScript.async = false;
+  coreScript.addEventListener("load", simplifyFooterNavigation);
   coreScript.addEventListener("error", () => {
+    simplifyFooterNavigation();
     document.documentElement.classList.add("theme-ready");
   });
   document.head.append(coreScript);
