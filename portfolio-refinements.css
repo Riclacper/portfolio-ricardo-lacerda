@@ -1,0 +1,122 @@
+/* Refinamentos do hero e apresentação dos projetos principais. */
+
+.delivery-stage--online {
+  border-color: rgba(25, 209, 140, 0.24);
+  background:
+    radial-gradient(circle at 90% 10%, rgba(56, 217, 255, 0.07), transparent 42%),
+    linear-gradient(180deg, rgba(25, 209, 140, 0.05), rgba(255, 255, 255, 0.02)),
+    var(--surface);
+}
+
+.delivery-stage--online .delivery-stage__number {
+  box-shadow:
+    0 0 0 8px var(--page),
+    0 0 18px rgba(25, 209, 140, 0.24);
+}
+
+.delivery-stage__status i {
+  box-shadow: 0 0 9px rgba(25, 209, 140, 0.48);
+}
+
+.metric-strip span {
+  color: var(--muted-2);
+  font-weight: 900;
+  letter-spacing: 0.11em;
+  line-height: 1.2;
+}
+
+.metric-strip strong {
+  margin-top: 4px;
+  color: var(--ink-strong);
+  font-weight: 900;
+  letter-spacing: -0.025em;
+}
+
+.metric-strip article:nth-child(3) strong {
+  color: #f2fbff;
+  font-size: 22px;
+}
+
+.project-card.case-study {
+  min-height: 430px;
+}
+
+.project-card.case-study h3 {
+  margin-bottom: 12px;
+}
+
+.project-case {
+  display: grid;
+  margin: 4px 0 24px;
+  border-top: 1px solid var(--line);
+}
+
+.project-case__item {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.project-case__item > span {
+  padding-top: 2px;
+  color: var(--green);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.project-case__item p,
+.project-card.featured .project-case__item p {
+  margin: 0;
+  color: #b8cad6;
+  font-size: 14px;
+  line-height: 1.62;
+}
+
+:root[data-theme="light"] .delivery-stage--online {
+  border-color: rgba(0, 135, 95, 0.2);
+  background:
+    radial-gradient(circle at 90% 10%, rgba(0, 127, 158, 0.055), transparent 42%),
+    linear-gradient(180deg, rgba(0, 135, 95, 0.04), rgba(255, 255, 255, 0.86)),
+    var(--surface);
+}
+
+:root[data-theme="light"] .delivery-stage--online .delivery-stage__number {
+  box-shadow:
+    0 0 0 8px var(--page),
+    0 0 16px rgba(0, 135, 95, 0.17);
+}
+
+:root[data-theme="light"] .metric-strip article:nth-child(3) strong {
+  color: var(--ink-strong);
+}
+
+:root[data-theme="light"] .project-case__item p,
+:root[data-theme="light"] .project-card.featured .project-case__item p {
+  color: var(--muted);
+}
+
+@media (max-width: 640px) {
+  .metric-strip article:nth-child(3) strong {
+    font-size: 18px;
+  }
+
+  .project-card.case-study {
+    min-height: auto;
+  }
+
+  .project-case__item {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 13px 0;
+  }
+
+  .project-case__item > span {
+    padding-top: 0;
+  }
+}
