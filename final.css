@@ -15,3 +15,22 @@
     grid-column: span 2;
   }
 }
+
+@media (max-width: 640px) {
+  .hero-actions {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .hero-actions .primary-action,
+  .hero-actions .secondary-action {
+    grid-column: auto;
+    width: 100%;
+  }
+
+  .hero-actions .secondary-action {
+    min-height: 54px;
+    padding: 0 18px;
+    justify-content: center;
+  }
+}
