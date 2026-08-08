@@ -1,5 +1,6 @@
 (() => {
   const CURRICULUM_URL = "https://curriculo-ricardo-five.vercel.app/";
+  const MONTA_HEALTH_URL = "https://monta-health.vercel.app/";
 
   const projectCases = {
     "Data Science Dashboard": {
@@ -50,6 +51,14 @@
       result:
         "Projeto em evolução, com código público e preparação em andamento para atualização da experiência e futura publicação online.",
     },
+    "Monta Health": {
+      problem:
+        "O contexto, os atores, as necessidades e as restrições de um potencial produto de saúde ainda precisam ser descobertos sem transformar hipóteses em requisitos e sem antecipar tratamento de dados sensíveis.",
+      solution:
+        "Fundação documental para conduzir Discovery neutro e rastreável, reunindo visão de produto, blueprint, arquitetura conceitual, governança, compliance, roteiro de entrevista e gates de decisão.",
+      result:
+        "Base documental estruturada e publicada, com controles de preparação definidos e avanço condicionado a evidências, consentimentos, revisões e aprovações; o produto permanece em Concepção sem implementação autorizada.",
+    },
   };
 
   const normalizeCurriculumLinks = () => {
@@ -99,8 +108,81 @@
     return item;
   };
 
+  const createMontaHealthCard = () => {
+    const projectGrid = document.querySelector(".project-grid");
+
+    if (!projectGrid || projectGrid.querySelector('[data-project="monta-health"]')) {
+      return;
+    }
+
+    const content = projectCases["Monta Health"];
+    const card = document.createElement("article");
+    card.className = "project-card case-study monta-health-card";
+    card.dataset.tags = "online";
+    card.dataset.project = "monta-health";
+
+    const topline = document.createElement("div");
+    topline.className = "project-topline";
+
+    const scope = document.createElement("span");
+    scope.textContent = "Discovery + Arquitetura + Governança";
+
+    const status = document.createElement("strong");
+    status.textContent = "Documentação publicada";
+    topline.append(scope, status);
+
+    const title = document.createElement("h3");
+    title.textContent = "Monta Health";
+
+    const caseStudy = document.createElement("div");
+    caseStudy.className = "project-case";
+    caseStudy.setAttribute(
+      "aria-label",
+      "Problema, solução e resultado do projeto",
+    );
+    caseStudy.append(
+      createCaseItem("Problema", content.problem),
+      createCaseItem("Solução", content.solution),
+      createCaseItem("Resultado", content.result),
+    );
+
+    const actions = document.createElement("div");
+    actions.className = "project-actions";
+
+    const demoLink = document.createElement("a");
+    demoLink.href = MONTA_HEALTH_URL;
+    demoLink.target = "_blank";
+    demoLink.rel = "noreferrer";
+    demoLink.textContent = "Demo online";
+    actions.append(demoLink);
+
+    card.append(topline, title, caseStudy, actions);
+    projectGrid.append(card);
+  };
+
+  const updatePortfolioMetrics = () => {
+    document.querySelectorAll(".metric-strip article").forEach((article) => {
+      const label = article.querySelector("span")?.textContent.trim().toLowerCase();
+      const value = article.querySelector("strong");
+
+      if (!value) {
+        return;
+      }
+
+      if (label === "projetos") {
+        value.textContent = "11";
+      }
+
+      if (label === "projetos online") {
+        value.textContent = "9";
+      }
+    });
+  };
+
   normalizeCurriculumLinks();
   removeRedundantProfileLinks();
+  createMontaHealthCard();
+  updatePortfolioMetrics();
 
   document.querySelectorAll(".project-card").forEach((card) => {
     const title = card.querySelector("h3")?.textContent.trim();
