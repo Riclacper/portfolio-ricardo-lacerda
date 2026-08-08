@@ -16,6 +16,12 @@
   }
 }
 
+@media (min-width: 641px) {
+  .project-grid > .project-card.monta-health-card {
+    grid-column: 1 / -1;
+  }
+}
+
 @media (max-width: 640px) {
   .hero-actions {
     grid-template-columns: 1fr;
