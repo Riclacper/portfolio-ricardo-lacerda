@@ -53,11 +53,11 @@
     },
     "Monta Health": {
       problem:
-        "O contexto, os atores, as necessidades e as restrições de um potencial produto de saúde ainda precisam ser descobertos sem transformar hipóteses em requisitos e sem antecipar tratamento de dados sensíveis.",
+        "Como explorar uma ideia de produto para consultório médico sem transformar hipóteses em requisitos, expor dados reais ou antecipar um sistema clínico de produção.",
       solution:
-        "Fundação documental para conduzir Discovery neutro e rastreável, reunindo visão de produto, blueprint, arquitetura conceitual, governança, compliance, roteiro de entrevista e gates de decisão.",
+        "Como Product Architect / Tech Lead, estruturei o Discovery e liderei um protótipo navegável com fluxos de Recepção, Médico e Agenda, usando somente dados sintéticos, separação de responsabilidades e guardrails de privacidade e segurança.",
       result:
-        "Base documental estruturada e publicada, com controles de preparação definidos e avanço condicionado a evidências, consentimentos, revisões e aprovações; o produto permanece em Concepção sem implementação autorizada.",
+        "Protótipo Exploratório v0 publicado na Vercel para apoiar entrevista com médico e confrontar hipóteses com a operação real. Sem backend, banco de dados, autenticação real ou integrações clínicas; não é prontuário eletrônico nem sistema para atendimento real.",
     },
   };
 
@@ -117,22 +117,26 @@
 
     const content = projectCases["Monta Health"];
     const card = document.createElement("article");
-    card.className = "project-card case-study monta-health-card";
-    card.dataset.tags = "online";
+    card.className = "project-card featured case-study monta-health-card";
+    card.dataset.tags = "online sistema";
     card.dataset.project = "monta-health";
 
     const topline = document.createElement("div");
     topline.className = "project-topline";
 
     const scope = document.createElement("span");
-    scope.textContent = "Discovery + Arquitetura + Governança";
+    scope.textContent = "Product Architecture + Discovery + AI-assisted Engineering";
 
     const status = document.createElement("strong");
-    status.textContent = "Documentação publicada";
+    status.textContent = "Protótipo Exploratório v0";
     topline.append(scope, status);
 
     const title = document.createElement("h3");
     title.textContent = "Monta Health";
+
+    const role = document.createElement("p");
+    role.className = "project-role";
+    role.textContent = "Product Architect / Tech Lead · Produto em Concepção / Discovery";
 
     const caseStudy = document.createElement("div");
     caseStudy.className = "project-case";
@@ -153,11 +157,14 @@
     demoLink.href = MONTA_HEALTH_URL;
     demoLink.target = "_blank";
     demoLink.rel = "noreferrer";
-    demoLink.textContent = "Demo online";
+    demoLink.textContent = "Abrir protótipo";
     actions.append(demoLink);
 
-    card.append(topline, title, caseStudy, actions);
-    projectGrid.append(card);
+    card.append(topline, title, role, caseStudy, actions);
+
+    const firstProject = projectGrid.querySelector(".project-card");
+    const secondProject = firstProject?.nextElementSibling;
+    projectGrid.insertBefore(card, secondProject || null);
   };
 
   const updatePortfolioMetrics = () => {
