@@ -162,9 +162,9 @@
 
     card.append(topline, title, role, caseStudy, actions);
 
-    const firstProject = projectGrid.querySelector(".project-card");
-    const secondProject = firstProject?.nextElementSibling;
-    projectGrid.insertBefore(card, secondProject || null);
+    const projects = projectGrid.querySelectorAll(".project-card");
+    const fourthProject = projects[3];
+    projectGrid.insertBefore(card, fourthProject || null);
   };
 
   const updatePortfolioMetrics = () => {
