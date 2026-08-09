@@ -361,3 +361,120 @@ Ordem de execução:
 O portfólio já possui bons ativos: narrativa orientada a entrega, projetos variados, preocupação com acessibilidade e cases que mostram visão de negócio. O ganho mais importante agora virá de **reduzir a complexidade acidental**. Levar o conteúdo definitivo para uma única fonte, padronizar maturidade/acesso e tornar cada afirmação verificável aumentará simultaneamente credibilidade, SEO, segurança operacional, responsividade e velocidade de manutenção.
 
 Após as correções P0/P1, recomenda-se uma segunda auditoria visual na URL de produção com acesso aos projetos privados ou a uma ficha de status fornecida pelo proprietário.
+
+## 12. Análise visual comparativa com o perfil do GitHub
+
+### Resposta objetiva
+
+**Sim, vale realizar um upgrade visual**, mas não uma troca completa de identidade. O portfólio já possui uma linguagem moderna, responsiva e coerente com desenvolvimento de produto. O melhor caminho é importar do perfil do GitHub a sensação de **dashboard técnico**, a síntese visual e a apresentação editorial dos projetos, preservando a navegação, a legibilidade e os cases Problema/Solução/Resultado do site.
+
+### O que torna o perfil do GitHub mais moderno
+
+A análise do README público e dos SVGs do perfil `Riclacper`, consultados em 9 de agosto de 2026, identificou quatro elementos que produzem essa percepção:
+
+1. **Hero gráfico próprio:** `profile-hero.svg` cria uma abertura mais autoral do que um cabeçalho baseado somente em texto.
+2. **Dashboard visual:** `github-overview.svg`, o gráfico público de contribuições e `skills-dashboard.svg` condensam atividade, áreas técnicas e recorrência em uma leitura rápida.
+3. **Capas consistentes de projetos:** seis SVGs usam o mesmo formato 600 × 210, permitindo comparação visual imediata e dando aos projetos aparência de coleção/produto.
+4. **Hierarquia editorial forte:** blocos de stack, badges, gráficos, destaques e detalhes expansíveis alternam densidade e evitam uma sequência composta apenas por parágrafos.
+
+Essa modernidade não vem apenas dos gráficos. Ela resulta principalmente da combinação entre **arte própria, dados resumidos, repetição de padrões e contraste entre blocos**.
+
+### O que não deve ser copiado literalmente
+
+- Não transformar o portfólio em uma reprodução do README ou em uma parede de badges.
+- Não carregar imagens de serviços externos para cada tecnologia; isso aumenta dependências, ruído e risco de layout.
+- Não usar porcentagens de domínio ou barras de habilidade sem metodologia verificável.
+- Não duplicar o gráfico de contribuições como evidência principal: atividade pública não representa todo o trabalho, especialmente projetos privados.
+- Não substituir os cases textuais por capas; as capas devem facilitar a entrada, enquanto problema, solução e evidência sustentam a credibilidade.
+- Não adicionar animações contínuas a todos os gráficos. Movimento deve indicar estado ou interação e respeitar `prefers-reduced-motion`.
+
+### Upgrade recomendado
+
+#### 1. Hero com painel de atividade — prioridade alta
+
+Manter o título “Do problema ao deploy”, mas transformar o lado visual em um **painel de entrega** mais rico:
+
+- status dos projetos por maturidade: Protótipo, MVP, Homologação e Produção;
+- quantidade de sistemas, sites e projetos de dados;
+- stack recorrente organizada em Front-end, Back-end/Dados e Qualidade/Cloud;
+- pequenos sparklines ou barras discretas, produzidos com HTML/CSS ou SVG local;
+- indicação explícita de que os indicadores descrevem o portfólio, não proficiência absoluta.
+
+O fluxo de entrega atual pode permanecer abaixo desse painel ou ser incorporado como uma linha temporal compacta.
+
+#### 2. Capas para os projetos em destaque — prioridade alta
+
+Adicionar uma área visual de proporção fixa aos cards principais, seguindo a consistência das capas do GitHub, mas adaptada ao site:
+
+- ilustração abstrata ou miniatura real do produto;
+- nome, segmento e principal resultado;
+- cores por categoria, mantendo a mesma base visual;
+- SVGs locais, leves e acessíveis;
+- `aspect-ratio` fixo para evitar deslocamento de layout.
+
+Não é necessário criar capas para os 11 projetos de uma vez. Recomenda-se começar por iCanada Gestão, Emprega Safe, Monta Health e Data Science Dashboard.
+
+#### 3. Dashboard de atuação — prioridade média
+
+Criar uma seção entre métricas e projetos com gráficos baseados somente nos projetos cadastrados:
+
+- **distribuição por tipo:** 7 sistemas, 3 sites e 1 projeto de dados;
+- **distribuição por maturidade:** calculada pelos atributos `data-maturity`;
+- **disponibilidade:** demo pública, site público, código público e privado;
+- **tecnologias recorrentes:** contagem derivada da ficha única dos projetos.
+
+Os dados devem vir da mesma fonte dos cards. O gráfico pode ser implementado em SVG/HTML e CSS, sem biblioteca pesada. Cada visualização precisa de alternativa textual e contraste suficiente nos dois temas.
+
+#### 4. Stack com organização visual — prioridade média
+
+Substituir a lista extensa e uniforme de habilidades por três grupos compactos:
+
+- Front-end & Mobile;
+- Back-end & Dados;
+- Qualidade, Cloud & Ferramentas.
+
+Ícones podem ser usados com moderação e hospedados localmente. Tecnologias recorrentes devem receber maior destaque por frequência comprovada nos projetos, não por uma nota subjetiva.
+
+#### 5. Motion e profundidade — prioridade baixa
+
+- animação curta de entrada apenas na primeira visualização;
+- realce do segmento do gráfico relacionado ao filtro selecionado;
+- hover com profundidade sutil nas capas;
+- contadores sem animação longa;
+- fallback completo para movimento reduzido e dispositivos sem hover.
+
+### Divergência de conteúdo identificada
+
+O perfil do GitHub apresenta como destaques **EmpregaSafe, Monta Gestão, iCanada Gestão, Monta Health, Global Career OS e JH Prime Sistema**. O portfólio atual apresenta outro conjunto e ainda usa **RJ Prime Gestão**. Antes do upgrade visual, é necessário confirmar:
+
+- se “RJ Prime Gestão” foi renomeado para “JH Prime Sistema”;
+- se Monta Gestão e Global Career OS devem entrar no portfólio;
+- quais projetos formam o conjunto oficial de destaques;
+- quais cards podem usar capa pública e quais precisam preservar confidencialidade;
+- se os textos resumidos do GitHub representam o estado atual ou apenas uma apresentação comercial.
+
+Essa sincronização editorial é mais importante do que criar gráficos, pois um design moderno amplifica tanto informações corretas quanto inconsistências.
+
+### Direção visual recomendada
+
+| Elemento | Manter do portfólio | Incorporar do GitHub |
+| --- | --- | --- |
+| Identidade | verde/ciano, temas, grid técnico e tipografia limpa | gradientes controlados e artes SVG autorais |
+| Hero | mensagem “Do problema ao deploy” e CTA principal | painel visual com resumo técnico |
+| Projetos | cases, filtros, badges de maturidade/acesso | capas consistentes para destaques |
+| Dados | métricas simples e verificáveis | gráficos compactos e explicados |
+| Stack | relação com projetos reais | agrupamento por área e síntese visual |
+| Movimento | redução de movimento já implementada | microinterações funcionais, não decorativas |
+
+### Sequência de implementação
+
+1. Validar os projetos oficiais e a possível relação RJ Prime/JH Prime.
+2. Criar um protótipo de hero/dashboard em HTML/CSS/SVG local.
+3. Criar quatro capas-piloto para os projetos principais.
+4. Testar os dois temas, teclado, movimento reduzido e larguras de 320 a 1440 px.
+5. Medir Lighthouse antes e depois para impedir regressão de desempenho.
+6. Somente depois expandir as capas e gráficos para outras áreas.
+
+### Decisão recomendada
+
+Realizar o upgrade em uma **evolução incremental**, não em um redesign integral. A primeira entrega deve conter apenas o novo painel do hero e quatro capas-piloto. Esse recorte produz impacto visual perceptível, aproxima o site da linguagem moderna do GitHub e mantém baixo o risco de desempenho, acessibilidade e excesso de informação.
