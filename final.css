@@ -58,6 +58,14 @@
   .project-grid > .project-card:nth-child(4n) {
     grid-column: 2 / span 2;
   }
+
+  .project-grid.is-filtered {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project-grid.is-filtered > .project-card:not(.hidden) {
+    grid-column: auto;
+  }
 }
 
 @media (min-width: 641px) and (max-width: 960px) {
