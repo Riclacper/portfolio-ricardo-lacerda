@@ -24,8 +24,8 @@ O principal problema não é falta de conteúdo, mas a forma como ele foi acumul
 
 ### Prioridades recomendadas
 
-1. **P0 — corrigir a estrutura HTML inválida** nos blocos de RJ Prime Gestão e Sobre.
-2. **P0 — estabelecer uma única fonte de verdade** para cards, métricas e experiência profissional.
+1. **P0 — estabelecer uma única fonte de verdade** para cards, métricas e experiência profissional.
+2. **P0 — remover as mutações de conteúdo executadas no carregamento**, levando Monta Health e a experiência profissional para a marcação inicial.
 3. **P1 — sincronizar os estados e stacks dos projetos**, especialmente os projetos privados/em desenvolvimento, a partir de uma ficha mantida pelo proprietário.
 4. **P1 — padronizar todos os cards** com os mesmos campos, hierarquia, tamanho e vocabulário de status.
 5. **P1 — validar produção** com Lighthouse, axe, HTML Validator e testes em larguras reais.
@@ -66,11 +66,11 @@ O HTML declara **10 projetos e 8 online**, mas `script.js` muda os números para
 
 **Recomendação:** manter todo conteúdo essencial no HTML ou em um único arquivo de dados renderizado no build. O JavaScript do navegador deve cuidar somente de comportamento — tema, filtro, expansão e navegação.
 
-#### 3.2 Marcação estrutural incorreta
+#### 3.2 Validação estrutural
 
-Há um `</div>` excedente imediatamente depois do topo do card RJ Prime Gestão. Na seção Sobre, `<div class="about-copy">` é aberto duas vezes e fechado apenas dentro da estrutura externa. Navegadores tentam reparar esse HTML, mas o DOM resultante pode variar e afetar grid, seletores `:scope`, acessibilidade e futuras alterações.
+Uma inspeção posterior confirmou que o card RJ Prime Gestão e a seção Sobre possuem fechamento coerente de seus contêineres no arquivo atual. A verificação automatizada com o parser utilizado na auditoria também não encontrou tags remanescentes. Portanto, a indicação anterior de dois blocos estruturalmente incorretos foi removida deste relatório.
 
-**Recomendação:** corrigir imediatamente e adicionar validação de HTML ao fluxo de qualidade.
+**Recomendação:** substituir a verificação ad hoc por um validador HTML conforme o padrão WHATWG e executá-lo continuamente, porque um parser tolerante não equivale a uma validação normativa.
 
 #### 3.3 Métricas frágeis
 
@@ -304,9 +304,24 @@ Não manter números fixos até que cada projeto tenha `access` e `maturity` def
 
 ## 9. Plano de ação
 
+### Próximo passo recomendado
+
+Executar um ciclo curto de **integridade da fonte de conteúdo** antes de qualquer refinamento visual. O objetivo é fazer com que a página entregue o mesmo conteúdo com ou sem JavaScript e permitir que cards, filtros e métricas sejam atualizados em um único lugar.
+
+Ordem de execução:
+
+1. mover o card Monta Health e a experiência profissional para o HTML inicial;
+2. converter definitivamente todos os cards para a estrutura Problema/Solução/Resultado;
+3. remover de `script.js` as rotinas que criam, removem, reescrevem ou normalizam conteúdo;
+4. manter no JavaScript apenas tema, filtros, expansão e navegação;
+5. derivar as métricas da mesma coleção de projetos ou remover contagens fixas;
+6. validar a página com JavaScript habilitado e desabilitado.
+
+**Resultado esperado:** uma única versão verificável do portfólio, melhor indexação, menos deslocamento durante o carregamento e uma base segura para a padronização visual dos cards.
+
 ### P0 — integridade (imediato)
 
-- Corrigir as duas estruturas `<div>` incorretas.
+- Adicionar validação HTML normativa ao fluxo de qualidade.
 - Mover Monta Health e experiência profissional para o HTML/fonte única.
 - Remover correções de conteúdo executadas no carregamento.
 - Unificar métricas e eliminar divergências do README.
