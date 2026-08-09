@@ -492,3 +492,15 @@ A primeira etapa do upgrade foi concluída mantendo exatamente os projetos que j
 - manutenção integral dos cases Problema/Solução/Resultado e dos filtros existentes.
 
 Os nomes e o conjunto de projetos não foram sincronizados com os destaques diferentes do GitHub, conforme orientação do proprietário. Os gráficos utilizam somente os 11 cards atuais como referência.
+
+## 13. Evolução das seções finais
+
+As seções Sobre, Experiência profissional e Contato foram revisadas para acompanhar a nova linguagem visual sem ampliar artificialmente as informações profissionais:
+
+- **Sobre:** posicionamento mais direto, disponibilidade profissional visível e competências agrupadas em Produto/Interface, APIs/Dados e Qualidade/Entrega;
+- **Experiência:** leitura em formato de trajetória atual, responsabilidades separadas em Operação, Gestão e Produto e sinais qualitativos sem métricas inventadas;
+- **Contato:** proposta de conversa mais objetiva, e-mail público destacado e quatro caminhos claros — e-mail, currículo, GitHub e LinkedIn;
+- **Navegação:** Experiência passou a integrar cabeçalho e rodapé no desktop, permanecendo acessível pelo fluxo da página em telas pequenas;
+- **Responsividade:** os novos blocos foram verificados de 320 a 1440 px sem overflow horizontal.
+
+A revisão evita uma lista extensa e uniforme de tecnologias, conecta a experiência empresarial ao desenvolvimento dos produtos e oferece uma ação de contato imediata sem formulário ou coleta adicional de dados.

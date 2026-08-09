@@ -14,6 +14,7 @@ Portfólio profissional estático para apresentação de projetos, demos publica
 - Onze projetos catalogados e nove demos/ambientes declarados como online.
 - Dashboard visual com distribuição por tipo, maturidade e stack recorrente.
 - Capas autorais em CSS para quatro projetos em destaque.
+- Seções Sobre, Experiência e Contato com narrativa profissional, competências agrupadas e CTA direto por e-mail.
 - Destaque para o sistema **iCanada Gestão**, com React/Vite, Node.js/Express, Supabase PostgreSQL/Auth, Cloudflare Pages, Render e Resend API.
 - **Cadastro de Obras** com frontend Expo/TypeScript publicado na Vercel, API Node.js/Express com MongoDB e demo pública navegável.
 - **Data Science Dashboard** publicado com Flask, PostgreSQL/Supabase, scikit-learn, frontend responsivo e CI automatizado.
