@@ -22,6 +22,40 @@
   letter-spacing: -0.045em;
 }
 
+.about-intro {
+  max-width: 470px;
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.availability-chip {
+  display: inline-flex;
+  gap: 9px;
+  align-items: center;
+  max-width: 440px;
+  min-height: 38px;
+  margin-top: 22px;
+  padding: 8px 12px;
+  border: 1px solid rgba(25, 209, 140, 0.24);
+  border-radius: 999px;
+  color: var(--green);
+  background: rgba(25, 209, 140, 0.06);
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.availability-chip i {
+  flex: 0 0 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 12px rgba(25, 209, 140, 0.64);
+}
+
 .about-copy {
   position: relative;
   padding: 30px;
@@ -44,6 +78,47 @@
   margin-bottom: 0;
   font-size: 17px;
   line-height: 1.72;
+}
+
+.about-pillars {
+  display: grid;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.about-pillars article {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.about-pillars article > span {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border-radius: 7px;
+  color: var(--green);
+  background: rgba(25, 209, 140, 0.08);
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.about-pillars strong {
+  color: var(--ink-strong);
+  font-size: 13px;
+}
+
+.about-pillars article p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
 }
 
 .skill-list {
@@ -95,6 +170,60 @@
   line-height: 1.75;
 }
 
+.experience-role {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  margin: 24px 0 18px;
+}
+
+.experience-role__marker {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  margin-top: 7px;
+  border: 2px solid var(--surface-2);
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow:
+    0 0 0 5px rgba(25, 209, 140, 0.1),
+    0 0 16px rgba(25, 209, 140, 0.42);
+}
+
+.experience-role small {
+  color: var(--green);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.experience-role h3 {
+  margin: 5px 0 0;
+}
+
+.experience-list strong {
+  color: var(--ink-strong);
+}
+
+.experience-signals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: -8px 0 26px;
+}
+
+.experience-signals span {
+  padding: 6px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.025);
+  font-size: 10px;
+  font-weight: 800;
+}
+
 .experience-list {
   margin-top: 24px;
   margin-bottom: 28px;
@@ -132,7 +261,32 @@
   line-height: 1.65;
 }
 
+.contact-email {
+  display: grid;
+  gap: 3px;
+  max-width: max-content;
+  margin-top: 24px;
+  color: var(--ink-strong);
+}
+
+.contact-email small {
+  color: var(--green);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.contact-email strong {
+  font-size: clamp(15px, 2vw, 19px);
+}
+
+.contact-email:hover strong {
+  color: var(--cyan);
+}
+
 .contact-actions {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -166,6 +320,26 @@
   transform: translateY(-3px);
 }
 
+.contact-actions .contact-action--primary {
+  border-color: rgba(25, 209, 140, 0.34);
+  color: #061710;
+  background: linear-gradient(135deg, var(--green), var(--cyan));
+}
+
+.contact-actions .contact-action--primary::after {
+  color: #061710;
+  content: "→";
+}
+
+.contact-actions .contact-action--primary small {
+  color: rgba(6, 23, 16, 0.72);
+}
+
+.contact-actions .contact-action--primary:hover {
+  border-color: transparent;
+  background: linear-gradient(135deg, #39dda4, #62e1ff);
+}
+
 .contact-actions span {
   padding-right: 22px;
   font-size: 15px;
@@ -184,6 +358,11 @@ footer {
 :root[data-theme="light"] .about-copy,
 :root[data-theme="light"] .contact-actions a {
   background: rgba(255, 255, 255, 0.82);
+}
+
+:root[data-theme="light"] .about-pillars article,
+:root[data-theme="light"] .experience-signals span {
+  background: rgba(255, 255, 255, 0.56);
 }
 
 :root[data-theme="light"] .contact-actions a:hover {
@@ -206,11 +385,15 @@ footer {
   }
 
   .contact-actions {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 640px) {
+  .site-header nav a[href="#experiencia"] {
+    display: none;
+  }
+
   #sobre.section-muted {
     padding-top: 58px;
     padding-bottom: 58px;
