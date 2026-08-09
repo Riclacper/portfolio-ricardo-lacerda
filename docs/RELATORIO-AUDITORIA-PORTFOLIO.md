@@ -24,8 +24,8 @@ O principal problema não é falta de conteúdo, mas a forma como ele foi acumul
 
 ### Prioridades recomendadas
 
-1. **P0 — estabelecer uma única fonte de verdade** para cards, métricas e experiência profissional.
-2. **P0 — remover as mutações de conteúdo executadas no carregamento**, levando Monta Health e a experiência profissional para a marcação inicial.
+1. **P0 — concluído nesta etapa:** cards, métricas e experiência profissional passaram a ter o HTML como fonte de verdade.
+2. **P0 — concluído nesta etapa:** as mutações de conteúdo foram removidas do carregamento; o JavaScript ficou responsável pela interação.
 3. **P1 — sincronizar os estados e stacks dos projetos**, especialmente os projetos privados/em desenvolvimento, a partir de uma ficha mantida pelo proprietário.
 4. **P1 — padronizar todos os cards** com os mesmos campos, hierarquia, tamanho e vocabulário de status.
 5. **P1 — validar produção** com Lighthouse, axe, HTML Validator e testes em larguras reais.
@@ -54,17 +54,16 @@ As URLs públicas hospedadas em Vercel, Render, Netlify, LinkedIn e no domínio 
 
 #### 3.1 Duas fontes de verdade
 
-O HTML declara **10 projetos e 8 online**, mas `script.js` muda os números para **11 e 9** depois de inserir Monta Health. O README ainda informa **nove projetos e sete demos/ambientes online**. Além disso:
+Antes desta etapa, o HTML declarava **10 projetos e 8 online**, enquanto `script.js` mudava os números para **11 e 9** depois de inserir Monta Health. O README ainda informava **nove projetos e sete demos/ambientes online**. Além disso:
 
-- Monta Health só existe após JavaScript;
-- a seção de experiência profissional só existe após JavaScript;
-- seis cards começam como parágrafo/lista no HTML e viram case por JavaScript;
-- links de currículo são normalizados e outros links são removidos em tempo de execução;
-- o rodapé é reescrito duas vezes, primeiro por `script.js` e depois por `script-core.js`.
+- Monta Health só existia após JavaScript;
+- a seção de experiência profissional só existia após JavaScript;
+- seis cards começavam como parágrafo/lista no HTML e viravam case por JavaScript;
+- links e o rodapé eram normalizados ou reescritos em tempo de execução.
 
 **Impacto:** pior indexação, conteúdo inconsistente se o script falhar, testes mais difíceis e alto risco de o autor atualizar uma camada e esquecer as demais.
 
-**Recomendação:** manter todo conteúdo essencial no HTML ou em um único arquivo de dados renderizado no build. O JavaScript do navegador deve cuidar somente de comportamento — tema, filtro, expansão e navegação.
+**Situação atual:** o conteúdo essencial foi consolidado no HTML. `script-core.js` cuida somente de comportamento — tema, filtro, expansão, favicon e navegação.
 
 #### 3.2 Validação estrutural
 
@@ -306,18 +305,18 @@ Não manter números fixos até que cada projeto tenha `access` e `maturity` def
 
 ### Próximo passo recomendado
 
-Executar um ciclo curto de **integridade da fonte de conteúdo** antes de qualquer refinamento visual. O objetivo é fazer com que a página entregue o mesmo conteúdo com ou sem JavaScript e permitir que cards, filtros e métricas sejam atualizados em um único lugar.
+O ciclo curto de **integridade da fonte de conteúdo** foi executado. A página agora entrega cards, métricas, experiência e navegação essenciais sem depender de JavaScript.
 
 Ordem de execução:
 
-1. mover o card Monta Health e a experiência profissional para o HTML inicial;
-2. converter definitivamente todos os cards para a estrutura Problema/Solução/Resultado;
-3. remover de `script.js` as rotinas que criam, removem, reescrevem ou normalizam conteúdo;
-4. manter no JavaScript apenas tema, filtros, expansão e navegação;
-5. derivar as métricas da mesma coleção de projetos ou remover contagens fixas;
-6. validar a página com JavaScript habilitado e desabilitado.
+1. ~~mover o card Monta Health e a experiência profissional para o HTML inicial~~ — concluído;
+2. ~~converter definitivamente todos os cards para Problema/Solução/Resultado~~ — concluído;
+3. ~~remover as rotinas que criavam ou reescreviam conteúdo~~ — concluído;
+4. ~~manter no JavaScript apenas comportamento interativo~~ — concluído;
+5. sincronizar métricas e README — concluído com 11 projetos e 9 acessos declarados;
+6. validar a página com JavaScript habilitado e desabilitado — concluído em Chromium nas larguras de 320, 375, 768 e 1440 px.
 
-**Resultado esperado:** uma única versão verificável do portfólio, melhor indexação, menos deslocamento durante o carregamento e uma base segura para a padronização visual dos cards.
+**Próxima ação:** iniciar a padronização de maturidade/acesso dos cards e complementar a validação automatizada com Lighthouse e axe.
 
 ### P0 — integridade (imediato)
 
@@ -339,7 +338,7 @@ Ordem de execução:
 ### P2 — robustez e manutenção
 
 - Consolidar as oito folhas CSS em camadas claras: tokens/base, layout, componentes e utilitários/responsivo.
-- Consolidar `script.js` e `script-core.js`, evitando carregar um script por outro.
+- Manter o JavaScript consolidado em `script-core.js`, sem voltar a carregar um script por outro.
 - Remover regras contraditórias e `!important` de correção.
 - Versionar cabeçalhos de segurança e hospedar a fonte localmente.
 - Criar CI para HTML, CSS, JavaScript, acessibilidade e links.
