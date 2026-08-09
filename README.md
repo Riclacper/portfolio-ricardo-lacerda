@@ -11,12 +11,15 @@ Portfólio profissional estático para apresentação de projetos, demos publica
 ## Recursos
 
 - Apresentação profissional e resumo técnico.
-- Nove projetos catalogados e sete demos/ambientes online.
+- Onze projetos catalogados e nove demos/ambientes declarados como online.
+- Dashboard visual com distribuição por tipo, maturidade e stack recorrente.
+- Capas autorais em CSS para quatro projetos em destaque.
+- Seções Sobre, Experiência e Contato com narrativa profissional, competências agrupadas e CTA direto por e-mail.
 - Destaque para o sistema **iCanada Gestão**, com React/Vite, Node.js/Express, Supabase PostgreSQL/Auth, Cloudflare Pages, Render e Resend API.
-- **Cadastro de Obras** com frontend Expo/TypeScript publicado na Vercel, API Node.js no Render e demo pública navegável.
+- **Cadastro de Obras** com frontend Expo/TypeScript publicado na Vercel, API Node.js/Express com MongoDB e demo pública navegável.
 - **Data Science Dashboard** publicado com Flask, PostgreSQL/Supabase, scikit-learn, frontend responsivo e CI automatizado.
 - Stack demonstrada: React, React Native, Expo, TypeScript, Node.js, Express, MongoDB/Mongoose, JWT, Python, Flask, scikit-learn, PostgreSQL, Supabase, Jest e Resend.
-- Filtros por projetos com demo, sistemas e sites.
+- Filtros com contagens para sistemas, sites e projetos de dados.
 - Links para GitHub, LinkedIn e projetos publicados.
 - Tema automático, claro e escuro com preferência persistida.
 - Layout responsivo para desktop, tablet e smartphone.
@@ -30,7 +33,8 @@ Portfólio profissional estático para apresentação de projetos, demos publica
 - `styles.css`: layout e identidade visual principal.
 - `theme.css`: temas claro, escuro e seletor de tema.
 - `final.css`: ajustes finais de navegação e acessibilidade.
-- `script.js`: tema, filtros, favicon e retorno ao topo.
+- `dashboard-visuals.css`: dashboard técnico, gráficos e capas dos destaques.
+- `script-core.js`: tema, filtros, expansão dos projetos, favicon e retorno ao topo.
 
 ## Executar localmente
 

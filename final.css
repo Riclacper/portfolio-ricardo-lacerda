@@ -2,8 +2,9 @@
 @import url("./hero-map.css");
 @import url("./portfolio-refinements.css");
 @import url("./loading-stability.css");
-@import url("./closing-sections.css");
+@import url("./closing-sections.css?v=20260809-1");
 @import url("./delivery-flow-animation.css");
+@import url("./dashboard-visuals.css");
 
 .monta-health-card .project-role {
   margin: -4px 0 14px;
@@ -57,6 +58,14 @@
 
   .project-grid > .project-card:nth-child(4n) {
     grid-column: 2 / span 2;
+  }
+
+  .project-grid.is-filtered {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project-grid.is-filtered > .project-card:not(.hidden) {
+    grid-column: auto;
   }
 }
 
