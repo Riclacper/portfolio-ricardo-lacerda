@@ -51,7 +51,7 @@
       data-theme-stylesheet>
     <link
       rel="stylesheet"
-      href="final.css?v=20260728-3"
+      href="final.css?v=20260809-2"
       data-final-stylesheet>
   </head>
   <body>
@@ -179,6 +179,73 @@
         </article>
       </section>
 
+      <section class="portfolio-dashboard" aria-labelledby="dashboard-title">
+        <div class="dashboard-heading">
+          <div>
+            <span class="eyebrow">Visão do portfólio</span>
+            <h2 id="dashboard-title">Atuação técnica em números</h2>
+          </div>
+          <p>
+            Indicadores derivados dos 11 projetos apresentados nesta página.
+            Representam entregas do portfólio, não níveis subjetivos de proficiência.
+          </p>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="dashboard-card dashboard-card--types">
+            <header>
+              <span>Distribuição</span>
+              <strong>Por tipo</strong>
+            </header>
+            <div class="type-chart" role="img" aria-label="7 sistemas, 3 sites e 1 projeto de dados">
+              <span class="type-chart__systems"></span>
+              <span class="type-chart__sites"></span>
+              <span class="type-chart__data"></span>
+            </div>
+            <ul class="chart-legend">
+              <li><i class="legend-dot legend-dot--systems"></i><span>Sistemas</span><strong>7</strong></li>
+              <li><i class="legend-dot legend-dot--sites"></i><span>Sites</span><strong>3</strong></li>
+              <li><i class="legend-dot legend-dot--data"></i><span>Dados</span><strong>1</strong></li>
+            </ul>
+          </article>
+
+          <article class="dashboard-card dashboard-card--maturity">
+            <header>
+              <span>Pipeline</span>
+              <strong>Por maturidade</strong>
+            </header>
+            <div class="maturity-chart" role="img" aria-label="3 protótipos, 5 MVPs, 1 projeto em homologação, 1 em produção e 1 em revisão">
+              <div><span>Protótipo</span><i><b></b></i><strong>3</strong></div>
+              <div><span>MVP</span><i><b></b></i><strong>5</strong></div>
+              <div><span>Homologação</span><i><b></b></i><strong>1</strong></div>
+              <div><span>Produção</span><i><b></b></i><strong>1</strong></div>
+              <div><span>Revisão</span><i><b></b></i><strong>1</strong></div>
+            </div>
+          </article>
+
+          <article class="dashboard-card dashboard-card--stack">
+            <header>
+              <span>Stack recorrente</span>
+              <strong>Do produto ao deploy</strong>
+            </header>
+            <div class="stack-groups">
+              <div>
+                <small>Front-end &amp; Mobile</small>
+                <p>React · React Native · TypeScript · Vite</p>
+              </div>
+              <div>
+                <small>Back-end &amp; Dados</small>
+                <p>Node.js · Express · Flask · PostgreSQL · MongoDB</p>
+              </div>
+              <div>
+                <small>Qualidade &amp; Cloud</small>
+                <p>Jest · GitHub Actions · Vercel · Render · Cloudflare</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
       <section class="section" id="projetos">
         <div class="section-heading split">
           <div>
@@ -208,6 +275,14 @@
 
         <div class="project-grid">
           <article class="project-card featured case-study" data-tags="sistema" data-maturity="homologacao" data-access="privado">
+            <div class="project-cover project-cover--operations" aria-hidden="true">
+              <span class="project-cover__code">RL / 01</span>
+              <span class="project-cover__visual"><i></i><i></i><i></i></span>
+              <div>
+                <strong>Operações conectadas</strong>
+                <small>Clientes · OS · Estoque</small>
+              </div>
+            </div>
             <div class="project-topline">
               <span class="project-stack">React + Vite + Node + Supabase</span>
               <span class="project-status">
@@ -294,6 +369,14 @@
             data-tags="sistema"
             data-maturity="prototipo"
             data-access="demo-publica">
+            <div class="project-cover project-cover--health" aria-hidden="true">
+              <span class="project-cover__code">RL / 02</span>
+              <span class="project-cover__visual"><i></i><i></i><i></i></span>
+              <div>
+                <strong>Discovery em saúde</strong>
+                <small>Recepção · Médico · Agenda</small>
+              </div>
+            </div>
             <div class="project-topline">
               <span class="project-stack">Product Architecture + Discovery + AI-assisted Engineering</span>
               <span class="project-status">
@@ -400,6 +483,14 @@
           </article>
 
           <article class="project-card case-study" data-tags="sistema" data-maturity="mvp" data-access="demo-publica">
+            <div class="project-cover project-cover--security" aria-hidden="true">
+              <span class="project-cover__code">RL / 03</span>
+              <span class="project-cover__visual"><i></i><i></i><i></i></span>
+              <div>
+                <strong>Confiança em vagas</strong>
+                <small>Análise · Alertas · Proteção</small>
+              </div>
+            </div>
             <div class="project-topline">
               <span class="project-stack">React + Node</span>
               <span class="project-status">
@@ -450,6 +541,14 @@
           </article>
 
           <article class="project-card featured case-study" data-tags="dados" data-maturity="mvp" data-access="demo-publica">
+            <div class="project-cover project-cover--data" aria-hidden="true">
+              <span class="project-cover__code">RL / 04</span>
+              <span class="project-cover__visual"><i></i><i></i><i></i></span>
+              <div>
+                <strong>Dados em contexto</strong>
+                <small>Filtros · Modelo · Evidências</small>
+              </div>
+            </div>
             <div class="project-topline">
               <span class="project-stack">Flask + PostgreSQL + Machine Learning</span>
               <span class="project-status">

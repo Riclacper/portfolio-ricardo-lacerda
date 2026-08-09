@@ -478,3 +478,17 @@ Essa sincronização editorial é mais importante do que criar gráficos, pois u
 ### Decisão recomendada
 
 Realizar o upgrade em uma **evolução incremental**, não em um redesign integral. A primeira entrega deve conter apenas o novo painel do hero e quatro capas-piloto. Esse recorte produz impacto visual perceptível, aproxima o site da linguagem moderna do GitHub e mantém baixo o risco de desempenho, acessibilidade e excesso de informação.
+
+### Implementação realizada
+
+A primeira etapa do upgrade foi concluída mantendo exatamente os projetos que já estavam no portfólio:
+
+- novo dashboard visual com distribuição por tipo, maturidade e stack recorrente;
+- gráficos leves em HTML e CSS, sem biblioteca ou serviço externo;
+- alternativas textuais acessíveis para os gráficos;
+- quatro capas-piloto para iCanada Gestão, Monta Health, Emprega Safe e Data Science Dashboard;
+- capas construídas em CSS local, sem adicionar peso de imagens ou requisições de terceiros;
+- adaptação para temas claro/escuro, tablets, smartphones e movimento reduzido;
+- manutenção integral dos cases Problema/Solução/Resultado e dos filtros existentes.
+
+Os nomes e o conjunto de projetos não foram sincronizados com os destaques diferentes do GitHub, conforme orientação do proprietário. Os gráficos utilizam somente os 11 cards atuais como referência.
