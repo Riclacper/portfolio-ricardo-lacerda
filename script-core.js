@@ -227,22 +227,11 @@ window.requestAnimationFrame(() => {
 const filterButtons = Array.from(document.querySelectorAll(".filter-button"));
 const projectCards = Array.from(document.querySelectorAll(".project-card"));
 const projectGrid = document.querySelector(".project-grid");
+const filterResults = document.querySelector(".filter-results");
 let activeProjectFilter = "todos";
 let areAllProjectsVisible = false;
 let projectsToggle;
 let projectsToggleWrapper;
-
-projectCards.forEach((card) => {
-  const hasDemoLink = Array.from(
-    card.querySelectorAll(".project-actions a"),
-  ).some((link) => link.textContent.trim().toLowerCase() === "demo online");
-
-  if (hasDemoLink) {
-    const tags = new Set((card.dataset.tags || "").split(/\s+/).filter(Boolean));
-    tags.add("demo");
-    card.dataset.tags = Array.from(tags).join(" ");
-  }
-});
 
 const getMatchingProjects = () =>
   projectCards.filter((card) => {
@@ -253,6 +242,8 @@ const getMatchingProjects = () =>
 const updateProjectsDisplay = () => {
   const matchingProjects = getMatchingProjects();
 
+  projectGrid?.classList.toggle("is-filtered", activeProjectFilter !== "todos");
+
   projectCards.forEach((card) => {
     const matchingIndex = matchingProjects.indexOf(card);
     const matchesFilter = matchingIndex !== -1;
@@ -262,6 +253,11 @@ const updateProjectsDisplay = () => {
 
     card.classList.toggle("hidden", !shouldShow);
   });
+
+  if (filterResults) {
+    const suffix = matchingProjects.length === 1 ? "projeto encontrado" : "projetos encontrados";
+    filterResults.textContent = `${matchingProjects.length} ${suffix}`;
+  }
 
   if (!projectsToggle || !projectsToggleWrapper) {
     return;

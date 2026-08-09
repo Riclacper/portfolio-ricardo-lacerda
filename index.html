@@ -6,6 +6,38 @@
     <meta
       name="description"
       content="Portfólio profissional de Ricardo Lacerda Pereira, desenvolvedor Full Stack de sistemas web e mobile, APIs, dashboards e automações com React, React Native, TypeScript, Node.js e Python.">
+    <meta name="author" content="Ricardo Lacerda Pereira">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:title" content="Ricardo Lacerda Pereira | Desenvolvedor Full Stack">
+    <meta
+      property="og:description"
+      content="Projetos Full Stack, aplicações web e mobile, APIs e dashboards — do problema ao deploy.">
+    <meta property="og:url" content="https://portfolio-ricardo-lacerda.vercel.app/">
+    <meta name="twitter:card" content="summary">
+    <link rel="canonical" href="https://portfolio-ricardo-lacerda.vercel.app/">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Ricardo Lacerda Pereira",
+        "url": "https://portfolio-ricardo-lacerda.vercel.app/",
+        "jobTitle": "Desenvolvedor Full Stack",
+        "sameAs": [
+          "https://github.com/Riclacper",
+          "https://www.linkedin.com/in/ricardo-lacerda-pereira/"
+        ],
+        "knowsAbout": [
+          "React",
+          "React Native",
+          "Node.js",
+          "TypeScript",
+          "Python",
+          "PostgreSQL"
+        ]
+      }
+    </script>
     <title>Ricardo Lacerda Pereira | Desenvolvedor Full Stack</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -156,21 +188,32 @@
 
           <div class="filter-group" role="group" aria-label="Filtrar projetos">
             <button type="button" class="filter-button active" data-filter="todos">
-              Todos
+              Todos <span class="filter-count">11</span>
             </button>
-            <button type="button" class="filter-button" data-filter="online">Online</button>
             <button type="button" class="filter-button" data-filter="sistema">
-              Sistemas
+              Sistemas <span class="filter-count">7</span>
             </button>
-            <button type="button" class="filter-button" data-filter="site">Sites</button>
+            <button type="button" class="filter-button" data-filter="site">
+              Sites <span class="filter-count">3</span>
+            </button>
+            <button type="button" class="filter-button" data-filter="dados">
+              Dados <span class="filter-count">1</span>
+            </button>
           </div>
         </div>
 
+        <p class="filter-results" aria-live="polite" aria-atomic="true">
+          11 projetos encontrados
+        </p>
+
         <div class="project-grid">
-          <article class="project-card featured case-study" data-tags="sistema">
+          <article class="project-card featured case-study" data-tags="sistema" data-maturity="homologacao" data-access="privado">
             <div class="project-topline">
-              <span>React + Vite + Node + Supabase</span>
-              <strong>Sistema em homologação</strong>
+              <span class="project-stack">React + Vite + Node + Supabase</span>
+              <span class="project-status">
+                <strong class="status-badge status-badge--maturity">Homologação</strong>
+                <strong class="status-badge status-badge--access">Projeto privado</strong>
+              </span>
             </div>
             <h3>iCanada Gestão</h3>
             <div class="project-case" role="group" aria-label="Problema, solução e resultado do projeto">
@@ -202,10 +245,13 @@
             </div>
           </article>
 
-          <article class="project-card featured case-study" data-tags="online sistema">
+          <article class="project-card featured case-study" data-tags="sistema" data-maturity="mvp" data-access="demo-publica">
             <div class="project-topline">
-              <span>React + Vite + Node.js + Express + SQLite</span>
-              <strong>MVP em desenvolvimento</strong>
+              <span class="project-stack">React + Vite + Node.js + Express + SQLite</span>
+              <span class="project-status">
+                <strong class="status-badge status-badge--maturity">MVP</strong>
+                <strong class="status-badge status-badge--access">Demo pública</strong>
+              </span>
             </div>
             <h3>RJ Prime Gestão</h3>
             <div class="project-case" role="group" aria-label="Problema, solução e resultado do projeto">
@@ -237,19 +283,23 @@
                 target="_blank"
                 rel="noreferrer"
               >
-                Acessar aplicação
+                Abrir demo
               </a>
             </div>
           </article>
 
           <article
             class="project-card featured case-study monta-health-card"
-            data-tags="online sistema"
             data-project="monta-health"
-          >
+            data-tags="sistema"
+            data-maturity="prototipo"
+            data-access="demo-publica">
             <div class="project-topline">
-              <span>Product Architecture + Discovery + AI-assisted Engineering</span>
-              <strong>Protótipo Exploratório v0</strong>
+              <span class="project-stack">Product Architecture + Discovery + AI-assisted Engineering</span>
+              <span class="project-status">
+                <strong class="status-badge status-badge--maturity">Protótipo</strong>
+                <strong class="status-badge status-badge--access">Demo pública</strong>
+              </span>
             </div>
             <h3>Monta Health</h3>
             <p class="project-role">
@@ -292,10 +342,13 @@
             </div>
           </article>
 
-          <article class="project-card case-study" data-tags="online sistema">
+          <article class="project-card case-study" data-tags="sistema" data-maturity="mvp" data-access="demo-publica">
             <div class="project-topline">
-              <span>React Native + Expo + TypeScript + Node.js</span>
-              <strong>Demo online</strong>
+              <span class="project-stack">React Native + Expo + TypeScript + Node.js</span>
+              <span class="project-status">
+                <strong class="status-badge status-badge--maturity">MVP</strong>
+                <strong class="status-badge status-badge--access">Demo pública</strong>
+              </span>
             </div>
             <h3>Cadastro de Obras</h3>
             <div class="project-case" role="group" aria-label="Problema, solução e resultado do projeto">
@@ -327,29 +380,32 @@
                 target="_blank"
                 rel="noreferrer"
               >
-                Demo online
+                Abrir demo
               </a>
               <a
                 href="https://github.com/Riclacper/cadastro-obras-andamento"
                 target="_blank"
                 rel="noreferrer"
               >
-                Frontend
+                Ver frontend
               </a>
               <a
                 href="https://github.com/Riclacper/cadastro-obras-backend"
                 target="_blank"
                 rel="noreferrer"
               >
-                Backend
+                Ver backend
               </a>
             </div>
           </article>
 
-          <article class="project-card case-study" data-tags="online sistema">
+          <article class="project-card case-study" data-tags="sistema" data-maturity="mvp" data-access="demo-publica">
             <div class="project-topline">
-              <span>React + Node</span>
-              <strong>MVP funcional</strong>
+              <span class="project-stack">React + Node</span>
+              <span class="project-status">
+                <strong class="status-badge status-badge--maturity">MVP</strong>
+                <strong class="status-badge status-badge--access">Demo pública</strong>
+              </span>
             </div>
             <h3>Emprega Safe</h3>
             <div class="project-case" role="group" aria-label="Problema, solução e resultado do projeto">
@@ -381,22 +437,25 @@
                 target="_blank"
                 rel="noreferrer"
               >
-                Acessar aplicação
+                Abrir demo
               </a>
               <a
                 href="https://github.com/Riclacper/emprega-safe-react-node"
                 target="_blank"
                 rel="noreferrer"
               >
-                GitHub
+                Ver código
               </a>
             </div>
           </article>
 
-          <article class="project-card featured case-study" data-tags="online sistema">
+          <article class="project-card featured case-study" data-tags="dados" data-maturity="mvp" data-access="demo-publica">
             <div class="project-topline">
-              <span>Flask + PostgreSQL + Machine Learning</span>
-              <strong>Demo online</strong>
+              <span class="project-stack">Flask + PostgreSQL + Machine Learning</span>
+              <span class="project-status">
+                <strong class="status-badge status-badge--maturity">MVP</strong>
+                <strong class="status-badge status-badge--access">Demo pública</strong>
+              </span>
             </div>
             <h3>Data Science Dashboard</h3>
             <div class="project-case" role="group" aria-label="Problema, solução e resultado do projeto">
@@ -425,22 +484,25 @@
                 target="_blank"
                 rel="noreferrer"
               >
-                Acessar dashboard
+                Abrir demo
               </a>
               <a
                 href="https://github.com/Riclacper/data-Science-Dashboard"
                 target="_blank"
                 rel="noreferrer"
               >
-                GitHub
+                Ver código
               </a>
             </div>
           </article>
 
-          <article class="project-card featured case-study" data-tags="online sistema">
+          <article class="project-card featured case-study" data-tags="sistema" data-maturity="mvp" data-access="demo-publica">
             <div class="project-topline">
-              <span>React + Vite</span>
-              <strong>MVP publicado</strong>
+              <span class="project-stack">React + Vite</span>
+              <span class="project-status">
+                <strong class="status-badge status-badge--maturity">MVP</strong>
+                <strong class="status-badge status-badge--access">Demo pública</strong>
+              </span>
             </div>
             <h3>AutoWash Smart</h3>
             <div class="project-case" role="group" aria-label="Problema, solução e resultado do projeto">
@@ -469,22 +531,25 @@
                 target="_blank"
                 rel="noreferrer"
               >
-                Demo online
+                Abrir demo
               </a>
               <a
                 href="https://github.com/Riclacper/AutoWashSmart"
                 target="_blank"
                 rel="noreferrer"
               >
-                GitHub
+                Ver código
               </a>
             </div>
           </article>
 
-          <article class="project-card case-study" data-tags="online site">
+          <article class="project-card case-study" data-tags="site" data-maturity="producao" data-access="site-publico">
             <div class="project-topline">
-              <span>HTML + CSS + JavaScript</span>
-              <strong>Projeto em produção</strong>
+              <span class="project-stack">HTML + CSS + JavaScript</span>
+              <span class="project-status">
+                <strong class="status-badge status-badge--maturity">Produção</strong>
+                <strong class="status-badge status-badge--access">Site público</strong>
+              </span>
             </div>
             <h3>iCanada Reparos</h3>
             <div class="project-case" role="group" aria-label="Problema, solução e resultado do projeto">
@@ -513,22 +578,25 @@
                 target="_blank"
                 rel="noreferrer"
               >
-                Site oficial
+                Visitar site
               </a>
               <a
                 href="https://github.com/Riclacper/web-site-icanada-reparos"
                 target="_blank"
                 rel="noreferrer"
               >
-                GitHub
+                Ver código
               </a>
             </div>
           </article>
 
-          <article class="project-card case-study" data-tags="online site">
+          <article class="project-card case-study" data-tags="site" data-maturity="prototipo" data-access="demo-publica">
             <div class="project-topline">
-              <span>React + Vite</span>
-              <strong>Demo online</strong>
+              <span class="project-stack">React + Vite</span>
+              <span class="project-status">
+                <strong class="status-badge status-badge--maturity">Protótipo</strong>
+                <strong class="status-badge status-badge--access">Demo pública</strong>
+              </span>
             </div>
             <h3>Aurora Stay Iceland</h3>
             <div class="project-case" role="group" aria-label="Problema, solução e resultado do projeto">
@@ -557,22 +625,25 @@
                 target="_blank"
                 rel="noreferrer"
               >
-                Demo online
+                Abrir demo
               </a>
               <a
                 href="https://github.com/Riclacper/aurora-stay-iceland"
                 target="_blank"
                 rel="noreferrer"
               >
-                GitHub
+                Ver código
               </a>
             </div>
           </article>
 
-          <article class="project-card case-study" data-tags="online site">
+          <article class="project-card case-study" data-tags="site" data-maturity="prototipo" data-access="demo-publica">
             <div class="project-topline">
-              <span>Catálogo web</span>
-              <strong>Demo online</strong>
+              <span class="project-stack">Catálogo web</span>
+              <span class="project-status">
+                <strong class="status-badge status-badge--maturity">Protótipo</strong>
+                <strong class="status-badge status-badge--access">Demo pública</strong>
+              </span>
             </div>
             <h3>Cinescope Catalog</h3>
             <div class="project-case" role="group" aria-label="Problema, solução e resultado do projeto">
@@ -601,22 +672,25 @@
                 target="_blank"
                 rel="noreferrer"
               >
-                Demo online
+                Abrir demo
               </a>
               <a
                 href="https://github.com/Riclacper/cinescope-catalog"
                 target="_blank"
                 rel="noreferrer"
               >
-                GitHub
+                Ver código
               </a>
             </div>
           </article>
 
-          <article class="project-card case-study" data-tags="sistema">
+          <article class="project-card case-study" data-tags="sistema" data-maturity="revisao" data-access="codigo-publico">
             <div class="project-topline">
-              <span>Dashboard</span>
-              <strong>Em evolução</strong>
+              <span class="project-stack">Dashboard</span>
+              <span class="project-status">
+                <strong class="status-badge status-badge--maturity">Revisão</strong>
+                <strong class="status-badge status-badge--access">Código público</strong>
+              </span>
             </div>
             <h3>Gerenciamento Forense</h3>
             <div class="project-case" role="group" aria-label="Problema, solução e resultado do projeto">
@@ -645,7 +719,7 @@
                 target="_blank"
                 rel="noreferrer"
               >
-                GitHub
+                Ver código
               </a>
             </div>
           </article>

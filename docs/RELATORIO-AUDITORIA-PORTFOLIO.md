@@ -26,8 +26,8 @@ O principal problema não é falta de conteúdo, mas a forma como ele foi acumul
 
 1. **P0 — concluído nesta etapa:** cards, métricas e experiência profissional passaram a ter o HTML como fonte de verdade.
 2. **P0 — concluído nesta etapa:** as mutações de conteúdo foram removidas do carregamento; o JavaScript ficou responsável pela interação.
-3. **P1 — sincronizar os estados e stacks dos projetos**, especialmente os projetos privados/em desenvolvimento, a partir de uma ficha mantida pelo proprietário.
-4. **P1 — padronizar todos os cards** com os mesmos campos, hierarquia, tamanho e vocabulário de status.
+3. **P1 — em andamento:** os cards agora separam maturidade e acesso; projetos privados ainda dependem de validação do proprietário.
+4. **P1 — concluído nesta etapa:** os cards compartilham estrutura, badges de status e ordem consistente de ações.
 5. **P1 — validar produção** com Lighthouse, axe, HTML Validator e testes em larguras reais.
 6. **P2 — consolidar CSS/JS** e definir cabeçalhos de segurança na hospedagem.
 
@@ -79,17 +79,17 @@ Uma inspeção posterior confirmou que o card RJ Prime Gestão e a seção Sobre
 
 #### 3.4 SEO e compartilhamento
 
-Há `title`, descrição, idioma e viewport, mas não foram encontrados `canonical`, Open Graph, Twitter Card, imagem social ou JSON-LD do profissional/portfólio. O conteúdo criado por JavaScript também é menos confiável para previews e indexadores simples.
+Além de `title`, descrição, idioma e viewport, esta etapa adicionou URL canônica, metadados Open Graph básicos, autor, robots, Twitter Card e JSON-LD `Person`. Os cases essenciais também estão no HTML inicial, tornando previews e indexação menos dependentes da execução de JavaScript. Ainda falta uma imagem social dedicada.
 
-**Recomendação:** incluir metadados sociais, URL canônica e dados estruturados `Person`/`WebSite`; manter os cases essenciais no HTML inicial.
+**Recomendação remanescente:** criar uma imagem social dedicada e, se necessário, complementar o JSON-LD com `WebSite`.
 
 ## 4. Segurança
 
 ### Aspectos positivos
 
 - O site é estático e não coleta dados nem processa formulários, reduzindo muito a superfície de ataque.
-- Os textos dinâmicos dos cases são inseridos com `textContent`, evitando injeção por HTML nesses pontos.
-- Os blocos atribuídos por `innerHTML` são constantes locais, não conteúdo de usuário.
+- Os cases são conteúdo estático, sem interpolação de entradas externas.
+- Os únicos blocos atribuídos por `innerHTML` são controles constantes locais, sem conteúdo de usuário.
 - Links externos existentes usam `rel="noreferrer"`, que nos navegadores atuais também evita acesso de `window.opener`; ainda assim, `noopener noreferrer` é mais explícito.
 - O acesso a `localStorage` é protegido para cenários em que armazenamento esteja bloqueado.
 
@@ -316,7 +316,7 @@ Ordem de execução:
 5. sincronizar métricas e README — concluído com 11 projetos e 9 acessos declarados;
 6. validar a página com JavaScript habilitado e desabilitado — concluído em Chromium nas larguras de 320, 375, 768 e 1440 px.
 
-**Próxima ação:** iniciar a padronização de maturidade/acesso dos cards e complementar a validação automatizada com Lighthouse e axe.
+**Próxima ação:** validar com o proprietário os estados dos projetos privados e complementar a validação automatizada com Lighthouse e axe. Nesta etapa foram adicionados badges separados de maturidade/acesso, filtros de tipo com contagens e anúncio acessível dos resultados.
 
 ### P0 — integridade (imediato)
 
@@ -328,10 +328,10 @@ Ordem de execução:
 
 ### P1 — qualidade da experiência (próximo ciclo)
 
-- Aplicar o padrão único de card e o vocabulário maturidade/acesso.
+- Manter o padrão único de card e o vocabulário maturidade/acesso implementados.
 - Resumir cases e destacar evidências verificáveis.
 - Corrigir informações públicas listadas na seção 8.
-- Revisar filtros, contagens e anúncio acessível dos resultados.
+- Manter os filtros por tipo, suas contagens e o anúncio acessível dos resultados.
 - Testar breakpoints, teclado, zoom e temas com Lighthouse/axe.
 - Adicionar metadados sociais e dados estruturados.
 
