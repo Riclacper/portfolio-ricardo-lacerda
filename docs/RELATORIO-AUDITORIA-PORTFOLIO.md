@@ -1,0 +1,363 @@
+# Relatório de auditoria do portfólio
+
+**Projeto:** Portfólio Ricardo Lacerda Pereira  
+**Data da análise:** 9 de agosto de 2026  
+**Escopo:** visão geral, segurança, UX/UI, responsividade, padronização dos cards e atualização das informações dos projetos em desenvolvimento.
+
+## 1. Resumo executivo
+
+O portfólio tem uma proposta profissional clara: apresenta Ricardo como desenvolvedor Full Stack, demonstra capacidade de levar uma necessidade até o deploy e usa projetos reais e demonstrativos como principal prova de competência. A identidade visual é consistente, há temas claro/escuro/automático, estados de foco, preferência por movimento reduzido, filtros e uma boa variedade de projetos.
+
+O principal problema não é falta de conteúdo, mas a forma como ele foi acumulado. Parte relevante da página é corrigida ou criada por JavaScript depois que o HTML carrega: o card **Monta Health**, a experiência profissional, a conversão de seis cards para o formato de case, as métricas, a navegação e alguns links. Isso cria duas versões do portfólio — a fonte HTML e a interface após a execução dos scripts — e já produziu divergências visíveis nos números, no README e na marcação.
+
+### Avaliação geral
+
+| Área | Nota | Diagnóstico |
+| --- | ---: | --- |
+| Posicionamento e conteúdo | 8/10 | Proposta clara, bons cases e evidências de projetos reais. |
+| UX/UI | 7/10 | Boa hierarquia e recursos úteis; cards longos e padrões de interação inconsistentes reduzem a leitura rápida. |
+| Responsividade | 7/10 | Há breakpoints e cuidados específicos, mas a quantidade de sobrescritas aumenta o risco de regressão. |
+| Acessibilidade | 7/10 | Foco visível, `prefers-reduced-motion`, rótulos e botões adequados; faltam validação sistemática e melhor semântica para ações indisponíveis. |
+| Segurança | 7/10 | Superfície pequena por ser um site estático e não há entrada de usuário; cabeçalhos e política de conteúdo não estão documentados no repositório. |
+| Manutenibilidade | 5/10 | Conteúdo duplicado entre HTML e JS, oito folhas CSS efetivas e correções em cascata. |
+| Confiabilidade das informações | 6/10 | O conteúdo recente está rico, porém métricas, README, HTML inicial e estado renderizado divergem. |
+
+### Prioridades recomendadas
+
+1. **P0 — concluído nesta etapa:** cards, métricas e experiência profissional passaram a ter o HTML como fonte de verdade.
+2. **P0 — concluído nesta etapa:** as mutações de conteúdo foram removidas do carregamento; o JavaScript ficou responsável pela interação.
+3. **P1 — sincronizar os estados e stacks dos projetos**, especialmente os projetos privados/em desenvolvimento, a partir de uma ficha mantida pelo proprietário.
+4. **P1 — padronizar todos os cards** com os mesmos campos, hierarquia, tamanho e vocabulário de status.
+5. **P1 — validar produção** com Lighthouse, axe, HTML Validator e testes em larguras reais.
+6. **P2 — consolidar CSS/JS** e definir cabeçalhos de segurança na hospedagem.
+
+## 2. Metodologia e limitações
+
+Foram examinados `index.html`, `script.js`, `script-core.js`, `README.md` e todas as folhas de estilo do repositório. Também foram consultados os metadados e READMEs dos repositórios públicos do perfil `Riclacper` em 9 de agosto de 2026.
+
+Os projetos **iCanada Gestão**, **RJ Prime Gestão** e **Monta Health** não aparecem entre os repositórios públicos consultados. Portanto, este relatório não presume funcionalidades além das declaradas no próprio portfólio. Antes de publicar alterações de escopo, status, stack ou resultados desses produtos, o proprietário deve validar as fichas sugeridas na seção 8.
+
+As URLs públicas hospedadas em Vercel, Render, Netlify, LinkedIn e no domínio iCanada não puderam ser verificadas a partir do ambiente de auditoria porque o proxy retornou HTTP 403. Os links de repositórios GitHub responderam HTTP 200. Assim, “online” neste relatório significa **declarado como online no código**, não disponibilidade comprovada ponta a ponta.
+
+## 3. Visão geral e arquitetura de conteúdo
+
+### Pontos fortes
+
+- O hero comunica atuação, entrega e stack sem depender de jargão excessivo.
+- O fluxo “Requisitos → Interface → Sistema → Aplicação publicada” sustenta bem a narrativa profissional.
+- Os cases no formato **Problema / Solução / Resultado** mostram raciocínio de produto, e não apenas ferramentas.
+- A experiência como fundador da iCanada Reparos conecta tecnologia a uma operação real.
+- Há variedade suficiente para demonstrar web, mobile, APIs, dados e visão de produto.
+- Os projetos simulados geralmente explicitam suas limitações, prática importante para credibilidade.
+
+### Problemas encontrados
+
+#### 3.1 Duas fontes de verdade
+
+Antes desta etapa, o HTML declarava **10 projetos e 8 online**, enquanto `script.js` mudava os números para **11 e 9** depois de inserir Monta Health. O README ainda informava **nove projetos e sete demos/ambientes online**. Além disso:
+
+- Monta Health só existia após JavaScript;
+- a seção de experiência profissional só existia após JavaScript;
+- seis cards começavam como parágrafo/lista no HTML e viravam case por JavaScript;
+- links e o rodapé eram normalizados ou reescritos em tempo de execução.
+
+**Impacto:** pior indexação, conteúdo inconsistente se o script falhar, testes mais difíceis e alto risco de o autor atualizar uma camada e esquecer as demais.
+
+**Situação atual:** o conteúdo essencial foi consolidado no HTML. `script-core.js` cuida somente de comportamento — tema, filtro, expansão, favicon e navegação.
+
+#### 3.2 Validação estrutural
+
+Uma inspeção posterior confirmou que o card RJ Prime Gestão e a seção Sobre possuem fechamento coerente de seus contêineres no arquivo atual. A verificação automatizada com o parser utilizado na auditoria também não encontrou tags remanescentes. Portanto, a indicação anterior de dois blocos estruturalmente incorretos foi removida deste relatório.
+
+**Recomendação:** substituir a verificação ad hoc por um validador HTML conforme o padrão WHATWG e executá-lo continuamente, porque um parser tolerante não equivale a uma validação normativa.
+
+#### 3.3 Métricas frágeis
+
+“Projetos”, “Projetos online” e o resumo do README são números manuais. A classificação “online” também não é totalmente uniforme: o JavaScript adiciona a tag `demo` apenas quando o texto exato da ação é “Demo online”, embora a interface nem ofereça um filtro “Demo”.
+
+**Recomendação:** calcular métricas a partir da fonte única dos projetos e adotar estados enumerados, em vez de inferir categorias pelo texto do botão.
+
+#### 3.4 SEO e compartilhamento
+
+Há `title`, descrição, idioma e viewport, mas não foram encontrados `canonical`, Open Graph, Twitter Card, imagem social ou JSON-LD do profissional/portfólio. O conteúdo criado por JavaScript também é menos confiável para previews e indexadores simples.
+
+**Recomendação:** incluir metadados sociais, URL canônica e dados estruturados `Person`/`WebSite`; manter os cases essenciais no HTML inicial.
+
+## 4. Segurança
+
+### Aspectos positivos
+
+- O site é estático e não coleta dados nem processa formulários, reduzindo muito a superfície de ataque.
+- Os textos dinâmicos dos cases são inseridos com `textContent`, evitando injeção por HTML nesses pontos.
+- Os blocos atribuídos por `innerHTML` são constantes locais, não conteúdo de usuário.
+- Links externos existentes usam `rel="noreferrer"`, que nos navegadores atuais também evita acesso de `window.opener`; ainda assim, `noopener noreferrer` é mais explícito.
+- O acesso a `localStorage` é protegido para cenários em que armazenamento esteja bloqueado.
+
+### Riscos e melhorias
+
+#### 4.1 Cabeçalhos de segurança não versionados — prioridade alta
+
+Não há configuração de deploy no repositório para demonstrar políticas como:
+
+- `Content-Security-Policy`;
+- `Strict-Transport-Security`;
+- `X-Content-Type-Options: nosniff`;
+- `Referrer-Policy`;
+- `Permissions-Policy`;
+- `frame-ancestors` via CSP.
+
+Como os cabeçalhos de produção não puderam ser consultados no ambiente, isso é uma lacuna de evidência, não a afirmação de que estejam ausentes em produção.
+
+**Recomendação:** versionar `vercel.json` ou configuração equivalente. A CSP precisa considerar Google Fonts; uma alternativa mais simples e privada é hospedar a fonte localmente e restringir `font-src`/`style-src` a `'self'`.
+
+#### 4.2 Dependência de terceiros
+
+O carregamento de Inter pelo Google Fonts expõe disponibilidade e metadados de conexão a um terceiro. Os `preconnect` melhoram desempenho, mas não eliminam o risco de privacidade/disponibilidade.
+
+**Recomendação:** avaliar fonte local WOFF2 com fallback de sistema. Se Google Fonts for mantido, documentar a decisão e ajustar a CSP.
+
+#### 4.3 Links externos
+
+Padronizar todos os links com `target="_blank"` para `rel="noopener noreferrer"`. Para ações indisponíveis, não usar `<a role="button" aria-disabled="true">` sem `href`: prefira texto/badge “Acesso privado” ou `<button disabled>` quando houver ação futura.
+
+#### 4.4 Integridade e cadeia de entrega
+
+Não há dependências npm neste portfólio, o que é positivo. Porém, não existe verificação automática do HTML, links, acessibilidade ou cabeçalhos antes do deploy.
+
+**Recomendação:** adicionar CI leve com HTML validator, link checker, lint de CSS/JS e uma auditoria Lighthouse em URL local.
+
+## 5. UX/UI e acessibilidade
+
+### O que funciona bem
+
+- Navegação curta e orientada às tarefas principais.
+- CTAs do hero têm prioridade visual compreensível.
+- Tema automático, claro e escuro respeita escolha persistida.
+- Estados `:focus-visible` estão previstos para links e botões.
+- `prefers-reduced-motion` é considerado tanto no CSS quanto no scroll em JavaScript.
+- Botões de filtro recebem `aria-pressed` e o botão “Ver mais” usa `aria-expanded`/`aria-controls`.
+- Texto dos cases contextualiza problema e resultado, diferencial relevante para recrutadores e clientes.
+
+### O que deve melhorar
+
+#### 5.1 Escaneabilidade dos cards — prioridade alta
+
+Cases com três parágrafos extensos, especialmente em cards de largura reduzida, exigem muita leitura antes de chegar à ação. A grade assimétrica alterna cards de uma e duas colunas conforme `nth-child`; ao filtrar ou inserir um projeto, o destaque visual muda por posição, não por importância editorial.
+
+**Recomendação:** limitar cada campo a aproximadamente 160–220 caracteres, exibir “Solução” e “Resultado” no resumo e deixar detalhes expandidos ou em página de case. Definir destaque por classe/dado explícito, nunca pela posição do card.
+
+#### 5.2 Status ambíguos
+
+São usados “Sistema em homologação”, “MVP em desenvolvimento”, “Demo online”, “MVP funcional”, “MVP publicado”, “Projeto em produção”, “Em evolução” e “Protótipo Exploratório v0”. Alguns misturam maturidade, disponibilidade e tipo de entrega.
+
+**Recomendação:** separar dois campos:
+
+- **maturidade:** Conceito, Protótipo, MVP, Homologação, Produção;
+- **acesso:** Demo pública, Site público, Código público, Privado.
+
+Isso permite que “MVP · Demo pública” e “Homologação · Privado” sejam comparáveis.
+
+#### 5.3 Filtros e contagem
+
+O usuário vê quatro cards e precisa expandir a lista, mas os filtros não mostram quantidades nem anunciam quantos resultados foram exibidos. O filtro “Online” reúne sites, protótipos e sistemas, enquanto “Sites” e “Sistemas” são tipos; as categorias não pertencem ao mesmo eixo conceitual.
+
+**Recomendação:** usar filtros combináveis ou apresentar um eixo único: “Todos (11)”, “Produtos/Sistemas”, “Sites” e “Dados”. Disponibilidade pode virar um badge, não um filtro. Adicionar região `aria-live` discreta para anunciar resultados.
+
+#### 5.4 Ações inconsistentes
+
+Os rótulos variam entre “Demo online”, “Acessar aplicação”, “Acessar dashboard”, “Site oficial” e “Abrir protótipo”. Cadastro de Obras possui três ações; RJ Prime apenas uma; iCanada Gestão mostra dois controles desabilitados.
+
+**Recomendação:** ordenar e nomear sempre:
+
+1. `Ver projeto` ou `Abrir demo`;
+2. `Ver código`;
+3. `Ver API`, somente quando realmente necessário.
+
+Em projetos privados: badge “Projeto privado” e, opcionalmente, “Ver estudo de caso”.
+
+#### 5.5 Navegação alterada após carregamento
+
+O HTML traz currículo no cabeçalho e LinkedIn no hero, mas o JavaScript remove ambos. Essa mudança pode causar deslocamento visual e torna o comportamento sem JavaScript diferente.
+
+**Recomendação:** decidir a navegação final no HTML e remover mutações corretivas.
+
+## 6. Responsividade
+
+### Evidências positivas
+
+- O documento define viewport e largura mínima de 320 px.
+- Existem breakpoints principais em 960 px e 640 px para cabeçalho, hero, grids, cards e rodapé.
+- O grid passa de três para duas e uma coluna.
+- Textos permitem quebra de palavras longas.
+- Alvos de toque recebem dimensões mínimas em regras de refinamento.
+- A animação do fluxo tem variantes para tablet/mobile e modo sem movimento.
+
+### Pontos de atenção
+
+1. **CSS em cascata excessiva:** `final.css` importa seis arquivos, além de `styles.css` e `theme.css`. Vários seletores de hero, grid e cards são redefinidos em diferentes arquivos. O resultado atual pode funcionar, mas a previsibilidade é baixa.
+2. **Cabeçalho mobile:** `styles.css` prevê navegação horizontal com `overflow-x: auto`; `theme.css` depois força `overflow-x: visible !important`. Essa oposição indica correção localizada e pode gerar corte ou compressão em 320 px, traduções, zoom de 200% ou nomes maiores.
+3. **Grade por `nth-child`:** a largura desktop muda de acordo com a posição e não com o conteúdo; filtros apenas ocultam cards sem reordenar a pseudo-sequência visual.
+4. **Cards longos:** em 320–375 px, três blocos de case mais ações produzem rolagem extensa e dificultam comparação.
+5. **`overflow-x: hidden` no body:** pode mascarar elementos que escapam da viewport, em vez de revelar a regressão.
+6. **Ausência de teste visual automatizado:** não há evidência de capturas em 320, 375, 768, 1024 e 1440 px, nem teste com zoom de 200%.
+
+### Matriz mínima recomendada
+
+| Cenário | Verificação |
+| --- | --- |
+| 320 × 568 | Cabeçalho sem corte, filtros quebrando linha, ações com toque confortável. |
+| 375 × 812 | Hero, fluxo e cards sem overflow; leitura e espaçamento. |
+| 768 × 1024 | Grid de duas colunas, cards com alturas coerentes e ordem lógica. |
+| 1024 × 768 | Transição do breakpoint e navegação completa. |
+| 1440 × 900 | Comprimento de linha, densidade e hierarquia dos destaques. |
+| Zoom 200% | Reflow sem rolagem horizontal e conteúdo/controles preservados. |
+| Teclado | Ordem de foco, filtros, “Ver mais”, links externos e voltar ao topo. |
+| Movimento reduzido | Ausência de animações decorativas persistentes. |
+
+## 7. Padrão proposto para os cards
+
+### Estrutura única
+
+Todos os projetos devem nascer com a mesma estrutura na fonte de dados/HTML:
+
+1. **Tipo:** Sistema, Mobile, Site, Dados ou Discovery;
+2. **Título**;
+3. **Maturidade + acesso:** dois badges independentes;
+4. **Papel:** por exemplo “Product Architect / Tech Lead” ou “Desenvolvimento Full Stack”;
+5. **Problema:** uma frase;
+6. **Solução:** uma ou duas frases;
+7. **Resultado/evidência:** uma frase verificável, evitando resultado comercial não medido;
+8. **Stack:** lista curta, com no máximo cinco tecnologias principais;
+9. **Ações:** demo/site, código e documentação, nessa ordem.
+
+### Modelo editorial
+
+```text
+[Sistema]                              [MVP] [Demo pública]
+Nome do projeto
+Papel: Desenvolvimento Full Stack
+
+Problema — uma frase sobre a necessidade real.
+Solução — o que foi construído e a principal decisão técnica.
+Evidência — o que está disponível ou foi validado, sem promessas não mensuradas.
+
+React · Node.js · PostgreSQL
+[Abrir demo] [Ver código]
+```
+
+### Regras de conteúdo
+
+- “Resultado” deve ser uma evidência: publicado, testado, integrado ou validado. Evitar alegar ganho sem métrica.
+- Informar claramente simulações: sem pagamento real, sem prontuário, sem autenticação real etc.
+- Não misturar stack com status na mesma linha.
+- Usar capitalização consistente: Node.js, scikit-learn, GitHub, PostgreSQL.
+- Usar `https://` canônico e barra final de modo consistente.
+- Mostrar “Código privado” como badge, não como link desabilitado.
+- Manter no máximo 6 projetos em destaque; os demais podem ficar em “Outros projetos”.
+
+## 8. Atualização das informações dos projetos
+
+### Situação confirmável pelos repositórios públicos
+
+| Projeto | Ajuste recomendado |
+| --- | --- |
+| Emprega Safe | Atualizar a stack curta para **React + Node.js + MongoDB** e mencionar análise por regras locais, com IA apenas quando ativada. O README público também evidencia equipe; o card deve indicar “Projeto em equipe” para não sugerir autoria individual integral. |
+| Cadastro de Obras | Corrigir o README deste portfólio: o backend público declara **Express + Mongoose + MongoDB**, não PostgreSQL/Supabase. Manter React Native/Expo/TypeScript no frontend e Node.js no backend. |
+| Data Science Dashboard | O conteúdo está alinhado ao README público: Flask, PostgreSQL/Supabase, scikit-learn, CI e dados sintéticos. Recomenda-se chamar o projeto de **Dashboard Forense** ou registrar “Data Science Dashboard — Dashboard Forense” para alinhar título do portfólio e repositório. |
+| AutoWash Smart | Manter “MVP demonstrativo” e explicitar no card que backend, hardware, pagamento, QR Code e reconhecimento facial são simulados. O README público informa testes unitários, uma evidência melhor do que apenas “dados locais”. |
+| Aurora Stay Iceland | Substituir “plataforma” por **protótipo acadêmico** ou “SPA demonstrativa”; explicitar dados locais, sem backend, autenticação ou pagamento real. |
+| Gerenciamento Forense | O repositório público não recebe push desde junho de 2025, embora o card diga “Em evolução”. Usar “Código legado em revisão” ou confirmar atividade atual antes de manter esse status. |
+| iCanada Reparos | O repositório público foi atualizado em junho de 2026 e declara homepage Vercel; o domínio oficial usado pelo portfólio deve ser validado manualmente após a limitação do proxy. |
+| Cinescope Catalog | O repositório público e sua homepage estão coerentes com o card; enriquecer stack real no lugar de “Catálogo web”. |
+
+### Projetos privados ou não localizados publicamente
+
+Antes de editar o conteúdo publicado, confirmar estas fichas:
+
+#### iCanada Gestão
+
+- Status real: homologação interna, piloto ou produção?
+- Frontend/API/banco estão publicados, ainda que privados?
+- Stack vigente: React/Vite, Node.js/Express, Supabase PostgreSQL/Auth e Resend?
+- Há usuário real, volume de ordens ou etapa validada que possa virar evidência?
+- Texto recomendado enquanto não houver validação: **“Homologação · Projeto privado”**.
+
+#### RJ Prime Gestão
+
+- O deploy Render está ativo e possui dados apenas demonstrativos?
+- SQLite é definitivo para o MVP ou migração está em curso?
+- Existe autenticação e isolamento multiacademia efetivo?
+- A aplicação trata dados pessoais reais?
+- Texto recomendado enquanto em desenvolvimento: **“MVP · Demo restrita/pública”**, conforme o acesso real.
+
+#### Monta Health
+
+- Confirmar que continua sem backend, banco, autenticação e integrações clínicas.
+- Manter em destaque o uso exclusivo de dados sintéticos e que não é prontuário eletrônico.
+- Evitar “Online” como sinônimo de produto disponível; usar **“Protótipo · Demo pública”**.
+- Informar stack de implementação separadamente do papel de Product Architect/Tech Lead.
+
+### Contagens após revisão
+
+Não manter números fixos até que cada projeto tenha `access` e `maturity` definidos. Pela interface renderizada atual, a intenção é apresentar **11 projetos** e **9 acessos online**, mas essa segunda contagem não foi confirmada em produção. O README deve ser atualizado automaticamente ou evitar números perecíveis.
+
+## 9. Plano de ação
+
+### Próximo passo recomendado
+
+O ciclo curto de **integridade da fonte de conteúdo** foi executado. A página agora entrega cards, métricas, experiência e navegação essenciais sem depender de JavaScript.
+
+Ordem de execução:
+
+1. ~~mover o card Monta Health e a experiência profissional para o HTML inicial~~ — concluído;
+2. ~~converter definitivamente todos os cards para Problema/Solução/Resultado~~ — concluído;
+3. ~~remover as rotinas que criavam ou reescreviam conteúdo~~ — concluído;
+4. ~~manter no JavaScript apenas comportamento interativo~~ — concluído;
+5. sincronizar métricas e README — concluído com 11 projetos e 9 acessos declarados;
+6. validar a página com JavaScript habilitado e desabilitado — concluído em Chromium nas larguras de 320, 375, 768 e 1440 px.
+
+**Próxima ação:** iniciar a padronização de maturidade/acesso dos cards e complementar a validação automatizada com Lighthouse e axe.
+
+### P0 — integridade (imediato)
+
+- Adicionar validação HTML normativa ao fluxo de qualidade.
+- Mover Monta Health e experiência profissional para o HTML/fonte única.
+- Remover correções de conteúdo executadas no carregamento.
+- Unificar métricas e eliminar divergências do README.
+- Validar HTML e navegação sem JavaScript.
+
+### P1 — qualidade da experiência (próximo ciclo)
+
+- Aplicar o padrão único de card e o vocabulário maturidade/acesso.
+- Resumir cases e destacar evidências verificáveis.
+- Corrigir informações públicas listadas na seção 8.
+- Revisar filtros, contagens e anúncio acessível dos resultados.
+- Testar breakpoints, teclado, zoom e temas com Lighthouse/axe.
+- Adicionar metadados sociais e dados estruturados.
+
+### P2 — robustez e manutenção
+
+- Consolidar as oito folhas CSS em camadas claras: tokens/base, layout, componentes e utilitários/responsivo.
+- Manter o JavaScript consolidado em `script-core.js`, sem voltar a carregar um script por outro.
+- Remover regras contraditórias e `!important` de correção.
+- Versionar cabeçalhos de segurança e hospedar a fonte localmente.
+- Criar CI para HTML, CSS, JavaScript, acessibilidade e links.
+
+## 10. Critérios de aceite sugeridos
+
+- HTML válido e conteúdo principal completo com JavaScript desativado.
+- Uma única fonte de dados gera cards, contagens e documentação.
+- Todos os cards contêm tipo, maturidade, acesso, papel, problema, solução, evidência, stack e ações.
+- Nenhum status “em desenvolvimento/evolução” é publicado sem confirmação do proprietário.
+- Nenhum projeto demonstrativo sugere integrações ou tratamento real de dados quando são simulados.
+- Sem rolagem horizontal a 320 px ou zoom de 200%.
+- Navegação completa por teclado e auditoria axe sem violações críticas/sérias.
+- Lighthouse executado em mobile e desktop, com metas registradas no projeto.
+- Links e deploys verificados automaticamente ou revisados antes de cada publicação.
+- Cabeçalhos de segurança documentados e testados em produção.
+
+## 11. Conclusão
+
+O portfólio já possui bons ativos: narrativa orientada a entrega, projetos variados, preocupação com acessibilidade e cases que mostram visão de negócio. O ganho mais importante agora virá de **reduzir a complexidade acidental**. Levar o conteúdo definitivo para uma única fonte, padronizar maturidade/acesso e tornar cada afirmação verificável aumentará simultaneamente credibilidade, SEO, segurança operacional, responsividade e velocidade de manutenção.
+
+Após as correções P0/P1, recomenda-se uma segunda auditoria visual na URL de produção com acesso aos projetos privados ou a uma ficha de status fornecida pelo proprietário.
