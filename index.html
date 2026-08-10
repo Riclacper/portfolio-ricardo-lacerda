@@ -51,13 +51,14 @@
       data-theme-stylesheet>
     <link
       rel="stylesheet"
-      href="final.css?v=20260809-3"
+      href="final.css?v=20260809-4"
       data-final-stylesheet>
   </head>
   <body>
     <div class="page-grid" aria-hidden="true"></div>
 
     <header class="site-header">
+      <span class="scroll-progress" aria-hidden="true"></span>
       <a class="brand" href="#inicio" aria-label="Ir para o início">
         <span>RL</span>
         <div>
@@ -77,8 +78,11 @@
     <main id="inicio">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <span class="eyebrow">Desenvolvedor Full Stack | projetos em produção</span>
-          <h1 id="hero-title">Do problema ao deploy.</h1>
+          <span class="eyebrow hero-eyebrow">
+            <i aria-hidden="true"></i>
+            Desenvolvedor Full Stack · Recife, PE
+          </span>
+          <h1 id="hero-title">Do problema <span>ao deploy.</span></h1>
           <p>
             Transformo necessidades reais em interfaces, APIs e sistemas completos,
             do levantamento de requisitos à aplicação publicada.
@@ -89,13 +93,16 @@
             role="group"
             aria-label="Resumo de disponibilidade dos projetos"
           >
-            <span><i></i> Projetos online</span>
-            <span><i></i> Código público</span>
-            <span><i></i> Deploy em nuvem</span>
+            <span><i></i> Produto &amp; UX</span>
+            <span><i></i> APIs &amp; Dados</span>
+            <span><i></i> Cloud &amp; Qualidade</span>
           </div>
 
           <div class="hero-actions">
             <a class="primary-action" href="#projetos">Ver projetos</a>
+            <a class="secondary-action hero-contact-action" href="#contato">
+              Falar comigo
+            </a>
             <a
               class="secondary-action"
               href="https://curriculo-ricardo-five.vercel.app"
@@ -175,8 +182,8 @@
           <strong>React + Node + Flask</strong>
         </article>
         <article>
-          <span>Contato</span>
-          <strong>LinkedIn</strong>
+          <span>Experiência</span>
+          <strong>Desde 2019</strong>
         </article>
       </section>
 
@@ -1013,6 +1020,6 @@
       </nav>
     </footer>
 
-    <script src="script-core.js?v=20260809-1"></script>
+    <script src="script-core.js?v=20260809-2"></script>
   </body>
 </html>

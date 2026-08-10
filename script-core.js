@@ -85,6 +85,59 @@ const setupBackToTop = () => {
   updateVisibility();
 };
 
+const setupReadingProgress = () => {
+  const progress = document.querySelector(".scroll-progress");
+  const navigationLinks = Array.from(
+    document.querySelectorAll('.site-header nav a[href^="#"]'),
+  );
+  const sections = navigationLinks
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
+
+  if (!progress) {
+    return;
+  }
+
+  const update = () => {
+    const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const ratio = scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0;
+    progress.style.transform = `scaleX(${Math.min(1, Math.max(0, ratio))})`;
+
+    const currentSection = [...sections]
+      .reverse()
+      .find((section) => section.offsetTop <= window.scrollY + 220);
+
+    navigationLinks.forEach((link) => {
+      const isCurrent = currentSection && link.hash === `#${currentSection.id}`;
+
+      if (isCurrent) {
+        link.setAttribute("aria-current", "location");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  };
+
+  let ticking = false;
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (ticking) {
+        return;
+      }
+
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        update();
+        ticking = false;
+      });
+    },
+    { passive: true },
+  );
+
+  update();
+};
+
 const readStoredTheme = () => {
   try {
     const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
@@ -207,6 +260,7 @@ applyTheme();
 ensurePortfolioStylesheets();
 createThemeToggle();
 setupBackToTop();
+setupReadingProgress();
 
 const handleSystemThemeChange = () => {
   if (themeMode === "auto") {

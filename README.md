@@ -15,6 +15,7 @@ Portfólio profissional estático para apresentação de projetos, demos publica
 - Dashboard visual com distribuição por tipo, maturidade e stack recorrente.
 - Capas autorais em CSS para quatro projetos em destaque.
 - Seções Sobre, Experiência e Contato com narrativa profissional, competências agrupadas e CTA direto por e-mail.
+- Topo com posicionamento profissional, navegação ativa e indicador de progresso da página.
 - Destaque para o sistema **iCanada Gestão**, com React/Vite, Node.js/Express, Supabase PostgreSQL/Auth, Cloudflare Pages, Render e Resend API.
 - **Cadastro de Obras** com frontend Expo/TypeScript publicado na Vercel, API Node.js/Express com MongoDB e demo pública navegável.
 - **Data Science Dashboard** publicado com Flask, PostgreSQL/Supabase, scikit-learn, frontend responsivo e CI automatizado.
@@ -34,6 +35,7 @@ Portfólio profissional estático para apresentação de projetos, demos publica
 - `theme.css`: temas claro, escuro e seletor de tema.
 - `final.css`: ajustes finais de navegação e acessibilidade.
 - `dashboard-visuals.css`: dashboard técnico, gráficos e capas dos destaques.
+- `top-upgrade.css`: refinamentos do hero, navegação ativa e progresso de leitura.
 - `script-core.js`: tema, filtros, expansão dos projetos, favicon e retorno ao topo.
 
 ## Executar localmente

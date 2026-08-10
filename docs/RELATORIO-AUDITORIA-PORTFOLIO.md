@@ -504,3 +504,18 @@ As seções Sobre, Experiência profissional e Contato foram revisadas para acom
 - **Responsividade:** os novos blocos foram verificados de 320 a 1440 px sem overflow horizontal.
 
 A revisão evita uma lista extensa e uniforme de tecnologias, conecta a experiência empresarial ao desenvolvimento dos produtos e oferece uma ação de contato imediata sem formulário ou coleta adicional de dados.
+
+## 14. Evolução do topo
+
+O topo foi refinado para comunicar posicionamento e oferecer caminhos de ação mais rapidamente:
+
+- localização e função foram incorporadas ao eyebrow com indicador visual de disponibilidade;
+- “ao deploy” recebeu destaque em gradiente alinhado à identidade do dashboard;
+- as áreas Produto/UX, APIs/Dados e Cloud/Qualidade substituíram sinais genéricos;
+- o hero agora oferece acesso direto a projetos, contato e currículo;
+- a última métrica passou de “Contato/LinkedIn” para “Experiência/Desde 2019”, informação mais relevante para avaliação profissional;
+- a navegação destaca automaticamente a seção atual com `aria-current`;
+- uma barra discreta informa o progresso de leitura da página;
+- o comportamento foi verificado em desktop, tablet e smartphones sem overflow horizontal.
+
+As alterações preservam o fluxo visual de entrega existente e adicionam orientação sem introduzir bibliotecas ou dependências externas.
