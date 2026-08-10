@@ -7,7 +7,7 @@
 .delivery-flow::after {
   position: absolute;
   top: 41px;
-  left: 10%;
+  left: var(--delivery-node-start);
   z-index: 0;
   width: clamp(54px, 7vw, 88px);
   height: 4px;
@@ -39,16 +39,16 @@
   0%,
   6%,
   100% {
-    left: 10%;
+    left: var(--delivery-node-start);
   }
 
   44%,
   56% {
-    left: 90%;
+    left: var(--delivery-node-end);
   }
 
   94% {
-    left: 10%;
+    left: var(--delivery-node-start);
   }
 }
 

@@ -157,6 +157,10 @@
 }
 
 .delivery-flow {
+  /* Alinha o conector ao centro dos marcadores 01 e 04 no grid de quatro colunas. */
+  --delivery-node-start: 36px;
+  --delivery-node-end: calc(75% + 51px);
+  --delivery-line-right: calc(25% - 51px);
   position: relative;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -169,8 +173,8 @@
 .delivery-flow::before {
   position: absolute;
   top: 43px;
-  right: 10%;
-  left: 10%;
+  right: var(--delivery-line-right);
+  left: var(--delivery-node-start);
   height: 1px;
   background: linear-gradient(
     90deg,
