@@ -280,6 +280,7 @@ footer {
 .primary-action,
 .secondary-action,
 .project-actions a,
+.project-action-disabled,
 .contact-actions a {
   display: inline-flex;
   align-items: center;
@@ -298,6 +299,7 @@ footer {
 
 .secondary-action,
 .project-actions a,
+.project-action-disabled,
 .contact-actions a {
   border: 1px solid var(--line);
   color: var(--ink);
